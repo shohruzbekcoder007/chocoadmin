@@ -51,6 +51,7 @@
         "prop-types": "15.8.1",
         "qs": "6.11.2",
         "react": "18.2.0",
+        "react-apexcharts": "^1.4.1",
         "react-autosuggest": "10.1.0",
         "react-dom": "18.2.0",
         "react-draft-wysiwyg": "1.15.0",

@@ -20,10 +20,6 @@ const ExampleConfig = {
       path: 'example',
       element: <Example />,
     },
-    {
-      path: 'example1',
-      element: <Example />,
-    },
   ],
 };
 

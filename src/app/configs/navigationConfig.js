@@ -9,21 +9,50 @@ i18next.addResourceBundle('ar', 'navigation', ar);
 
 const navigationConfig = [
   {
+    id: 'dashboards',
+    title: 'Dashboards',
+    subtitle: 'Unique dashboard designs',
+    type: 'item',
+    icon: 'heroicons-outline:home',
+    translate: 'DASHBOARDS',
+    children: [
+      {
+        id: 'dashboards.project',
+        title: 'Project',
+        type: 'item',
+        icon: 'heroicons-outline:clipboard-check',
+        url: '/dashboards/project',
+      },
+      {
+        id: 'dashboards.analytics',
+        title: 'Analytics',
+        type: 'item',
+        icon: 'heroicons-outline:chart-pie',
+        url: '/dashboards/analytics',
+      },
+      {
+        id: 'dashboards.finance',
+        title: 'Finance',
+        type: 'item',
+        icon: 'heroicons-outline:cash',
+        url: '/dashboards/finance',
+      },
+      {
+        id: 'dashboards.crypto',
+        title: 'Crypto',
+        type: 'item',
+        icon: 'heroicons-outline:currency-dollar',
+        url: '/dashboards/crypto',
+      },
+    ],
+  },
+  {
     id: 'example-component',
     title: 'Example',
     translate: 'EXAMPLE',
     type: 'item',
     icon: 'heroicons-outline:star',
     url: 'example',
-    auth: "admin"
-  },
-  {
-    id: 'example-component1',
-    title: 'Example1',
-    translate: 'EXAMPLE1',
-    type: 'item',
-    icon: 'heroicons-outline:star',
-    url: 'example1',
     auth: "admin"
   },
 ];
