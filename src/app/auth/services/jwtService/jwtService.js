@@ -1,5 +1,6 @@
 import FuseUtils from '@fuse/utils/FuseUtils';
-import axios from 'axios';
+// import axios from 'axios';
+import axios from '../../../../utils/baseUrl';
 import jwtDecode from 'jwt-decode';
 import jwtServiceConfig from './jwtServiceConfig';
 
@@ -64,17 +65,56 @@ class JwtService extends FuseUtils.EventEmitter {
   signInWithEmailAndPassword = (email, password) => {
     return new Promise((resolve, reject) => {
       axios
-        .get(jwtServiceConfig.signIn, {
-          data: {
-            email,
+        .post(jwtServiceConfig.signIn, {
+            username: email,
             password,
-          },
         })
         .then((response) => {
-          if (response.data.user) {
-            this.setSession(response.data.access_token);
-            resolve(response.data.user);
-            this.emit('onLogin', response.data.user);
+          // console.log(response)
+          if (response.data.access) {
+            this.setSession(response.data.access);
+            axios.get(jwtServiceConfig.getUser).then(response => {
+              console.log(response.data,"<---")
+            }).catch(error => {
+              console.log(error)
+            })
+            resolve({
+            "role": "admin",
+            "data": {
+              "displayName": "Admin",
+              "photoURL": "assets/images/avatars/brian-hughes.jpg",
+              "email": "admin@gmail.com.com",
+              "settings": {
+                "layout": {},
+                "theme": {}
+              },
+              "shortcuts": [
+                "apps.calendar",
+                "apps.mailbox",
+                "apps.contacts"
+              ]
+            }
+          });
+            this.emit('onLogin', {
+            "uuid": "XgbuVEXBU5gtSKdbQRP1Zbbby1i1",
+            "from": "custom-db",
+            "password": "admin",
+            "role": "admin",
+            "data": {
+              "displayName": "Abbott Keitch",
+              "photoURL": "assets/images/avatars/brian-hughes.jpg",
+              "email": "admin@fusetheme.com",
+              "settings": {
+                "layout": {},
+                "theme": {}
+              },
+              "shortcuts": [
+                "apps.calendar",
+                "apps.mailbox",
+                "apps.contacts"
+              ]
+            }
+          });
           } else {
             reject(response.data.error);
           }

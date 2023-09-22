@@ -21,17 +21,19 @@ import jwtService from '../../auth/services/jwtService';
  * Form Validation Schema
  */
 const schema = yup.object().shape({
-  email: yup.string().email('You must enter a valid email').required('You must enter a email'),
+  email: yup.string()
+  // .email('You must enter a valid email')
+  .required('You must enter a email'),
   password: yup
     .string()
     .required('Please enter your password.')
-    .min(4, 'Password is too short - must be at least 4 chars.'),
+    .min(1, 'Password is too short - must be at least 1 chars.'),
 });
 
 const defaultValues = {
   email: '',
   password: '',
-  remember: true,
+  // remember: true,
 };
 
 function SignInPage() {
@@ -73,12 +75,12 @@ function SignInPage() {
           <Typography className="mt-32 text-4xl font-extrabold tracking-tight leading-tight">
             Sign in
           </Typography>
-          <div className="flex items-baseline mt-2 font-medium">
+          {/* <div className="flex items-baseline mt-2 font-medium">
             <Typography>Don't have an account?</Typography>
             <Link className="ml-4" to="/sign-up">
               Sign up
             </Link>
-          </div>
+          </div> */}
 
           <form
             name="loginForm"
@@ -93,9 +95,9 @@ function SignInPage() {
                 <TextField
                   {...field}
                   className="mb-24"
-                  label="Email"
+                  label="Username"
                   autoFocus
-                  type="email"
+                  type="text"
                   error={!!errors.email}
                   helperText={errors?.email?.message}
                   variant="outlined"
@@ -123,7 +125,7 @@ function SignInPage() {
               )}
             />
 
-            <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-between">
+            {/* <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-between">
               <Controller
                 name="remember"
                 control={control}
@@ -140,7 +142,7 @@ function SignInPage() {
               <Link className="text-md font-medium" to="/pages/auth/forgot-password">
                 Forgot password?
               </Link>
-            </div>
+            </div> */}
 
             <Button
               variant="contained"
@@ -154,15 +156,15 @@ function SignInPage() {
               Sign in
             </Button>
 
-            <div className="flex items-center mt-32">
+            {/* <div className="flex items-center mt-32">
               <div className="flex-auto mt-px border-t" />
               <Typography className="mx-8" color="text.secondary">
                 Or continue with
               </Typography>
               <div className="flex-auto mt-px border-t" />
-            </div>
+            </div> */}
 
-            <div className="flex items-center mt-32 space-x-16">
+            {/* <div className="flex items-center mt-32 space-x-16">
               <Button variant="outlined" className="flex-auto">
                 <FuseSvgIcon size={20} color="action">
                   feather:facebook
@@ -178,7 +180,7 @@ function SignInPage() {
                   feather:github
                 </FuseSvgIcon>
               </Button>
-            </div>
+            </div> */}
           </form>
         </div>
       </Paper>
