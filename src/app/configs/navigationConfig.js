@@ -12,7 +12,7 @@ const navigationConfig = [
     id: 'dashboards',
     title: 'Dashboards',
     subtitle: 'Unique dashboard designs',
-    type: 'item',
+    type: 'collapse',
     icon: 'heroicons-outline:home',
     translate: 'DASHBOARDS',
     children: [
@@ -37,13 +37,6 @@ const navigationConfig = [
         icon: 'heroicons-outline:cash',
         url: '/dashboards/finance',
       },
-      {
-        id: 'dashboards.crypto',
-        title: 'Crypto',
-        type: 'item',
-        icon: 'heroicons-outline:currency-dollar',
-        url: '/dashboards/crypto',
-      },
     ],
   },
   {
@@ -55,6 +48,47 @@ const navigationConfig = [
     url: 'example',
     auth: "admin"
   },
+  {
+    id: 'apps.ecommerce',
+    title: 'ECommerce',
+    type: 'collapse',
+    icon: 'heroicons-outline:shopping-cart',
+    translate: 'ECOMMERCE',
+    children: [
+      {
+        id: 'e-commerce-products',
+        title: 'Products',
+        type: 'item',
+        url: 'apps/e-commerce/products',
+        end: true,
+      },
+      {
+        id: 'e-commerce-product-detail',
+        title: 'Product Detail',
+        type: 'item',
+        url: 'apps/e-commerce/products/1/a-walk-amongst-friends-canvas-print',
+      },
+      {
+        id: 'e-commerce-new-product',
+        title: 'New Product',
+        type: 'item',
+        url: 'apps/e-commerce/products/new',
+      },
+      {
+        id: 'e-commerce-orders',
+        title: 'Orders',
+        type: 'item',
+        url: 'apps/e-commerce/orders',
+        end: true,
+      },
+      {
+        id: 'e-commerce-order-detail',
+        title: 'Order Detail',
+        type: 'item',
+        url: 'apps/e-commerce/orders/1',
+      },
+    ],
+  }
 ];
 
 export default navigationConfig;
