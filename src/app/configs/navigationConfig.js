@@ -40,6 +40,16 @@ const navigationConfig = [
     ],
   },
   {
+    id: "category",
+    title: "Category",
+    subtitle: "Create category and update",
+    type: 'item',
+    icon: 'heroicons-outline:briefcase',
+    translate: 'Category',
+    url: 'category',
+    auth: "admin"
+  },
+  {
     id: 'example-component',
     title: 'Example',
     translate: 'EXAMPLE',
@@ -86,6 +96,33 @@ const navigationConfig = [
         title: 'Order Detail',
         type: 'item',
         url: 'apps/e-commerce/orders/1',
+      },
+    ],
+  },
+  {
+    id: 'pages.invoice',
+    title: 'Invoice',
+    type: 'collapse',
+    icon: 'heroicons-outline:calculator',
+    children: [
+      {
+        id: 'pages.invoice.printable',
+        title: 'Printable',
+        type: 'collapse',
+        children: [
+          {
+            id: 'pages.invoice.printable.compact',
+            title: 'Compact',
+            type: 'item',
+            url: '/pages/invoice/printable/compact',
+          },
+          {
+            id: 'pages.invoice.printable.modern',
+            title: 'Modern',
+            type: 'item',
+            url: '/pages/invoice/printable/modern',
+          },
+        ],
       },
     ],
   }

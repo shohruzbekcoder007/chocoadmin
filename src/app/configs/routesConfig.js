@@ -9,10 +9,14 @@ import Error404Page from '../main/404/Error404Page';
 import ExampleConfig from '../main/example/ExampleConfig';
 import dashboardsConfigs from '../main/dashboards/dashboardsConfigs';
 import ECommerceAppConfig from '../e-commerce/ECommerceAppConfig';
+import invoicePagesConfig from '../invoice/invoicePagesConfig';
+import CategoryConfig from '../category/CategoryConfig';
 
 const routeConfigs = [
   ...dashboardsConfigs,
-  ExampleConfig, 
+  ExampleConfig,
+  invoicePagesConfig,
+  CategoryConfig,
   SignOutConfig, 
   SignInConfig, 
   SignUpConfig,

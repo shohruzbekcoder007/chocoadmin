@@ -74,47 +74,30 @@ class JwtService extends FuseUtils.EventEmitter {
           if (response.data.access) {
             this.setSession(response.data.access);
             axios.get(jwtServiceConfig.getUser).then(response => {
-              console.log(response.data,"<---")
+              let admin_user = {
+                uuid: response.data.id,
+                from: "custom-db",
+                role: "admin",
+                data: {
+                  displayName: "Admin",
+                  photoURL: "assets/images/avatars/brian-hughes.jpg",
+                  email: "admin@fusetheme.com",
+                  settings: {
+                    layout: {},
+                    theme: {}
+                  },
+                  shortcuts: [
+                    "apps.calendar",
+                    "apps.mailbox",
+                    "apps.contacts"
+                  ]
+                }
+              }
+              resolve(admin_user);
+              this.emit('onLogin', admin_user);
             }).catch(error => {
               console.log(error)
             })
-            resolve({
-            "role": "admin",
-            "data": {
-              "displayName": "Admin",
-              "photoURL": "assets/images/avatars/brian-hughes.jpg",
-              "email": "admin@gmail.com.com",
-              "settings": {
-                "layout": {},
-                "theme": {}
-              },
-              "shortcuts": [
-                "apps.calendar",
-                "apps.mailbox",
-                "apps.contacts"
-              ]
-            }
-          });
-            this.emit('onLogin', {
-            "uuid": "XgbuVEXBU5gtSKdbQRP1Zbbby1i1",
-            "from": "custom-db",
-            "password": "admin",
-            "role": "admin",
-            "data": {
-              "displayName": "Abbott Keitch",
-              "photoURL": "assets/images/avatars/brian-hughes.jpg",
-              "email": "admin@fusetheme.com",
-              "settings": {
-                "layout": {},
-                "theme": {}
-              },
-              "shortcuts": [
-                "apps.calendar",
-                "apps.mailbox",
-                "apps.contacts"
-              ]
-            }
-          });
           } else {
             reject(response.data.error);
           }
@@ -124,25 +107,48 @@ class JwtService extends FuseUtils.EventEmitter {
 
   signInWithToken = () => {
     return new Promise((resolve, reject) => {
-      axios
-        .get(jwtServiceConfig.accessToken, {
+      axios.get(jwtServiceConfig.getUser).then(response => {
+        let admin_user = {
+          uuid: response.data.id,
+          from: "custom-db",
+          role: "admin",
           data: {
-            access_token: this.getAccessToken(),
-          },
-        })
-        .then((response) => {
-          if (response.data.user) {
-            this.setSession(response.data.access_token);
-            resolve(response.data.user);
-          } else {
-            this.logout();
-            reject(new Error('Failed to login with token.'));
+            displayName: "Admin",
+            photoURL: "assets/images/avatars/brian-hughes.jpg",
+            email: "admin@fusetheme.com",
+            settings: {
+              layout: {},
+              theme: {}
+            },
+            shortcuts: [
+              "apps.calendar",
+              "apps.mailbox",
+              "apps.contacts"
+            ]
           }
-        })
-        .catch((error) => {
+        }
+        resolve(admin_user);
+        this.emit('onLogin', admin_user);
+      }).catch(error => {
           this.logout();
           reject(new Error('Failed to login with token.'));
-        });
+      })
+      // axios
+      //   .get(jwtServiceConfig.user_me)
+      //   .then((response) => {
+      //     console.log(response)
+      //     // if (response.data.user) {
+      //     //   this.setSession(response.data.access_token);
+      //     //   resolve(response.data.user);
+      //     // } else {
+      //     //   this.logout();
+      //     //   reject(new Error('Failed to login with token.'));
+      //     // }
+      //   })
+      //   .catch((error) => {
+      //     this.logout();
+      //     reject(new Error('Failed to login with token.'));
+      //   });
     });
   };
 
