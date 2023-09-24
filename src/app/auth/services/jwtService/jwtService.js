@@ -1,14 +1,15 @@
 import FuseUtils from '@fuse/utils/FuseUtils';
 // import axios from 'axios';
-import axios from '../../../../utils/baseUrl';
+import axios, { headerConfig } from '../../../../utils/baseUrl';
 import jwtDecode from 'jwt-decode';
 import jwtServiceConfig from './jwtServiceConfig';
+
 
 /* eslint-disable camelcase */
 
 class JwtService extends FuseUtils.EventEmitter {
   init() {
-    this.setInterceptors();
+    this.setInterceptors(); 
     this.handleAuthentication();
   }
 
@@ -35,17 +36,10 @@ class JwtService extends FuseUtils.EventEmitter {
 
     if (!access_token) {
       this.emit('onNoAccessToken');
-
       return;
     }
 
-    if (this.isAuthTokenValid(access_token)) {
-      this.setSession(access_token);
-      this.emit('onAutoLogin', true);
-    } else {
-      this.setSession(null);
-      this.emit('onAutoLogout', 'access_token expired');
-    }
+    this.isAuthTokenValid(access_token)
   };
 
   createUser = (data) => {
@@ -70,10 +64,12 @@ class JwtService extends FuseUtils.EventEmitter {
             password,
         })
         .then((response) => {
-          // console.log(response)
           if (response.data.access) {
             this.setSession(response.data.access);
-            axios.get(jwtServiceConfig.getUser).then(response => {
+            axios.get(jwtServiceConfig.getUser, {
+              headers: headerConfig(),
+          }).then(response => {
+            console.log(response)
               let admin_user = {
                 uuid: response.data.id,
                 from: "custom-db",
@@ -107,7 +103,9 @@ class JwtService extends FuseUtils.EventEmitter {
 
   signInWithToken = () => {
     return new Promise((resolve, reject) => {
-      axios.get(jwtServiceConfig.getUser).then(response => {
+      axios.get(jwtServiceConfig.getUser, {
+        headers: headerConfig(),
+    }).then(response => {
         let admin_user = {
           uuid: response.data.id,
           from: "custom-db",
@@ -133,22 +131,6 @@ class JwtService extends FuseUtils.EventEmitter {
           this.logout();
           reject(new Error('Failed to login with token.'));
       })
-      // axios
-      //   .get(jwtServiceConfig.user_me)
-      //   .then((response) => {
-      //     console.log(response)
-      //     // if (response.data.user) {
-      //     //   this.setSession(response.data.access_token);
-      //     //   resolve(response.data.user);
-      //     // } else {
-      //     //   this.logout();
-      //     //   reject(new Error('Failed to login with token.'));
-      //     // }
-      //   })
-      //   .catch((error) => {
-      //     this.logout();
-      //     reject(new Error('Failed to login with token.'));
-      //   });
     });
   };
 
@@ -162,7 +144,8 @@ class JwtService extends FuseUtils.EventEmitter {
     if (access_token) {
       localStorage.setItem('jwt_access_token', access_token);
       axios.defaults.headers.common.Authorization = `Bearer ${access_token}`;
-    } else {
+    } 
+    else {
       localStorage.removeItem('jwt_access_token');
       delete axios.defaults.headers.common.Authorization;
     }
@@ -177,14 +160,12 @@ class JwtService extends FuseUtils.EventEmitter {
     if (!access_token) {
       return false;
     }
-    const decoded = jwtDecode(access_token);
-    const currentTime = Date.now() / 1000;
-    if (decoded.exp < currentTime) {
-      console.warn('access token expired');
+    
+    this.signInWithToken().then(_ => {
+      return true;
+    }).catch(error => {
       return false;
-    }
-
-    return true;
+    })    
   };
 
   getAccessToken = () => {

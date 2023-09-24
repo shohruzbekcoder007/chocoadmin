@@ -1,3 +1,4 @@
+import React, { useState } from 'react'
 import { styled } from '@mui/material/styles';
 import { useTranslation } from 'react-i18next';
 import FusePageSimple from '@fuse/core/FusePageSimple';
@@ -8,6 +9,8 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import FuseScrollbars from '@fuse/core/FuseScrollbars/FuseScrollbars';
 import DataTable from './DataTable';
+import CreateCategory from '../CreateCategory';
+import AlertMessage from '../AlertMessage';
 
 const Root = styled(FusePageSimple)(({ theme }) => ({
   '& .FusePageSimple-header': {
@@ -22,7 +25,9 @@ const Root = styled(FusePageSimple)(({ theme }) => ({
   '& .FusePageSimple-sidebarContent': {},
 }));
 
-function CategoryList(props) {
+function CategoryList() {
+
+  const [createdOption, setCreatedOption] = useState(null)
 
   return (
     <Root
@@ -69,16 +74,7 @@ function CategoryList(props) {
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0, transition: { delay: 0.2 } }}
               >
-                <Button
-                  className=""
-                  component={Link}
-                  to="/apps/e-commerce/products/new"
-                  variant="contained"
-                  color="secondary"
-                  startIcon={<FuseSvgIcon>heroicons-outline:plus</FuseSvgIcon>}
-                >
-                  Add
-                </Button>
+                <CreateCategory setCreatedOption={setCreatedOption}/>
               </motion.div>
             </div>
           </div>
@@ -89,13 +85,12 @@ function CategoryList(props) {
               animate={{ opacity: 1, transition: { delay: 0.1 } }}
               className="flex flex-1 items-center justify-center h-full"
             >
-
-              {/* <Typography color="text.secondary" variant="h5">
-                There are no products!
-              </Typography> */}
-              <DataTable/>
+              <DataTable />
             </motion.div>
           </div>
+          {
+            createdOption?<AlertMessage alertMessage={createdOption.alertMessage} _openAlert={true} type={createdOption.type}/>:null
+          }
         </div>
       }
       scroll="content"

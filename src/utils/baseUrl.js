@@ -7,7 +7,7 @@ const instance = axios.create({
 
 export const  headerConfig = () => {
   return {
-    Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
+    Authorization: `Bearer ${localStorage.getItem("jwt_access_token")}`,
     "Content-Type": "application/json",
   }
 }

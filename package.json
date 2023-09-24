@@ -45,6 +45,7 @@
         "mobile-detect": "1.4.5",
         "mobx": "^6.9.0",
         "moment": "2.29.4",
+        "mui-file-input": "^3.0.2",
         "notistack": "1.0.6-next.3",
         "perfect-scrollbar": "1.5.5",
         "prismjs": "1.29.0",

@@ -14,7 +14,6 @@ export default function DataTable() {
 
     useEffect(() => {
         categoryService.getCategory().then(resone => {
-            console.log(resone.data)
             setCategoryList(resone.data)
         }).catch(error => {
             console.log(error)
@@ -28,9 +27,6 @@ export default function DataTable() {
                     <TableRow>
                         <TableCell>Category Id</TableCell>
                         <TableCell align="right">Categoty name</TableCell>
-                        {/* <TableCell align="right">Fat&nbsp;(g)</TableCell>
-                        <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-                        <TableCell align="right">Protein&nbsp;(g)</TableCell> */}
                     </TableRow>
                 </TableHead>
                 <TableBody>
