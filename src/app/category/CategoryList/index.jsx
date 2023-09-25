@@ -1,13 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { styled } from '@mui/material/styles';
-import { useTranslation } from 'react-i18next';
 import FusePageSimple from '@fuse/core/FusePageSimple';
-import DemoContent from '@fuse/core/DemoContent';
-import { Button, Input, Paper, Typography } from '@mui/material';
+import { Input, Paper, Typography } from '@mui/material';
 import FuseSvgIcon from '@fuse/core/FuseSvgIcon/FuseSvgIcon';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import FuseScrollbars from '@fuse/core/FuseScrollbars/FuseScrollbars';
 import DataTable from './DataTable';
 import CreateCategory from '../CreateCategory';
 import AlertMessage from '../AlertMessage';
@@ -28,6 +24,11 @@ const Root = styled(FusePageSimple)(({ theme }) => ({
 function CategoryList() {
 
   const [createdOption, setCreatedOption] = useState(null)
+  const [reRender, setReRender] = useState(false)
+
+  useEffect(() => {
+    setReRender(prev => !prev)
+  },[createdOption])
 
   return (
     <Root
@@ -85,7 +86,7 @@ function CategoryList() {
               animate={{ opacity: 1, transition: { delay: 0.1 } }}
               className="flex flex-1 items-center justify-center h-full"
             >
-              <DataTable />
+              <DataTable reRender={reRender}/>
             </motion.div>
           </div>
           {
