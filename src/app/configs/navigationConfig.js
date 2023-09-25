@@ -50,6 +50,16 @@ const navigationConfig = [
     auth: "admin"
   },
   {
+    id: "brand",
+    title: "Brand",
+    subtitle: "Brand create and update",
+    type: 'item',
+    icon: 'material-twotone:branding_watermark',
+    translate: 'Brand',
+    url: 'brand',
+    auth: "admin"
+  },
+  {
     id: 'example-component',
     title: 'Example',
     translate: 'EXAMPLE',

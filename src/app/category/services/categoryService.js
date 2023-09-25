@@ -1,14 +1,13 @@
-import axios from '../../../utils/baseUrl';
+import axios, { headerConfig } from '../../../utils/baseUrl';
 import categoryConfig from './categoryConfig';
 
 class CategoryService {
-    constructor(){
-        
-    }
 
     getCategory = () => {
         return new Promise((resolve, reject) => {
-            axios.get(categoryConfig.category).then(response => {
+            axios.get(categoryConfig.category, {
+                headers: headerConfig(),
+            }).then(response => {
                 resolve(response);
             }).catch(error => {
                 reject(error);
@@ -37,6 +36,20 @@ class CategoryService {
             });
         })
         
+    }
+
+    deleteCategory = (id) => {
+        return new Promise((resolve, reject) => {
+            axios.delete(`${categoryConfig.category}${id}`,{
+                headers: headerConfig(),
+            })
+            .then(response => {
+                resolve(response);
+            })
+            .catch(error => {
+                reject(error);
+            });
+        })
     }
 }
 

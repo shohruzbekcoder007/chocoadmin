@@ -53,7 +53,11 @@ export default function CreateCategory({setCreatedOption}) {
                 })
             }
         }).catch(error => {
-            console.log(response)
+            setCreatedOption({
+                alertMessage: "did not create Categoriy",
+                type: "error"
+            })
+            console.log(error)
         })
     }
 
@@ -105,7 +109,7 @@ export default function CreateCategory({setCreatedOption}) {
                         placeholder="Mos rasm"
                         value={file}
                         onChange={setFileHandler}
-                        // getInputText={(value) => value ? 'Thanks!' : ''}
+                        accept="image/*"
                         fullWidth
                     />
                 </DialogContent>

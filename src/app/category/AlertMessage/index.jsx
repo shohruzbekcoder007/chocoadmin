@@ -21,7 +21,7 @@ export default function AlertMessage({alertMessage, _openAlert, type}){
     const handleCloseAlert = () => setOpenAlert(false);
     return (
         <Snackbar open={openAlert} anchorOrigin={type ? anchorOrigin1 : anchorOrigin2} autoHideDuration={6000} onClose={handleCloseAlert} style={{top: "75px", right: "5px"}}>
-            <Alert onClose={handleCloseAlert} severity={type ? "success" : "error"} sx={{ width: '100%', zIndex: 1000 }}>
+            <Alert onClose={handleCloseAlert} severity={type == "success" ? "success" : "error"} sx={{ width: '100%', zIndex: 1000 }}>
                 {alertMessage}
             </Alert>
         </Snackbar>

@@ -1,35 +1,12 @@
 import FuseUtils from '@fuse/utils/FuseUtils';
-// import axios from 'axios';
 import axios, { headerConfig } from '../../../../utils/baseUrl';
-import jwtDecode from 'jwt-decode';
 import jwtServiceConfig from './jwtServiceConfig';
 
-
-/* eslint-disable camelcase */
-
 class JwtService extends FuseUtils.EventEmitter {
+
   init() {
-    this.setInterceptors(); 
     this.handleAuthentication();
   }
-
-  setInterceptors = () => {
-    axios.interceptors.response.use(
-      (response) => {
-        return response;
-      },
-      (err) => {
-        return new Promise((resolve, reject) => {
-          if (err.response.status === 401 && err.config && !err.config.__isRetryRequest) {
-            // if you ever get an unauthorized response, logout the user
-            this.emit('onAutoLogout', 'Invalid access_token');
-            this.setSession(null);
-          }
-          throw err;
-        });
-      }
-    );
-  };
 
   handleAuthentication = () => {
     const access_token = this.getAccessToken();

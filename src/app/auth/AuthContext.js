@@ -17,9 +17,6 @@ function AuthProvider({ children }) {
     jwtService.on('onAutoLogin', () => {
       dispatch(showMessage({ message: 'Signing in with JWT' }));
 
-      /**
-       * Sign in and retrieve user data with stored token
-       */
       jwtService
         .signInWithToken()
         .then((user) => {
@@ -58,8 +55,7 @@ function AuthProvider({ children }) {
       }
 
       Promise.all([
-        dispatch(setUser(user)),
-        // You can receive data in here before app initialization
+        dispatch(setUser(user))
       ]).then((values) => {
         setWaitAuthCheck(false);
         setIsAuthenticated(true);

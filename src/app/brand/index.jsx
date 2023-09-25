@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { styled } from '@mui/material/styles';
 import FusePageSimple from '@fuse/core/FusePageSimple';
-import { Input, Paper, Typography } from '@mui/material';
+import { Button, Input, Paper, Typography } from '@mui/material';
 import FuseSvgIcon from '@fuse/core/FuseSvgIcon/FuseSvgIcon';
 import { motion } from 'framer-motion';
-import DataTable from './DataTable';
-import CreateCategory from '../CreateCategory';
-import AlertMessage from '../AlertMessage';
+import BrandList from './BrandList';
 
 const Root = styled(FusePageSimple)(({ theme }) => ({
   '& .FusePageSimple-header': {
@@ -21,25 +19,18 @@ const Root = styled(FusePageSimple)(({ theme }) => ({
   '& .FusePageSimple-sidebarContent': {},
 }));
 
-function CategoryList() {
-
-  const [createdOption, setCreatedOption] = useState(null)
-  const [reRender, setReRender] = useState(false)
-
-  useEffect(() => {
-    setReRender(prev => !prev)
-  },[createdOption])
+function Brand() {
 
   return (
     <Root
       header={
         <div className="p-24">
-          <h4>Category</h4>
+          <h4>Brand</h4>
         </div>
       }
       content={
         <div className="p-24 w-full">
-          <div className="flex flex-col sm:flex-row space-y-16 sm:space-y-0 flex-1 w-full items-center justify-between py-32 px-24 md:px-32">
+            <div className="flex flex-col sm:flex-row space-y-16 sm:space-y-0 flex-1 w-full items-center justify-between py-32 px-24 md:px-32">
             <Typography
               component={motion.span}
               initial={{ x: -20 }}
@@ -47,7 +38,7 @@ function CategoryList() {
               delay={300}
               className="text-24 md:text-32 font-extrabold tracking-tight"
             >
-              Category
+              Brand
             </Typography>
 
             <div className="flex flex-col w-full sm:w-auto sm:flex-row space-y-16 sm:space-y-0 flex-1 items-center justify-end space-x-8">
@@ -75,23 +66,27 @@ function CategoryList() {
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0, transition: { delay: 0.2 } }}
               >
-                <CreateCategory setCreatedOption={setCreatedOption}/>
+                <Button
+                    className=""
+                    variant="contained"
+                    color="secondary"
+                    // onClick={handleClickOpen}
+                    startIcon={<FuseSvgIcon>heroicons-outline:plus</FuseSvgIcon>}
+                >
+                    Add
+                </Button>
               </motion.div>
             </div>
           </div>
-
           <div className="w-full flex flex-col min-h-full">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1, transition: { delay: 0.1 } }}
               className="flex flex-1 items-center justify-center h-full"
             >
-              <DataTable reRender={reRender}/>
+              <BrandList/>
             </motion.div>
           </div>
-          {
-            createdOption?<AlertMessage alertMessage={createdOption.alertMessage} _openAlert={true} type={createdOption.type}/>:null
-          }
         </div>
       }
       scroll="content"
@@ -99,4 +94,4 @@ function CategoryList() {
   );
 }
 
-export default CategoryList;
+export default Brand;

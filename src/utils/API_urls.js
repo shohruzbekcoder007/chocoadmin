@@ -5,3 +5,6 @@ export const user_me = "/client/me/"
 
 // category
 export const category = "/category/"
+
+// brand 
+export const brand = "/brand/"

@@ -10,14 +10,9 @@ import categoryService from '../services';
 import { Box, Button } from '@mui/material';
 import FuseSvgIcon from '@fuse/core/FuseSvgIcon';
 
-export default function DataTable({reRender}) {
+export default function DataTable({ reRender }) {
 
     const [categoryList, setCategoryList] = useState([])
-    const [deleted, setdeleted] = useState(false)
-
-    const handleDeleted = (id) => {
-        console.log(id)
-    }
 
     useEffect(() => {
         categoryService.getCategory().then(resone => {
@@ -41,7 +36,7 @@ export default function DataTable({reRender}) {
                 </TableHead>
                 <TableBody>
                     {
-                        categoryList.map(elem => <DataTableItem key={elem.id} elem={elem}/>)
+                        categoryList.map(elem => <DataTableItem key={elem.id} elem={elem} />)
                     }
                 </TableBody>
             </Table>
@@ -49,59 +44,144 @@ export default function DataTable({reRender}) {
     );
 }
 
+const DataTableItem = ({ elem }) => {
 
-const DataTableItem = ({elem}) => {
-    
     const [subCategoryOpen, setSubCategoryOpen] = useState(false)
+    const [deleted, setdeleted] = useState(false)
+
+    const handleDeleted = (id) => {
+        console.log(id)
+        categoryService.deleteCategory(id).then(response => {
+            console.log(response.status)
+            if(response.status == 204){
+                setdeleted(prev => !prev)
+            }
+        }).catch(error => {
+            console.log(error)
+        })
+    }
 
     return (
-        <TableRow
-            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-        >
-            <TableCell align="left">
-                <Box sx={{
-                    display: 'inline-block',
-                    cursor: 'pointer'
-                }}>
-                    {
-                     subCategoryOpen?<FuseSvgIcon className="text-48" size={48} color="action">material-outline:arrow_drop_up</FuseSvgIcon>
-                    :<FuseSvgIcon className="text-48" size={48} color="action">material-outline:arrow_drop_down</FuseSvgIcon>
-                    }
-                </Box>
-            </TableCell>
-            <TableCell component="th" scope="row">
-                {elem.id}
-            </TableCell>
-            <TableCell component="th" scope="row" align="center">
-                {elem.title}
-            </TableCell>
-            <TableCell component="th" scope="row" align="center">
-            <Box
-                    sx={{
-                        width: '60px',
-                        height: '60px',
-                        display: 'inline-block',
-                        '& img': {
-                            width: "100%",
-                            height: "100%"
-                        }
-                    }}
+        <>
+            {
+                deleted?null:
+                <>
+                <TableRow
+                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 >
-                    <img src={elem.icon} alt="" />
-                </Box>
-                
-            </TableCell>
-            <TableCell align="center">
-            <Button
-                className=""
-                variant="contained"
-                color="error"
-                onClick={() => {handleDeleted(elem.id)}}
-                startIcon={<FuseSvgIcon className="text-48" size={24} color="white">material-twotone:delete_outline</FuseSvgIcon>}
-            >
-                Delete
-            </Button>
-            </TableCell>
-        </TableRow>
+                    <TableCell align="left">
+                        <Box
+                            sx={{
+                                display: 'inline-block',
+                                cursor: 'pointer'
+                            }}
+                            onClick={(_) => { setSubCategoryOpen(prev => !prev) }}
+                        >
+                            {
+                                subCategoryOpen ? <FuseSvgIcon className="text-48" size={48} color="action">material-outline:arrow_drop_up</FuseSvgIcon>
+                                    : <FuseSvgIcon className="text-48" size={48} color="action">material-outline:arrow_drop_down</FuseSvgIcon>
+                            }
+                        </Box>
+                    </TableCell>
+                    <TableCell component="th" scope="row">
+                        {elem.id}
+                    </TableCell>
+                    <TableCell component="th" scope="row" align="center">
+                        {elem.title}
+                    </TableCell>
+                    <TableCell component="th" scope="row" align="center">
+                        <Box
+                            sx={{
+                                width: '60px',
+                                height: '60px',
+                                display: 'inline-block',
+                                '& img': {
+                                    width: "100%",
+                                    height: "100%"
+                                }
+                            }}
+                        >
+                            {elem.icon?<img src={elem.icon} alt="" />:null}
+                        </Box>
+
+                    </TableCell>
+                    <TableCell align="center">
+                        <Button
+                            className=""
+                            variant="contained"
+                            color="error"
+                            onClick={() => { handleDeleted(elem.id) }}
+                            startIcon={<FuseSvgIcon className="text-48" size={24} color="white">material-twotone:delete_outline</FuseSvgIcon>}
+                        >
+                            Delete
+                        </Button>
+                    </TableCell>
+                </TableRow>
+                <ChildCategory subCategories={elem.children} subCategoryOpen={subCategoryOpen}/>
+                </>
+            }
+        </>
     )
+}
+
+const ChildCategory = ({subCategories, subCategoryOpen}) => {
+    if (subCategories.length > 0 && subCategoryOpen)
+        return (
+            <>
+                {
+                    subCategories.map(elem => {
+                        return (
+                            <TableRow
+                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                            >
+                                <TableCell align="left">
+
+                                </TableCell>
+                                <TableCell component="th" scope="row">
+                                    {elem.id}
+                                </TableCell>
+                                <TableCell component="th" scope="row" align="center">
+                                    {elem.title}
+                                </TableCell>
+                                <TableCell component="th" scope="row" align="center">
+                                    <Box
+                                        sx={{
+                                            width: '60px',
+                                            height: '60px',
+                                            display: 'inline-block',
+                                            '& img': {
+                                                width: "100%",
+                                                height: "100%"
+                                            }
+                                        }}
+                                    >
+                                        {elem.icon?<img src={elem.icon} alt="" />:null}
+                                    </Box>
+
+                                </TableCell>
+                                <TableCell align="center">
+                                    <Button
+                                        className=""
+                                        variant="contained"
+                                        color="error"
+                                        onClick={() => { handleDeleted(elem.id) }}
+                                        startIcon={<FuseSvgIcon className="text-48" size={24} color="white">material-twotone:delete_outline</FuseSvgIcon>}
+                                    >
+                                        Delete
+                                    </Button>
+                                </TableCell>
+                            </TableRow>
+                        )
+                    })
+                }
+            </>
+            
+        )
+    else
+        if(subCategoryOpen)
+            return <TableCell align="center" colSpan={5}>
+                        It is not SubCategory
+                    </TableCell>;
+        else 
+            return null
 }

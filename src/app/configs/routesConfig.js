@@ -11,12 +11,14 @@ import dashboardsConfigs from '../main/dashboards/dashboardsConfigs';
 import ECommerceAppConfig from '../e-commerce/ECommerceAppConfig';
 import invoicePagesConfig from '../invoice/invoicePagesConfig';
 import CategoryConfig from '../category/CategoryConfig';
+import BrandConfig from '../brand/BrandConfig';
 
 const routeConfigs = [
   ...dashboardsConfigs,
   ExampleConfig,
   invoicePagesConfig,
   CategoryConfig,
+  BrandConfig,
   SignOutConfig, 
   SignInConfig, 
   SignUpConfig,
@@ -27,7 +29,7 @@ const routes = [
   ...FuseUtils.generateRoutesFromConfigs(routeConfigs, settingsConfig.defaultAuth),
   {
     path: '/',
-    element: <Navigate to="dashboards/analytics" />,
+    element: <Navigate to="example" />,
     auth: settingsConfig.defaultAuth,
   },
   {
