@@ -34,8 +34,7 @@ class CategoryService {
                 console.log(error)
                 reject(error)
             });
-        })
-        
+        })  
     }
 
     deleteCategory = (id) => {

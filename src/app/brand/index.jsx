@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { styled } from '@mui/material/styles';
 import FusePageSimple from '@fuse/core/FusePageSimple';
 import { Button, Input, Paper, Typography } from '@mui/material';
 import FuseSvgIcon from '@fuse/core/FuseSvgIcon/FuseSvgIcon';
 import { motion } from 'framer-motion';
 import BrandList from './BrandList';
+import CreateBrand from './CreateBrand';
+import AlertMessage from '../category/AlertMessage';
+// import AlertMessage from '../AlertMessage';
 
 const Root = styled(FusePageSimple)(({ theme }) => ({
   '& .FusePageSimple-header': {
@@ -20,6 +23,13 @@ const Root = styled(FusePageSimple)(({ theme }) => ({
 }));
 
 function Brand() {
+
+  const [createdOption, setCreatedOption] = useState(null)
+  const [reRender, setReRender] = useState(false)
+
+  useEffect(() => {
+    setReRender(prev => !prev)
+  },[createdOption])
 
   return (
     <Root
@@ -66,15 +76,7 @@ function Brand() {
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0, transition: { delay: 0.2 } }}
               >
-                <Button
-                    className=""
-                    variant="contained"
-                    color="secondary"
-                    // onClick={handleClickOpen}
-                    startIcon={<FuseSvgIcon>heroicons-outline:plus</FuseSvgIcon>}
-                >
-                    Add
-                </Button>
+                <CreateBrand setCreatedOption={setCreatedOption}/>
               </motion.div>
             </div>
           </div>
@@ -84,9 +86,12 @@ function Brand() {
               animate={{ opacity: 1, transition: { delay: 0.1 } }}
               className="flex flex-1 items-center justify-center h-full"
             >
-              <BrandList/>
+              <BrandList reRender={reRender}/>
             </motion.div>
           </div>
+          {
+            createdOption?<AlertMessage alertMessage={createdOption.alertMessage} _openAlert={true} type={createdOption.type}/>:null
+          }
         </div>
       }
       scroll="content"

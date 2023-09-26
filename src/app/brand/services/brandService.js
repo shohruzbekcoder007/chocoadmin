@@ -3,7 +3,7 @@ import brandConfig from './brandConfig';
 
 class BrandService {
 
-    getBrand = () => {
+    getBrands = () => {
         return new Promise((resolve, reject) => {
             axios.get(brandConfig.brand, {
                 headers: headerConfig(),
@@ -12,6 +12,39 @@ class BrandService {
             }).catch(error => {
                 reject(error);
             })
+        })
+    }
+
+    deleteBrand = (id) => {
+        return new Promise((resolve, reject) => {
+            axios.delete(`${brandConfig.brand}${id}`,{
+                headers: headerConfig(),
+            })
+            .then(response => {
+                resolve(response);
+            })
+            .catch(error => {
+                reject(error);
+            });
+        })
+    }
+
+    createBrand = (data) => {
+        return new Promise((resolve, reject) => {
+            axios.post(
+                brandConfig.brand,
+                data,
+                {
+                    headers: headerConfig(),
+                }
+            ).then((response) => {
+                console.log(response)
+                resolve(response)
+            })
+            .catch((error) => {
+                console.log(error)
+                reject(error)
+            });
         })
     }
 

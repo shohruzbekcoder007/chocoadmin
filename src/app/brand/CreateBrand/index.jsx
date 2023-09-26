@@ -9,9 +9,7 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import FuseSvgIcon from '@fuse/core/FuseSvgIcon/FuseSvgIcon';
 import { TextField } from '@mui/material';
-import { MuiFileInput } from 'mui-file-input';
-import CategorySelectList from '../CategorySelectList';
-import categoryService from '../services';
+import categoryBrand from './../services/brandService';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
@@ -22,32 +20,23 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     },
 }));
 
-export default function CreateCategory({setCreatedOption}) {
+export default function CreateBrand({setCreatedOption}) {
+
     const [open, setOpen] = React.useState(false);
     const [title, setTitle] = React.useState('');
-    const [parent, setParent] = React.useState('');
-    const [file, setFile] = React.useState(null);
 
     const handleClickOpen = () => {
+        setTitle("")
         setOpen(true);
     };
     const handleClose = () => {
-        setTitle('')
-        setParent('')
-        setFile(null)
         setOpen(false);
     };
 
-    const setFileHandler = (newValue, info) => {
-        setFile(newValue)
-    }
-
     const newCreateCategory = () => {
         let formData = new FormData();
-        formData.append("icon", file);
         formData.append("title", title);
-        formData.append("parent", parent);
-        categoryService.createCategort(formData).then(response => {
+        categoryBrand.createBrand(formData).then(response => {
             if(response.data.id){
                 handleClose()
                 setCreatedOption({
@@ -81,7 +70,7 @@ export default function CreateCategory({setCreatedOption}) {
                 aria-labelledby="customized-dialog-title"
                 open={open}
             >
-                <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
+                <DialogTitle sx={{ m: 0, p: 2, minWidth: '400px' }} id="customized-dialog-title">
                     Yangi Categoriya yaratish
                 </DialogTitle>
                 <IconButton
@@ -107,14 +96,6 @@ export default function CreateCategory({setCreatedOption}) {
                         fullWidth
                         value={title}
                         onChange={(event) => {setTitle(event.target.value)}}
-                    />
-                    <CategorySelectList getSelectedItem={(val) => {setParent(val)}}/>
-                    <MuiFileInput
-                        placeholder="Mos rasm"
-                        value={file}
-                        onChange={setFileHandler}
-                        accept="image/*"
-                        fullWidth
                     />
                 </DialogContent>
                 <DialogActions>

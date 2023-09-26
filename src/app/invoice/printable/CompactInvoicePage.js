@@ -43,7 +43,7 @@ function CompactInvoicePage() {
                 className="grid auto-cols-max grid-flow-col gap-x-32 -mr-64 py-24 px-32 rounded-l-2xl"
               >
                 <div className="place-self-center w-96">
-                  <img className="w-96" src="assets/images/logo/logo.svg" alt="logo" />
+                  <img className="w-96" src="assets/icons/blackchokoicon.png" alt="logo" />
                 </div>
                 <Box
                   className="pl-40 border-l text-md"
@@ -184,7 +184,7 @@ function CompactInvoicePage() {
                 Please pay within 15 days. Thank you for your business.
               </Typography>
               <div className="flex items-start mt-16">
-                <img className="flex-0 w-40 mt-8" src="assets/images/logo/logo.svg" alt="logo" />
+                <img className="flex-0 w-40 mt-8" src="assets/icons/blackchokoicon.png" alt="logo" />
                 <Typography className="ml-24 text-sm" color="text.secondary">
                   In condimentum malesuada efficitur. Mauris volutpat placerat auctor. Ut ac congue
                   dolor. Quisque scelerisque lacus sed feugiat fermentum. Cras aliquet facilisis

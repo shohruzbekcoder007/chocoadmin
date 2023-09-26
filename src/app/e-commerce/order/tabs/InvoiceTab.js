@@ -91,7 +91,7 @@ const InvoiceTab = (props) => {
               </div>
 
               <div className="seller flex items-center p-16">
-                <img className="w-80" src="assets/images/logo/logo.svg" alt="logo" />
+                <img className="w-80" src="assets/icons/blackchokoicon.png" alt="logo" />
 
                 <div className="divider mx-8 h-96" />
 
@@ -217,7 +217,7 @@ const InvoiceTab = (props) => {
 
               <div className="flex">
                 <div className="shrink-0">
-                  <img className="w-32" src="assets/images/logo/logo.svg" alt="logo" />
+                  <img className="w-32" src="assets/icons/blackchokoicon.png" alt="logo" />
                 </div>
 
                 <Typography

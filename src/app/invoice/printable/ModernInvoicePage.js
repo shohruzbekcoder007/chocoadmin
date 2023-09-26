@@ -17,7 +17,7 @@ function ModernInvoicePage() {
               <div className="grid grid-rows-2 place-items-start gap-y-48">
                 <div className="grid auto-cols-max grid-flow-col gap-x-32">
                   <div className="place-self-center w-96">
-                    <img className="w-96" src="assets/images/logo/logo.svg" alt="lozgo" />
+                    <img className="w-96" src="assets/icons/blackchokoicon.png" alt="lozgo" />
                   </div>
                   <div className="pl-40 border-l text-md">
                     <Typography className="font-medium">Fuse Inc.</Typography>
@@ -193,7 +193,7 @@ function ModernInvoicePage() {
                 Please pay within 15 days. Thank you for your business.
               </Typography>
               <div className="flex items-start mt-16">
-                <img className="flex-0 w-40 mt-8" src="assets/images/logo/logo.svg" alt="logo" />
+                <img className="flex-0 w-40 mt-8" src="assets/icons/blackchokoicon.png" alt="logo" />
                 <Typography className="ml-24 text-sm" color="text.secondary">
                   In condimentum malesuada efficitur. Mauris volutpat placerat auctor. Ut ac congue
                   dolor. Quisque scelerisque lacus sed feugiat fermentum. Cras aliquet facilisis
