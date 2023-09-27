@@ -6,12 +6,21 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { TextField } from '@mui/material';
+import brandService from '../services/brandService'
 
 export default function UpdateBrand({id}) {
 
   const [open, setOpen] = React.useState(false);
+  const [brand, setBrand] = React.useState(null);
+  const [title, setTitle] = React.useState('')
 
   const handleClickOpen = () => {
+    brandService.getOneBrand(id).then(response => {
+      setBrand(response.data)
+      setTitle(response.data.title)
+    }).catch(error => {
+      console.log(error)
+    })
     setOpen(true);
   };
 
@@ -42,8 +51,8 @@ export default function UpdateBrand({id}) {
                 id="name"
                 variant="outlined"
                 fullWidth
-                // value={title}
-                // onChange={(event) => {setTitle(event.target.value)}}
+                value={title}
+                onChange={(event) => {setTitle(event.target.value)}}
             />
           </DialogContentText>
         </DialogContent>

@@ -48,6 +48,18 @@ class BrandService {
         })
     }
 
+    getOneBrand = (id) => {
+        return new Promise((resolve, reject) => {
+            axios.get(`${brandConfig.brand}${id}`, {
+                headers: headerConfig(),
+            }).then(response => {
+                resolve(response);
+            }).catch(error => {
+                reject(error);
+            })
+        })
+    }
+
 }
 
 const instance = new BrandService();
