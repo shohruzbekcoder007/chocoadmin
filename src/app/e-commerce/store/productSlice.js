@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
+import axios from '../../../utils/baseUrl';
 import FuseUtils from '@fuse/utils';
 
 export const getProduct = createAsyncThunk('eCommerceApp/product/getProduct', async (productId) => {
-  const response = await axios.get(`/api/ecommerce/products/${productId}`);
+  const response = await axios.get(`/book/${productId}`);
   const data = await response.data;
 
   return data === undefined ? null : data;
@@ -13,7 +13,7 @@ export const removeProduct = createAsyncThunk(
   'eCommerceApp/product/removeProduct',
   async (val, { dispatch, getState }) => {
     const { id } = getState().eCommerceApp.product;
-    await axios.delete(`/api/ecommerce/products/${id}`);
+    await axios.delete(`/book/${id}`);
     return id;
   }
 );
@@ -23,7 +23,7 @@ export const saveProduct = createAsyncThunk(
   async (productData, { dispatch, getState }) => {
     const { id } = getState().eCommerceApp;
 
-    const response = await axios.put(`/api/ecommerce/products/${id}`, productData);
+    const response = await axios.put(`/book/${id}`, productData);
 
     const data = await response.data;
 

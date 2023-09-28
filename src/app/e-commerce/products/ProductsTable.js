@@ -22,7 +22,6 @@ function ProductsTable(props) {
   const dispatch = useDispatch();
   const products = useSelector(selectProducts);
   const searchText = useSelector(selectProductsSearchText);
-
   const [loading, setLoading] = useState(true);
   const [selected, setSelected] = useState([]);
   const [data, setData] = useState(products);
@@ -140,8 +139,26 @@ function ProductsTable(props) {
             rowCount={data.length}
             onMenuItemClick={handleDeselect}
           />
-
-          <TableBody>
+          {
+            console.log(_.orderBy(
+              data,
+              [
+                (o) => {
+                  switch (order.id) {
+                    case 'categories': {
+                      return o.categories[0];
+                    }
+                    default: {
+                      return o[order.id];
+                    }
+                  }
+                },
+              ],
+              [order.direction]
+            )
+              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage))
+          }
+          {/* <TableBody>
             {_.orderBy(
               data,
               [
@@ -240,7 +257,7 @@ function ProductsTable(props) {
                   </TableRow>
                 );
               })}
-          </TableBody>
+          </TableBody> */}
         </Table>
       </FuseScrollbars>
 

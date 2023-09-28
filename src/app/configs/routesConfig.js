@@ -12,6 +12,7 @@ import ECommerceAppConfig from '../e-commerce/ECommerceAppConfig';
 import invoicePagesConfig from '../invoice/invoicePagesConfig';
 import CategoryConfig from '../category/CategoryConfig';
 import BrandConfig from '../brand/BrandConfig';
+import BookConfig from '../book/BrandConfig';
 
 const routeConfigs = [
   ...dashboardsConfigs,
@@ -19,6 +20,7 @@ const routeConfigs = [
   invoicePagesConfig,
   CategoryConfig,
   BrandConfig,
+  BookConfig,
   SignOutConfig, 
   SignInConfig, 
   SignUpConfig,

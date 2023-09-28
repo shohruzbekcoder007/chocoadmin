@@ -69,6 +69,15 @@ const navigationConfig = [
     auth: "admin"
   },
   {
+    id: 'Book',
+    title: 'Book',
+    translate: 'Book',
+    type: 'item',
+    icon: 'heroicons-outline:book-open',
+    url: 'book',
+    auth: "admin"
+  },
+  {
     id: 'apps.ecommerce',
     title: 'ECommerce',
     type: 'collapse',

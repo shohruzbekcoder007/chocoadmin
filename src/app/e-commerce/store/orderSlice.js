@@ -2,14 +2,14 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 export const getOrder = createAsyncThunk('eCommerceApp/order/getOrder', async (orderId) => {
-  const response = await axios.get(`/api/ecommerce/orders/${orderId}`);
+  const response = await axios.get(`/book/${orderId}`);
   const data = await response.data;
 
   return data === undefined ? null : data;
 });
 
 export const saveOrder = createAsyncThunk('eCommerceApp/order/saveOrder', async (order) => {
-  const response = await axios.put('/api/ecommerce/orders', order);
+  const response = await axios.put('/book/', order);
   const data = await response.data;
 
   return data;

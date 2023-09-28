@@ -1,13 +1,10 @@
-import React, { useEffect, useState } from 'react'
 import { styled } from '@mui/material/styles';
 import FusePageSimple from '@fuse/core/FusePageSimple';
+import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 import { Input, Paper, Typography } from '@mui/material';
 import FuseSvgIcon from '@fuse/core/FuseSvgIcon/FuseSvgIcon';
-import { motion } from 'framer-motion';
-import BrandList from './BrandList';
-import CreateBrand from './CreateBrand';
-import AlertMessage from '../category/AlertMessage';
-// import AlertMessage from '../AlertMessage';
+import BookList from './BookList';
 
 const Root = styled(FusePageSimple)(({ theme }) => ({
   '& .FusePageSimple-header': {
@@ -22,20 +19,20 @@ const Root = styled(FusePageSimple)(({ theme }) => ({
   '& .FusePageSimple-sidebarContent': {},
 }));
 
-function Brand() {
+function Book(props) {
 
-  const [createdOption, setCreatedOption] = useState(null)
-  const [reRender, setReRender] = useState(false)
-
-  useEffect(() => {
-    setReRender(prev => !prev)
-  },[createdOption])
+    const [createdOption, setCreatedOption] = useState(null)
+    const [reRender, setReRender] = useState(false)
+  
+    useEffect(() => {
+      setReRender(prev => !prev)
+    },[createdOption])
 
   return (
     <Root
       header={
         <div className="p-24">
-          <h4>Brand</h4>
+          <h4>Book</h4>
         </div>
       }
       content={
@@ -48,7 +45,7 @@ function Brand() {
               delay={300}
               className="text-24 md:text-32 font-extrabold tracking-tight"
             >
-              Brand
+              Book
             </Typography>
 
             <div className="flex flex-col w-full sm:w-auto sm:flex-row space-y-16 sm:space-y-0 flex-1 items-center justify-end space-x-8">
@@ -76,7 +73,7 @@ function Brand() {
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0, transition: { delay: 0.2 } }}
               >
-                <CreateBrand setCreatedOption={setCreatedOption}/>
+
               </motion.div>
             </div>
           </div>
@@ -86,7 +83,7 @@ function Brand() {
               animate={{ opacity: 1, transition: { delay: 0.1 } }}
               className="flex flex-1 items-center justify-center h-full"
             >
-              <BrandList reRender={reRender}/>
+                <BookList/>
             </motion.div>
           </div>
           {
@@ -99,4 +96,4 @@ function Brand() {
   );
 }
 
-export default Brand;
+export default Book;

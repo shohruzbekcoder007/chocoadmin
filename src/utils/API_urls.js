@@ -9,3 +9,7 @@ export const category_parents = "/category/parents/"
 
 // brand 
 export const brand = "/brand/"
+
+
+//book
+export const book = "/book/"
