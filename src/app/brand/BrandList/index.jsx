@@ -36,7 +36,7 @@ export default function BrandList({reRender}) {
                 </TableHead>
                 <TableBody>
                     {
-                        brands.map(elem => <DataTableItem key={elem} elem={elem}/>)
+                        brands.map(elem => <DataTableItem key={elem.id} elem={elem}/>)
                     }
                 </TableBody>
             </Table>
@@ -46,6 +46,7 @@ export default function BrandList({reRender}) {
 
 const DataTableItem = ({elem}) => {
 
+    const [brand, setBrand] = useState(elem)
     const [deleted, setDeleted] = useState(false)
     const handleDeleted = (id) => {
         brandService.deleteBrand(id).then(response => {
@@ -60,17 +61,17 @@ const DataTableItem = ({elem}) => {
     if(!deleted){
         return (
             <TableRow>
-                <TableCell align="left">{elem.id}</TableCell>
-                <TableCell align="center">{elem.title}</TableCell>
+                <TableCell align="left">{brand.id}</TableCell>
+                <TableCell align="center">{brand.title}</TableCell>
                 <TableCell align="center">
-                    <UpdateBrand id={elem.id}/>
+                    <UpdateBrand id={brand.id} updateBrandF={setBrand}/>
                 </TableCell>
                 <TableCell align="right">
                 <Button
                             className=""
                             variant="contained"
                             color="error"
-                            onClick={() => { handleDeleted(elem.id) }}
+                            onClick={() => { handleDeleted(brand.id) }}
                             startIcon={<FuseSvgIcon className="text-48" size={24} color="white">material-twotone:delete_outline</FuseSvgIcon>}
                         >
                             Delete

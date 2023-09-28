@@ -8,15 +8,13 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { TextField } from '@mui/material';
 import brandService from '../services/brandService'
 
-export default function UpdateBrand({id}) {
+export default function UpdateBrand({id, updateBrandF}) {
 
   const [open, setOpen] = React.useState(false);
-  const [brand, setBrand] = React.useState(null);
   const [title, setTitle] = React.useState('')
 
   const handleClickOpen = () => {
     brandService.getOneBrand(id).then(response => {
-      setBrand(response.data)
       setTitle(response.data.title)
     }).catch(error => {
       console.log(error)
@@ -28,9 +26,21 @@ export default function UpdateBrand({id}) {
     setOpen(false);
   };
 
+  const changeTitleHandler = () => {
+    brandService.updateBrand(id, {
+      title,
+    }).then(response => {
+      updateBrandF(response.data)
+      handleClose()
+    }).catch(error => {
+      console.log(error)
+      handleClose()
+    })
+  }
+
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
+      <Button variant="contained" onClick={handleClickOpen}>
         Edit
       </Button>
       <Dialog
@@ -58,7 +68,7 @@ export default function UpdateBrand({id}) {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Asil holida qoldirish</Button>
-          <Button onClick={handleClose} autoFocus>
+          <Button onClick={changeTitleHandler} autoFocus>
             O'zgartirish
           </Button>
         </DialogActions>

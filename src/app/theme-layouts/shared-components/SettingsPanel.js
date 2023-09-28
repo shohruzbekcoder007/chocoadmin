@@ -181,12 +181,6 @@ function SettingsPanel() {
             Theme Color Schemes
           </Typography>
 
-          <Typography className="mb-24 text-12 italic text-justify" color="text.secondary">
-            * Selected color scheme will be applied to all theme layout elements (navbar, toolbar,
-            etc.). You can also select a different color scheme for each layout element at theme
-            settings.
-          </Typography>
-
           <FuseThemeSchemes
             themes={themesConfig}
             onSelect={(_theme) => {

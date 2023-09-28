@@ -19,9 +19,9 @@ function FuseLoading(props) {
         !showLoading && 'hidden'
       )}
     >
-      <Typography className="text-13 sm:text-20 font-medium -mb-16" color="text.secondary">
+      {/* <Typography className="text-13 sm:text-20 font-medium -mb-16" color="text.secondary">
         Loading
-      </Typography>
+      </Typography> */}
       <Box
         id="spinner"
         sx={{

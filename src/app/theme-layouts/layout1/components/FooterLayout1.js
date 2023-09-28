@@ -22,9 +22,9 @@ function FooterLayout1(props) {
               : footerTheme.palette.background.default,
         }}
       >
-        <Toolbar className="min-h-48 md:min-h-64 px-8 sm:px-12 py-0 flex items-center overflow-x-auto">
+        {/* <Toolbar className="min-h-48 md:min-h-64 px-8 sm:px-12 py-0 flex items-center overflow-x-auto">
           Footer
-        </Toolbar>
+        </Toolbar> */}
       </AppBar>
     </ThemeProvider>
   );

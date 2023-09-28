@@ -5,7 +5,19 @@ class CategoryService {
 
     getCategory = () => {
         return new Promise((resolve, reject) => {
-            axios.get(categoryConfig.category, {
+            axios.get(categoryConfig.parents, {
+                headers: headerConfig(),
+            }).then(response => {
+                resolve(response);
+            }).catch(error => {
+                reject(error);
+            })
+        })
+    }
+
+    getCategoryChildren = (id) => {
+        return new Promise((resolve, reject) => {
+            axios.get(`${categoryConfig.category}${id}/`, {
                 headers: headerConfig(),
             }).then(response => {
                 resolve(response);

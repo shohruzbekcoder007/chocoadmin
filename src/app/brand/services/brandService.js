@@ -60,6 +60,18 @@ class BrandService {
         })
     }
 
+    updateBrand = (id, data) => {
+        return new Promise((resolve, reject) => {
+            axios.put(`${brandConfig.brand}${id}/`, data, {
+                headers: headerConfig(),
+            }).then(response => {
+                resolve(response);
+            }).catch(error => {
+                reject(error);
+            })
+        })
+    }
+
 }
 
 const instance = new BrandService();
