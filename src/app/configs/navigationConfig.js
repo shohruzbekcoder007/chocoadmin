@@ -9,37 +9,6 @@ i18next.addResourceBundle('ar', 'navigation', ar);
 
 const navigationConfig = [
   {
-    id: 'dashboards',
-    title: 'Dashboards',
-    subtitle: 'Unique dashboard designs',
-    type: 'collapse',
-    icon: 'heroicons-outline:home',
-    translate: 'DASHBOARDS',
-    children: [
-      {
-        id: 'dashboards.project',
-        title: 'Project',
-        type: 'item',
-        icon: 'heroicons-outline:clipboard-check',
-        url: '/dashboards/project',
-      },
-      {
-        id: 'dashboards.analytics',
-        title: 'Analytics',
-        type: 'item',
-        icon: 'heroicons-outline:chart-pie',
-        url: '/dashboards/analytics',
-      },
-      {
-        id: 'dashboards.finance',
-        title: 'Finance',
-        type: 'item',
-        icon: 'heroicons-outline:cash',
-        url: '/dashboards/finance',
-      },
-    ],
-  },
-  {
     id: "category",
     title: "Category",
     subtitle: "Create category and update",
@@ -69,81 +38,31 @@ const navigationConfig = [
     auth: "admin"
   },
   {
-    id: 'Book',
-    title: 'Book',
-    translate: 'Book',
+    id: 'size',
+    title: 'Size',
+    translate: 'Size',
     type: 'item',
-    icon: 'heroicons-outline:book-open',
-    url: 'book',
+    icon: 'heroicons-outline:star',
+    url: 'size',
     auth: "admin"
   },
+  // {
+  //   id: 'Book',
+  //   title: 'Book',
+  //   translate: 'Book',
+  //   type: 'item',
+  //   icon: 'heroicons-outline:book-open',
+  //   url: 'book',
+  //   auth: "admin"
+  // },
   {
-    id: 'apps.ecommerce',
-    title: 'ECommerce',
-    type: 'collapse',
-    icon: 'heroicons-outline:shopping-cart',
-    translate: 'ECOMMERCE',
-    children: [
-      {
-        id: 'e-commerce-products',
-        title: 'Products',
-        type: 'item',
-        url: 'apps/e-commerce/products',
-        end: true,
-      },
-      {
-        id: 'e-commerce-product-detail',
-        title: 'Product Detail',
-        type: 'item',
-        url: 'apps/e-commerce/products/1/a-walk-amongst-friends-canvas-print',
-      },
-      {
-        id: 'e-commerce-new-product',
-        title: 'New Product',
-        type: 'item',
-        url: 'apps/e-commerce/products/new',
-      },
-      {
-        id: 'e-commerce-orders',
-        title: 'Orders',
-        type: 'item',
-        url: 'apps/e-commerce/orders',
-        end: true,
-      },
-      {
-        id: 'e-commerce-order-detail',
-        title: 'Order Detail',
-        type: 'item',
-        url: 'apps/e-commerce/orders/1',
-      },
-    ],
-  },
-  {
-    id: 'pages.invoice',
-    title: 'Invoice',
-    type: 'collapse',
-    icon: 'heroicons-outline:calculator',
-    children: [
-      {
-        id: 'pages.invoice.printable',
-        title: 'Printable',
-        type: 'collapse',
-        children: [
-          {
-            id: 'pages.invoice.printable.compact',
-            title: 'Compact',
-            type: 'item',
-            url: '/pages/invoice/printable/compact',
-          },
-          {
-            id: 'pages.invoice.printable.modern',
-            title: 'Modern',
-            type: 'item',
-            url: '/pages/invoice/printable/modern',
-          },
-        ],
-      },
-    ],
+    id: 'tasks',
+    title: 'Prodacts',
+    subtitle: 'all products',
+    type: 'item',
+    icon: 'heroicons-outline:check-circle',
+    url: 'tasks',
+    translate: 'Prodacts',
   }
 ];
 

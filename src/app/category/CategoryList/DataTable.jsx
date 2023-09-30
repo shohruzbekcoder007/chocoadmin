@@ -10,6 +10,7 @@ import categoryService from '../services';
 import { Alert, Box, Button } from '@mui/material';
 import FuseSvgIcon from '@fuse/core/FuseSvgIcon';
 import FuseLoading from '@fuse/core/FuseLoading';
+import { host } from 'src/utils/API_urls';
 
 export default function DataTable({ reRender }) {
 
@@ -215,7 +216,7 @@ const SubCategory = ({ elem }) => {
                             }
                         }}
                     >
-                        {elem.icon ? <img src={elem.icon} alt="" /> : null}
+                        {elem.icon ? <img src={`${host}${elem.icon}`} alt="" /> : null}
                     </Box>
 
                 </TableCell>

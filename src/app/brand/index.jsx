@@ -34,13 +34,7 @@ function Brand() {
   return (
     <Root
       header={
-        <div className="p-24">
-          <h4>Brand</h4>
-        </div>
-      }
-      content={
-        <div className="p-24 w-full">
-            <div className="flex flex-col sm:flex-row space-y-16 sm:space-y-0 flex-1 w-full items-center justify-between py-32 px-24 md:px-32">
+        <div className="flex flex-col sm:flex-row space-y-16 sm:space-y-0 flex-1 w-full items-center justify-between py-24 px-24 md:px-32">
             <Typography
               component={motion.span}
               initial={{ x: -20 }}
@@ -80,6 +74,9 @@ function Brand() {
               </motion.div>
             </div>
           </div>
+      }
+      content={
+        <div className="p-24 w-full">
           <div className="w-full flex flex-col min-h-full">
             <motion.div
               initial={{ opacity: 0 }}

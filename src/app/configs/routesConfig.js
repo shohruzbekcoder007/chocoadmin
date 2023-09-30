@@ -8,11 +8,12 @@ import SignOutConfig from '../main/sign-out/SignOutConfig';
 import Error404Page from '../main/404/Error404Page';
 import ExampleConfig from '../main/example/ExampleConfig';
 import dashboardsConfigs from '../main/dashboards/dashboardsConfigs';
-import ECommerceAppConfig from '../e-commerce/ECommerceAppConfig';
 import invoicePagesConfig from '../invoice/invoicePagesConfig';
 import CategoryConfig from '../category/CategoryConfig';
 import BrandConfig from '../brand/BrandConfig';
 import BookConfig from '../book/BrandConfig';
+import TasksAppConfig from '../tasks/TasksAppConfig';
+import SizeConfig from '../size/SizeConfig';
 
 const routeConfigs = [
   ...dashboardsConfigs,
@@ -24,19 +25,20 @@ const routeConfigs = [
   SignOutConfig, 
   SignInConfig, 
   SignUpConfig,
-  ECommerceAppConfig
+  TasksAppConfig,
+  SizeConfig,
 ];
 
 const routes = [
   ...FuseUtils.generateRoutesFromConfigs(routeConfigs, settingsConfig.defaultAuth),
   {
     path: '/',
-    element: <Navigate to="example" />,
+    element: <Navigate to="category" />,
     auth: settingsConfig.defaultAuth,
   },
   {
-    path: '/example',
-    element: <Navigate to="/example" />,
+    path: '/category',
+    element: <Navigate to="/category" />,
     auth: settingsConfig.defaultAuth,
   },
   {

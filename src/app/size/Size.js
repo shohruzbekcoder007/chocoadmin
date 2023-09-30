@@ -1,12 +1,9 @@
-import React, { useEffect, useState } from 'react'
 import { styled } from '@mui/material/styles';
 import FusePageSimple from '@fuse/core/FusePageSimple';
+import SizesTable from './SizesTable';
+import { motion } from 'framer-motion';
 import { Input, Paper, Typography } from '@mui/material';
 import FuseSvgIcon from '@fuse/core/FuseSvgIcon/FuseSvgIcon';
-import { motion } from 'framer-motion';
-import DataTable from './DataTable';
-import CreateCategory from '../CreateCategory';
-import AlertMessage from '../AlertMessage';
 
 const Root = styled(FusePageSimple)(({ theme }) => ({
   '& .FusePageSimple-header': {
@@ -21,14 +18,7 @@ const Root = styled(FusePageSimple)(({ theme }) => ({
   '& .FusePageSimple-sidebarContent': {},
 }));
 
-function CategoryList() {
-
-  const [createdOption, setCreatedOption] = useState(null)
-  const [reRender, setReRender] = useState(false)
-
-  useEffect(() => {
-    setReRender(prev => !prev)
-  },[createdOption])
+function Size() {
 
   return (
     <Root
@@ -41,7 +31,7 @@ function CategoryList() {
               delay={300}
               className="text-24 md:text-32 font-extrabold tracking-tight"
             >
-              Category
+              Size
             </Typography>
 
             <div className="flex flex-col w-full sm:w-auto sm:flex-row space-y-16 sm:space-y-0 flex-1 items-center justify-end space-x-8">
@@ -69,25 +59,14 @@ function CategoryList() {
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0, transition: { delay: 0.2 } }}
               >
-                <CreateCategory setCreatedOption={setCreatedOption}/>
+                {/* <CreateBrand setCreatedOption={setCreatedOption}/> */}
               </motion.div>
             </div>
           </div>
       }
       content={
         <div className="p-24 w-full">
-          <div className="w-full flex flex-col min-h-full">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1, transition: { delay: 0.1 } }}
-              className="flex flex-1 items-center justify-center h-full"
-            >
-              <DataTable reRender={reRender}/>
-            </motion.div>
-          </div>
-          {
-            createdOption?<AlertMessage alertMessage={createdOption.alertMessage} _openAlert={true} type={createdOption.type}/>:null
-          }
+          <SizesTable />
         </div>
       }
       scroll="content"
@@ -95,4 +74,4 @@ function CategoryList() {
   );
 }
 
-export default CategoryList;
+export default Size;
