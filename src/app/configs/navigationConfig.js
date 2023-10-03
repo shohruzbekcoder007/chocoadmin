@@ -42,8 +42,17 @@ const navigationConfig = [
     title: 'Size',
     translate: 'Size',
     type: 'item',
-    icon: 'heroicons-outline:star',
+    icon: 'material-twotone:photo_size_select_small',
     url: 'size',
+    auth: "admin"
+  },
+  {
+    id: 'color',
+    title: 'Color',
+    translate: 'Color',
+    type: 'item',
+    icon: 'heroicons-outline:color-swatch',
+    url: 'color',
     auth: "admin"
   },
   // {

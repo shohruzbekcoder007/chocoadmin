@@ -1,12 +1,15 @@
 import { styled } from '@mui/material/styles';
 import FusePageSimple from '@fuse/core/FusePageSimple';
-import SizesTable from './SizesTable';
+import SizesTable from '../size/SizesTable';
 import { motion } from 'framer-motion';
 import { Input, Paper, Typography } from '@mui/material';
 import FuseSvgIcon from '@fuse/core/FuseSvgIcon/FuseSvgIcon';
-import CreateSize from './CreateSize';
+import CreateSize from '../size/CreateSize';
 import { useEffect, useState } from 'react';
 import AlertMessage from '../category/AlertMessage';
+import SketchColor from './SketchColor';
+import ColorList from './ColorList';
+import CreateColor from './CreateColor';
 
 const Root = styled(FusePageSimple)(({ theme }) => ({
   '& .FusePageSimple-header': {
@@ -21,7 +24,7 @@ const Root = styled(FusePageSimple)(({ theme }) => ({
   '& .FusePageSimple-sidebarContent': {},
 }));
 
-function Size() {
+function Color() {
 
   const [createdOption, setCreatedOption] = useState(null)
   const [reRender, setReRender] = useState(false)
@@ -41,9 +44,9 @@ function Size() {
               delay={300}
               className="text-24 md:text-32 font-extrabold tracking-tight"
             >
-              Size
+              Color
             </Typography>
-
+            {/* <SketchColor/> */}
             <div className="flex flex-col w-full sm:w-auto sm:flex-row space-y-16 sm:space-y-0 flex-1 items-center justify-end space-x-8">
               <Paper
                 component={motion.div}
@@ -69,7 +72,7 @@ function Size() {
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0, transition: { delay: 0.2 } }}
               >
-                <CreateSize setCreatedOption={setCreatedOption}/>
+                <CreateColor setCreatedOption={setCreatedOption}/>
                 {/* <CreateBrand setCreatedOption={setCreatedOption}/> */}
               </motion.div>
             </div>
@@ -80,7 +83,7 @@ function Size() {
       }
       content={
         <div className="p-24 w-full">
-          <SizesTable reRender={reRender}/>
+          <ColorList reRender={reRender}/>
         </div>
       }
       scroll="content"
@@ -88,4 +91,4 @@ function Size() {
   );
 }
 
-export default Size;
+export default Color;

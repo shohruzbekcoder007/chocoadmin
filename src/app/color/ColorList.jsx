@@ -8,14 +8,16 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Button } from '@mui/material';
 import FuseSvgIcon from '@fuse/core/FuseSvgIcon/FuseSvgIcon';
-import sizeService from './services/sizeService'
+import colorService from './services/colorService'
+import UpdateColor from './UpdateColor';
 
-export default function SizesTable({reRender}) {
+export default function ColorList({reRender}) {
 
     const [rows, setRows] = React.useState([])
 
     React.useEffect(() => {
-        sizeService.getSizes().then(response => {
+        // console.log(colorService.getColors)
+        colorService.getColors().then(response => {
             setRows(response.data)
         }).catch(error => {
             console.log(error)
@@ -28,14 +30,15 @@ export default function SizesTable({reRender}) {
         <TableHead>
           <TableRow>
             <TableCell>ID</TableCell>
-            <TableCell align="right">Size</TableCell>
+            <TableCell align="right">Title</TableCell>
+            <TableCell align="right">Color</TableCell>
             <TableCell align="right">Update</TableCell>
             <TableCell align="right">Delete</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {rows.map((row) => (
-            <OneSize key={row.id} row={row}/>
+            <OneColor key={row.id} row={row}/>
           ))}
         </TableBody>
       </Table>
@@ -43,13 +46,12 @@ export default function SizesTable({reRender}) {
   );
 }
 
-const OneSize = ({row}) => {
+const OneColor = ({row}) => {
 
     const [deleted, setDeleted] = React.useState(false)
 
     const deletedSizeHandler = (id) => {
-        sizeService.deleteSize(id).then(response => {
-            // console.log(response)
+        colorService.deleteColor(id).then(response => {
             if(response.status == 204){
                 setDeleted(true)
             }
@@ -66,11 +68,20 @@ const OneSize = ({row}) => {
                   <TableCell component="th" scope="row">
                     {row.id}
                   </TableCell>
-                  <TableCell align="right">{row.name}</TableCell>
+                  <TableCell align="right">{row.title}</TableCell>
                   <TableCell align="right">
-                    <Button variant="contained" onClick={() => {}}>
-                        Edit
-                    </Button>
+                    <span
+                        style={{
+                            display: "inline-block",
+                            width: "100px",
+                            height: "10px",
+                            backgroundColor: row.name,
+                            border: "1px solid #ccc"
+                        }}
+                    ></span>
+                  </TableCell>
+                  <TableCell align="right">
+                    <UpdateColor/>
                   </TableCell>
                   <TableCell align="right">
                   <Button

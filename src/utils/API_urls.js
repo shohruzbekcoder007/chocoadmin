@@ -20,3 +20,7 @@ export const product_image = "/product/image/"
 
 // size 
 export const size = "/size/"
+
+
+// color 
+export const color = "/color/"

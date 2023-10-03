@@ -1,11 +1,11 @@
-import { size } from '../../../utils/API_urls';
+import { color } from 'src/utils/API_urls';
 import axios, { headerConfig } from '../../../utils/baseUrl';
 
-class SizeService {
+class ColorService {
 
-    getSizes = () => {
+    getColors = () => {
         return new Promise((resolve, reject) => {
-            axios.get(size, {
+            axios.get(color, {
                 headers: headerConfig(),
             }).then(response => {
                 resolve(response);
@@ -15,9 +15,9 @@ class SizeService {
         })
     }
 
-    deleteSize = (id) => {
+    deleteColor = (id) => {
         return new Promise((resolve, reject) => {
-            axios.delete(`${size}${id}`,{
+            axios.delete(`${color}${id}`,{
                 headers: headerConfig(),
             }).then(response => {
                 resolve(response);
@@ -27,10 +27,10 @@ class SizeService {
         })
     }
 
-    createSize = (data) => {
+    createColor = (data) => {
         return new Promise((resolve, reject) => {
             axios.post(
-                size,
+                color,
                 data,
                 {
                     headers: headerConfig(),
@@ -45,8 +45,21 @@ class SizeService {
             });
         })
     }
+
+    getOneColor = () => {
+        return new Promise((resolve, reject) => {
+            axios.get(`${color}${id}`, {
+                headers: headerConfig(),
+            }).then(response => {
+                resolve(response);
+            }).catch(error => {
+                reject(error);
+            })
+        })
+    }
+
 }
 
-const instance = new SizeService();
+const instance = new ColorService();
 
 export default instance;

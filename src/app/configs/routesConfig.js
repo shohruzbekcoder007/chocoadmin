@@ -14,6 +14,7 @@ import BrandConfig from '../brand/BrandConfig';
 import BookConfig from '../book/BrandConfig';
 import TasksAppConfig from '../tasks/TasksAppConfig';
 import SizeConfig from '../size/SizeConfig';
+import ColorConfig from '../color/ColorConfig';
 
 const routeConfigs = [
   ...dashboardsConfigs,
@@ -27,6 +28,7 @@ const routeConfigs = [
   SignUpConfig,
   TasksAppConfig,
   SizeConfig,
+  ColorConfig
 ];
 
 const routes = [
