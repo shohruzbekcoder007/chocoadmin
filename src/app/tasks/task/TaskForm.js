@@ -1,19 +1,25 @@
 import Button from '@mui/material/Button';
 import NavLinkAdapter from '@fuse/core/NavLinkAdapter';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import FuseLoading from '@fuse/core/FuseLoading';
 import _ from '@lodash';
 import Box from '@mui/system/Box';
 import FuseSvgIcon from '@fuse/core/FuseSvgIcon';
 import IconButton from '@mui/material/IconButton';
-import { TextField } from '@mui/material';
+import { FormControlLabel, FormGroup, Switch, TextField } from '@mui/material';
 import MultipleSelectChip from '../MultipleSelectChip';
+import Editor from '../Editor';
+import SelectAutoWidth from '../SelectAutoWidth';
+import SelectCategory from '../SelectCategory';
+import SelectStatus from '../SelectStatus'
 
 function TaskForm() {
 
   useEffect(() => {
    
   }, []);
+
+  const [editorState, setEditorState] = useState('')
 
 
   function onSubmitNew(data) {
@@ -32,6 +38,7 @@ function TaskForm() {
           </div>
         </div>
         <div className="w-full">
+          <SelectAutoWidth/>
           <TextField
             className="mt-8 mb-8"
             required
@@ -55,6 +62,13 @@ function TaskForm() {
             onChange={(event) => {}}
           />
           <MultipleSelectChip/>
+          <SelectCategory categorySelectF={(val) => {console.log(val)}}/>
+          <SelectStatus/>
+          <Editor/>
+          <FormGroup>
+            <FormControlLabel control={<Switch defaultChecked />} label="has_size" />
+            <FormControlLabel required control={<Switch />} label="is_active" />
+          </FormGroup>
         </div>
         
       </div>

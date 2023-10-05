@@ -47,7 +47,6 @@ export default function TasksList() {
   React.useEffect(() => {
     const url_query = `?page_size=${rowsPerPage}&page=${page+1}`
     taskService.getProducts(url_query).then(response => {
-        console.log(response.data)
         setPage(response.data.page-1)
         setCount(response.data.count)
         const bookList = response.data.results.map(({id, title, status, price_uzs, discount_uzs, product_type}) => {

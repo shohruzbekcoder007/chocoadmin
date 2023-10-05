@@ -1,10 +1,10 @@
+import { banner } from 'src/utils/API_urls';
 import axios, { headerConfig } from '../../../utils/baseUrl';
-import bookConfig from './bookConfig';
 
 class BrandService {
-    getBrands = () => {
+    getBanners = () => {
         return new Promise((resolve, reject) => {
-            axios.get(bookConfig.book, {
+            axios.get(banner, {
                 headers: headerConfig(),
             }).then(response => {
                 resolve(response);

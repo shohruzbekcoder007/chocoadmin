@@ -236,7 +236,7 @@ function SignInPage() {
         <div className="z-10 relative w-full max-w-2xl">
           <div className="text-7xl font-bold leading-none text-gray-100">
             <div>Welcome to</div>
-            <div>CHOCO</div>
+            <div>Azbo</div>
           </div>
         </div>
       </Box>

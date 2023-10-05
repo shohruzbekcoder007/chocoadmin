@@ -28,15 +28,15 @@ const navigationConfig = [
     url: 'brand',
     auth: "admin"
   },
-  {
-    id: 'example-component',
-    title: 'Example',
-    translate: 'EXAMPLE',
-    type: 'item',
-    icon: 'heroicons-outline:star',
-    url: 'example',
-    auth: "admin"
-  },
+  // {
+  //   id: 'example-component',
+  //   title: 'Example',
+  //   translate: 'EXAMPLE',
+  //   type: 'item',
+  //   icon: 'heroicons-outline:star',
+  //   url: 'example',
+  //   auth: "admin"
+  // },
   {
     id: 'size',
     title: 'Size',
@@ -55,15 +55,15 @@ const navigationConfig = [
     url: 'color',
     auth: "admin"
   },
-  // {
-  //   id: 'Book',
-  //   title: 'Book',
-  //   translate: 'Book',
-  //   type: 'item',
-  //   icon: 'heroicons-outline:book-open',
-  //   url: 'book',
-  //   auth: "admin"
-  // },
+  {
+    id: 'Book',
+    title: 'Banner',
+    translate: 'Banner',
+    type: 'item',
+    icon: 'feather:clipboard',
+    url: 'book',
+    auth: "admin"
+  },
   {
     id: 'tasks',
     title: 'Prodacts',

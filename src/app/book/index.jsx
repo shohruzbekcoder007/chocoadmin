@@ -31,13 +31,7 @@ function Book(props) {
   return (
     <Root
       header={
-        <div className="p-24">
-          <h4>Book</h4>
-        </div>
-      }
-      content={
-        <div className="p-24 w-full">
-            <div className="flex flex-col sm:flex-row space-y-16 sm:space-y-0 flex-1 w-full items-center justify-between py-32 px-24 md:px-32">
+        <div className="flex flex-col sm:flex-row space-y-16 sm:space-y-0 flex-1 w-full items-center justify-between py-20 px-24 md:px-32">
             <Typography
               component={motion.span}
               initial={{ x: -20 }}
@@ -45,7 +39,7 @@ function Book(props) {
               delay={300}
               className="text-24 md:text-32 font-extrabold tracking-tight"
             >
-              Book
+              Banner
             </Typography>
 
             <div className="flex flex-col w-full sm:w-auto sm:flex-row space-y-16 sm:space-y-0 flex-1 items-center justify-end space-x-8">
@@ -77,11 +71,15 @@ function Book(props) {
               </motion.div>
             </div>
           </div>
+      }
+      content={
+        <div className="p-24 w-full">
+            
           <div className="w-full flex flex-col min-h-full">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1, transition: { delay: 0.1 } }}
-              className="flex flex-1 items-center justify-center h-full"
+              className=" h-full"
             >
                 <BookList/>
             </motion.div>

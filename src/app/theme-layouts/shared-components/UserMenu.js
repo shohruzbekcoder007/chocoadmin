@@ -81,7 +81,7 @@ function UserMenu(props) {
           </>
         ) : (
           <>
-            <MenuItem component={Link} to="/apps/profile" onClick={userMenuClose} role="button">
+            {/* <MenuItem component={Link} to="/apps/profile" onClick={userMenuClose} role="button">
               <ListItemIcon className="min-w-40">
                 <FuseSvgIcon>heroicons-outline:user-circle</FuseSvgIcon>
               </ListItemIcon>
@@ -92,7 +92,7 @@ function UserMenu(props) {
                 <FuseSvgIcon>heroicons-outline:mail-open</FuseSvgIcon>
               </ListItemIcon>
               <ListItemText primary="Inbox" />
-            </MenuItem>
+            </MenuItem> */}
             <MenuItem
               component={NavLink}
               to="/sign-out"

@@ -24,3 +24,6 @@ export const size = "/size/"
 
 // color 
 export const color = "/color/"
+
+// banner
+export const banner = "/banner/"
