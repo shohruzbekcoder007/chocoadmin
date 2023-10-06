@@ -8,15 +8,15 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Button } from '@mui/material';
 import FuseSvgIcon from '@fuse/core/FuseSvgIcon/FuseSvgIcon';
-import colorService from './services/colorService'
-import UpdateColor from './UpdateColor';
+import productImageService from './services/productImageService'
+// import UpdateColor from './UpdateColor';
 
-export default function ColorList({reRender}) {
+export default function ImageList({reRender}) {
 
     const [rows, setRows] = React.useState([])
 
     React.useEffect(() => {
-        colorService.getColors().then(response => {
+        productImageService.getProductImages().then(response => {
             setRows(response.data)
         }).catch(error => {
             console.log(error)
@@ -50,13 +50,13 @@ const OneColor = ({row}) => {
     const [deleted, setDeleted] = React.useState(false)
 
     const deletedSizeHandler = (id) => {
-        colorService.deleteColor(id).then(response => {
-            if(response.status == 204){
-                setDeleted(true)
-            }
-        }).catch(error => {
-            console.log(error)
-        })
+        // productImageService.deleteColor(id).then(response => {
+        //     if(response.status == 204){
+        //         setDeleted(true)
+        //     }
+        // }).catch(error => {
+        //     console.log(error)
+        // })
     }
 
     if(!deleted){
@@ -80,7 +80,7 @@ const OneColor = ({row}) => {
                     ></span>
                   </TableCell>
                   <TableCell align="right">
-                    <UpdateColor/>
+                    {/* <UpdateColor/> */}
                   </TableCell>
                   <TableCell align="right">
                   <Button

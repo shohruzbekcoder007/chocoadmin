@@ -72,6 +72,15 @@ const navigationConfig = [
     icon: 'heroicons-outline:check-circle',
     url: 'tasks',
     translate: 'Prodacts',
+  },
+  {
+    id: 'product-image',
+    title: 'Product Images',
+    subtitle: 'image of product',
+    type: 'item',
+    icon: 'heroicons-outline:check-circle',
+    url: 'product-image',
+    translate: 'ProductImages',
   }
 ];
 

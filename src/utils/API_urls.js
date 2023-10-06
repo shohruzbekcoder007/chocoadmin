@@ -16,7 +16,6 @@ export const book = "/book/"
 
 //product
 export const product = "/product/"
-export const product_image = "/product/image/"
 
 // size 
 export const size = "/size/"
@@ -27,3 +26,6 @@ export const color = "/color/"
 
 // banner
 export const banner = "/banner/"
+
+// /product/image/
+export const product_image = "/product/image/"
