@@ -47,10 +47,7 @@ function ProfuctImage(props) {
       }
       content = {
         <div className="p-24 w-full">
-          <h4>Content</h4>
-          <br />
           <ImageList />
-          <Pagination count={10} />
         </div>
       }
       scroll="content"

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ReactQuill from "react-quill";
 import 'react-quill/dist/quill.snow.css';
 
-function Editor() {
+function Editor({getDescription}) {
   const modules = {
     toolbar: [
       [{ header: [1, 2, 3, 4, 5, 6, false] }],
@@ -35,9 +35,10 @@ function Editor() {
     "font"
   ];
 
-  const [code, setCode] = useState("hellllo");
+  const [code, setCode] = useState("");
   const handleProcedureContentChange = (content, delta, source, editor) => {
     setCode(content);
+    getDescription(content)
     //let has_attribues = delta.ops[1].attributes || "";
     //console.log(has_attribues);
     //const cursorPosition = e.quill.getSelection().index;

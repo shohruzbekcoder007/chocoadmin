@@ -56,16 +56,16 @@ export default function SelectCategory({categorySelectF}) {
                     label="Parent category"
                 >
                     {
-                        parentCategoryList.map(elem => {
-                            return <MenuItem value={elem.value}>{elem.name}</MenuItem>
+                        parentCategoryList.map((elem, index ) => {
+                            return <MenuItem key={index} value={elem.value}>{elem.name}</MenuItem>
                         })
                     }
                     {/* <MenuItem value="">
-        <em>None</em>
-        </MenuItem>
-        <MenuItem value={10}>Twenty</MenuItem>
-        <MenuItem value={21}>Twenty one</MenuItem>
-        <MenuItem value={22}>Twenty one and a half</MenuItem> */}
+                        <em>None</em>
+                        </MenuItem>
+                        <MenuItem value={10}>Twenty</MenuItem>
+                        <MenuItem value={21}>Twenty one</MenuItem>
+                        <MenuItem value={22}>Twenty one and a half</MenuItem> */}
                 </Select>
             </FormControl>
             <FormControl sx={{ minWidth: "100%" }} className="mt-8 mb-8">
@@ -78,9 +78,10 @@ export default function SelectCategory({categorySelectF}) {
                     fullWidth
                     label="Child category"
                 >
+                    <MenuItem value={""}>""</MenuItem>
                     {
-                        childCategoryList.map(elem => {
-                            return <MenuItem value={elem.value}>{elem.name}</MenuItem>
+                        childCategoryList.map((elem, index) => {
+                            return <MenuItem key={index} value={elem.value}>{elem.name}</MenuItem>
                         })
                     }
                 </Select>

@@ -5,7 +5,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import product_status from "../../dictionary/product_status"
 
-export default function SelectStatus() {
+export default function SelectStatus({getStatusValue}) {
 
     const productList = React.useMemo(() => {
         return product_status.map(ptype => {
@@ -36,8 +36,8 @@ export default function SelectStatus() {
           label="Product type"
         >
             {
-                productList.map(pty => {
-                    return <MenuItem value={pty.value}>{pty.name}</MenuItem>
+                productList.map((pty, index) => {
+                    return <MenuItem key={index} value={pty.value}>{pty.name}</MenuItem>
                 })
             }
         </Select>

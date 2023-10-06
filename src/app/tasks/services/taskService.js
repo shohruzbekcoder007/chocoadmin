@@ -27,6 +27,18 @@ class TaskService {
         })
     }
 
+    getSizes = () => {
+        return new Promise((resolve, reject) => {
+            axios.get(TaskConfig.size, {
+                headers: headerConfig(),
+            }).then(response => {
+                resolve(response);
+            }).catch(error => {
+                reject(error);
+            })
+        })
+    }
+
     // getCategoryChildren = (id) => {
     //     return new Promise((resolve, reject) => {
     //         axios.get(`${TaskConfig.category}${id}/`, {

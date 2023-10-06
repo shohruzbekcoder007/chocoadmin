@@ -76,9 +76,9 @@ export default function TasksList() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {books.map((row) => {
+            {books.map((row, index) => {
                 return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.code} onClick={() => {oneProductClickHandler(row)}}>
+                  <TableRow hover key={index} role="checkbox" tabIndex={-1} onClick={() => {oneProductClickHandler(row)}}>
                     {columns.map((column) => {
                       const value = row[column.id];
                       return (

@@ -15,6 +15,28 @@ import SelectStatus from '../SelectStatus'
 
 function TaskForm() {
 
+  const [product_type, setProduct_type] = useState(null)
+  const [title, setTitle] = useState("")
+  const [category, setCategory] = useState("")
+  const [status, setStatus] = useState("NEW")
+  const [size, setSize] = useState([])
+  const [hasSize, setHasSize] = useState(false)
+  const [isActive, setIsActive] = useState(false)
+
+  //
+  //
+  //
+  //
+  // advertisement,
+  // banner_discount,
+  // brand,
+  //
+  // percentage,
+  // description,
+  // availability,
+  //
+  //
+
   useEffect(() => {
    
   }, []);
@@ -38,7 +60,7 @@ function TaskForm() {
           </div>
         </div>
         <div className="w-full">
-          <SelectAutoWidth/>
+          <SelectAutoWidth getProductType={(val) => {console.log(val)}}/>
           <TextField
             className="mt-8 mb-8"
             required
@@ -50,33 +72,22 @@ function TaskForm() {
             value={""}
             onChange={(event) => {}}
           />
-          <TextField
-            className="mt-8 mb-8"
-            required
-            label="Qisqacha ma'lumot"
-            autoFocus
-            id="name"
-            variant="outlined"
-            fullWidth
-            value={""}
-            onChange={(event) => {}}
-          />
-          <MultipleSelectChip/>
+          <Editor getDescription={val => {console.log(val)}}/>
+          <MultipleSelectChip getSizes={(val) => {console.log(val)}}/>
           <SelectCategory categorySelectF={(val) => {console.log(val)}}/>
-          <SelectStatus/>
-          <Editor/>
+          <SelectStatus getStatusValue={(val) => {setStatus(val)}}/>
+          
           <FormGroup>
-            <FormControlLabel control={<Switch defaultChecked />} label="has_size" />
-            <FormControlLabel required control={<Switch />} label="is_active" />
+            <FormControlLabel control={<Switch onChange={event => {setHasSize(event.target.checked)}}/>} label="has_size" />
+            <FormControlLabel required control={<Switch onChange={event => {setIsActive(event.target.checked)}}/>} label="is_active" />
           </FormGroup>
         </div>
-        
       </div>
       {(
         <Box
           className="flex items-center mt-40 py-14 pr-16 pl-4 sm:pr-48 sm:pl-36 border-t"
         >
-          <sapn className="ml-auto"></sapn>
+          <span className="ml-auto"></span>
           <Button
             className="ml-8"
             variant="contained"

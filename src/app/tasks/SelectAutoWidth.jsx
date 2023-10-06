@@ -5,9 +5,10 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import product_type from "../../dictionary/product_type"
 
-export default function SelectAutoWidth() {
+export default function SelectAutoWidth({getProductType}) {
 
     const productList = React.useMemo(() => {
+      getProductType(product_type[0].value)
         return product_type.map(ptype => {
             return {
                 value: ptype.value,
@@ -21,6 +22,7 @@ export default function SelectAutoWidth() {
 
   const handleChange = (event) => {
     setAge(event.target.value);
+    getProductType(event.target.value)
   };
 
   return (
@@ -36,8 +38,8 @@ export default function SelectAutoWidth() {
           label="Product type"
         >
             {
-                productList.map(pty => {
-                    return <MenuItem value={pty.value}>{pty.name}</MenuItem>
+                productList.map((pty, index) => {
+                    return <MenuItem key={index} value={pty.value}>{pty.name}</MenuItem>
                 })
             }
         </Select>

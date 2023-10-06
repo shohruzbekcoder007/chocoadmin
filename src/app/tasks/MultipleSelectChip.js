@@ -1,12 +1,13 @@
-import * as React from 'react';
-import { useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import Chip from '@mui/material/Chip';
+import * as React from 'react'
+import { useTheme } from '@mui/material/styles'
+import Box from '@mui/material/Box'
+import OutlinedInput from '@mui/material/OutlinedInput'
+import InputLabel from '@mui/material/InputLabel'
+import MenuItem from '@mui/material/MenuItem'
+import FormControl from '@mui/material/FormControl'
+import Select from '@mui/material/Select'
+import Chip from '@mui/material/Chip'
+import taskService from './services/taskService'
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -19,19 +20,6 @@ const MenuProps = {
   },
 };
 
-const names = [
-  'Oliver Hansen',
-  'Van Henry',
-  'April Tucker',
-  'Ralph Hubbard',
-  'Omar Alexander',
-  'Carlos Abbott',
-  'Miriam Wagner',
-  'Bradley Wilkerson',
-  'Virginia Andrews',
-  'Kelly Snyder',
-];
-
 function getStyles(name, personName, theme) {
   return {
     fontWeight:
@@ -41,9 +29,11 @@ function getStyles(name, personName, theme) {
   };
 }
 
-export default function MultipleSelectChip() {
-  const theme = useTheme();
-  const [personName, setPersonName] = React.useState([]);
+export default function MultipleSelectChip({getSizes}) {
+
+  const theme = useTheme()
+  const [personName, setPersonName] = React.useState([])
+  const [allNames, setAllNames] = React.useState([])
 
   const handleChange = (event) => {
     const {
@@ -52,7 +42,16 @@ export default function MultipleSelectChip() {
     setPersonName(
       typeof value === 'string' ? value.split(',') : value,
     );
-  };
+    getSizes(typeof value === 'string' ? value.split(',') : value)
+  }
+
+  React.useEffect(() => {
+    taskService.getSizes().then(response => {
+      setAllNames(response.data)
+    }).catch(error => {
+      console.log(error)
+    })
+  }, [])
 
   return (
       <FormControl className="mt-8 mb-8 w-full">
@@ -66,20 +65,21 @@ export default function MultipleSelectChip() {
           input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
           renderValue={(selected) => (
             <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-              {selected.map((value) => (
-                <Chip key={value} label={value} />
-              ))}
+              {selected.map((value) => {
+                return (
+                <Chip key={value.id} label={value.name} />
+              )})}
             </Box>
           )}
           MenuProps={MenuProps}
         >
-          {names.map((name) => (
+          {allNames.map((name) => (
             <MenuItem
-              key={name}
+              key={name.id}
               value={name}
               style={getStyles(name, personName, theme)}
             >
-              {name}
+              {name.name}
             </MenuItem>
           ))}
         </Select>

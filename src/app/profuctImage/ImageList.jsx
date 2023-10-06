@@ -6,7 +6,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { Button } from '@mui/material';
+import { Button, Pagination } from '@mui/material';
 import FuseSvgIcon from '@fuse/core/FuseSvgIcon/FuseSvgIcon';
 import productImageService from './services/productImageService'
 // import UpdateColor from './UpdateColor';
@@ -41,6 +41,9 @@ export default function ImageList({reRender}) {
           ))}
         </TableBody>
       </Table>
+      <div className='p-24 w-full'>
+        <Pagination count={10} />
+      </div>
     </TableContainer>
   );
 }
