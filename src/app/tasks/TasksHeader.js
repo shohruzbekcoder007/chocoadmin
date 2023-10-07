@@ -26,7 +26,8 @@ function TasksHeader(props) {
           variant="contained"
           color="secondary"
           component={NavLinkAdapter}
-          to="new/task"
+          // to="new/task"
+          to="/addproduct"
         >
           <FuseSvgIcon size={20}>heroicons-outline:plus</FuseSvgIcon>
           <span className="mx-8">Add Task</span>

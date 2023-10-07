@@ -48,7 +48,6 @@ function Editor({getDescription}) {
 
   return (
     <div className="mt-8 mb-8">
-      {console.log(code)}
       <ReactQuill
         theme="snow"
         modules={modules}

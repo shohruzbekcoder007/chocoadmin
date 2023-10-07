@@ -8,13 +8,16 @@ import product_type from "../../dictionary/product_type"
 export default function SelectAutoWidth({getProductType}) {
 
     const productList = React.useMemo(() => {
-      getProductType(product_type[0].value)
         return product_type.map(ptype => {
             return {
                 value: ptype.value,
                 name: ptype.uz
             }
         })
+    }, [])
+
+    React.useEffect(() => {
+      getProductType(product_type[0].value)
     }, [])
 
 

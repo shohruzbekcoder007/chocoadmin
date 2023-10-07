@@ -74,6 +74,15 @@ const navigationConfig = [
     translate: 'Prodacts',
   },
   {
+    id: 'tasks',
+    title: 'Prodacts',
+    subtitle: 'all products',
+    type: 'item',
+    icon: 'heroicons-outline:check-circle',
+    url: 'tasks',
+    translate: 'Prodacts',
+  },
+  {
     id: 'product-image',
     title: 'Product Images',
     subtitle: 'image of product',
@@ -81,6 +90,15 @@ const navigationConfig = [
     icon: 'heroicons-outline:check-circle',
     url: 'product-image',
     translate: 'ProductImages',
+  },
+  {
+    id: 'addproduct',
+    title: 'Add Product',
+    subtitle: 'Add Product',
+    type: 'item',
+    icon: 'material-twotone:production_quantity_limits',
+    url: 'addproduct',
+    translate: 'Add_Product',
   }
 ];
 

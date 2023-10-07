@@ -16,6 +16,7 @@ import TasksAppConfig from '../tasks/TasksAppConfig';
 import SizeConfig from '../size/SizeConfig';
 import ColorConfig from '../color/ColorConfig';
 import ProfuctImageConfig from '../profuctImage/profuctImageConfig';
+import AddProductConfig from '../addProduct/AddProductConfig';
 
 const routeConfigs = [
   ...dashboardsConfigs,
@@ -30,7 +31,8 @@ const routeConfigs = [
   TasksAppConfig,
   SizeConfig,
   ColorConfig,
-  ProfuctImageConfig
+  ProfuctImageConfig,
+  AddProductConfig
 ];
 
 const routes = [

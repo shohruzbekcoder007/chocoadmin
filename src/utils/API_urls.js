@@ -29,3 +29,7 @@ export const banner = "/banner/"
 
 // /product/image/
 export const product_image = "/product/image/"
+
+
+// advertisement
+export const advertisement = "/advertisement/"

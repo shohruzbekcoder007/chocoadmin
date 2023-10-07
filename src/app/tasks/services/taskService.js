@@ -39,17 +39,60 @@ class TaskService {
         })
     }
 
-    // getCategoryChildren = (id) => {
-    //     return new Promise((resolve, reject) => {
-    //         axios.get(`${TaskConfig.category}${id}/`, {
-    //             headers: headerConfig(),
-    //         }).then(response => {
-    //             resolve(response);
-    //         }).catch(error => {
-    //             reject(error);
-    //         })
-    //     })
-    // }
+    getAdvertisement = () => {
+        return new Promise((resolve, reject) => {
+            axios.get(TaskConfig.advertisement, {
+                headers: headerConfig(),
+            }).then(response => {
+                resolve(response);
+            }).catch(error => {
+                reject(error);
+            })
+        })
+    }
+
+    getBannerList = () => {
+        return new Promise((resolve, reject) => {
+            axios.get(TaskConfig.banner, {
+                headers: headerConfig(),
+            }).then(response => {
+                resolve(response);
+            }).catch(error => {
+                reject(error);
+            })
+        })
+    }
+
+    createProduct = (data) => {
+        return new Promise((resolve, reject) => {
+            axios.post(
+                TaskConfig.product,
+                data,
+                {
+                    headers: headerConfig(),
+                }
+            ).then((response) => {
+                console.log(response)
+                resolve(response)
+            })
+            .catch((error) => {
+                console.log(error)
+                reject(error)
+            });
+        })
+    }
+
+    getColors = () => {
+        return new Promise((resolve, reject) => {
+            axios.get(TaskConfig.color, {
+                headers: headerConfig(),
+            }).then(response => {
+                resolve(response);
+            }).catch(error => {
+                reject(error);
+            })
+        })
+    }
 
 }
 
