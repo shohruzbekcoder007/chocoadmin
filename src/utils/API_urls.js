@@ -1,4 +1,5 @@
-export const host = "https://xusandev.pythonanywhere.com"
+// export const host = "https://xusandev.pythonanywhere.com"
+export const host = "http://husanibragimov.jprq.site"
 
 export const token_url = "/token/"
 export const user_me = "/client/me/"
