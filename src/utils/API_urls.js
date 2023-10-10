@@ -1,5 +1,7 @@
-// export const host = "https://xusandev.pythonanywhere.com"
-export const host = "http://husanibragimov.jprq.site"
+export const host = "https://xusandev.pythonanywhere.com"
+// export const host = "http://husanibragimov.jprq.site"
+// export const host = "http://husanibragimov.jprq.site"
+// export const host = "https://5.189.171.59"
 
 export const token_url = "/token/"
 export const user_me = "/client/me/"
@@ -34,3 +36,6 @@ export const product_image = "/product/image/"
 
 // advertisement
 export const advertisement = "/advertisement/"
+
+// /sales/ 
+export const sales = "/sales/"

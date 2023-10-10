@@ -24,20 +24,20 @@ const themesConfig = {
         white: 'rgb(255, 255, 255)',
       },
       primary: {
-        light: '#64748b',
-        main: '#1e293b',
-        dark: '#0f172a',
+        light: fuseDark[200],
+        main: fuseDark[500],
+        dark: fuseDark[800],
         contrastText: darkPaletteText.primary,
       },
       secondary: {
-        light: '#818cf8',
-        main: '#4f46e5',
-        dark: '#3730a3',
-        contrastText: darkPaletteText.primary,
+        light: skyBlue[100],
+        main: skyBlue[500],
+        dark: skyBlue[900],
+        contrastText: lightPaletteText.primary,
       },
       background: {
         paper: '#FFFFFF',
-        default: '#f1f5f9',
+        default: '#f6f7f9',
       },
       error: {
         light: '#ffcdd2',
@@ -50,41 +50,6 @@ const themesConfig = {
     },
   },
   defaultDark: {
-    palette: {
-      mode: 'dark',
-      divider: 'rgba(241,245,249,.12)',
-      text: darkPaletteText,
-      common: {
-        black: 'rgb(17, 24, 39)',
-        white: 'rgb(255, 255, 255)',
-      },
-      primary: {
-        light: '#64748b',
-        main: '#334155',
-        dark: '#0f172a',
-        contrastText: darkPaletteText.primary,
-      },
-      secondary: {
-        light: '#818cf8',
-        main: '#4f46e5',
-        dark: '#3730a3',
-        contrastText: darkPaletteText.primary,
-      },
-      background: {
-        paper: '#1e293b',
-        default: '#111827',
-      },
-      error: {
-        light: '#ffcdd2',
-        main: '#f44336',
-        dark: '#b71c1c',
-      },
-      status: {
-        danger: 'orange',
-      },
-    },
-  },
-  legacy: {
     palette: {
       mode: 'light',
       divider: '#e2e8f0',
@@ -108,6 +73,41 @@ const themesConfig = {
       background: {
         paper: '#FFFFFF',
         default: '#f6f7f9',
+      },
+      error: {
+        light: '#ffcdd2',
+        main: '#f44336',
+        dark: '#b71c1c',
+      },
+    },
+    status: {
+      danger: 'orange',
+    },
+  },
+  legacy: {
+    palette: {
+      mode: 'light',
+      divider: '#e2e8f0',
+      text: lightPaletteText,
+      common: {
+        black: 'rgb(17, 24, 39)',
+        white: 'rgb(255, 255, 255)',
+      },
+      primary: {
+        light: '#64748b',
+        main: '#1e293b',
+        dark: '#0f172a',
+        contrastText: darkPaletteText.primary,
+      },
+      secondary: {
+        light: '#818cf8',
+        main: '#4f46e5',
+        dark: '#3730a3',
+        contrastText: darkPaletteText.primary,
+      },
+      background: {
+        paper: '#FFFFFF',
+        default: '#f1f5f9',
       },
       error: {
         light: '#ffcdd2',

@@ -92,6 +92,15 @@ const navigationConfig = [
     translate: 'ProductImages',
   },
   {
+    id: 'sales',
+    title: 'Sales',
+    subtitle: 'sales',
+    type: 'item',
+    icon: 'heroicons-outline:currency-bangladeshi',
+    url: 'sales',
+    translate: 'Sales',
+  },
+  {
     id: 'addproduct',
     title: 'Add Product',
     subtitle: 'Add Product',
