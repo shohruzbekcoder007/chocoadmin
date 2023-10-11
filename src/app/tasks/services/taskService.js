@@ -69,7 +69,10 @@ class TaskService {
                 TaskConfig.product,
                 data,
                 {
-                    headers: headerConfig(),
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("jwt_access_token")}`,
+                        "Content-Type": "multipart/form-data"
+                      },
                 }
             ).then((response) => {
                 console.log(response)
@@ -85,6 +88,30 @@ class TaskService {
     getColors = () => {
         return new Promise((resolve, reject) => {
             axios.get(TaskConfig.color, {
+                headers: headerConfig(),
+            }).then(response => {
+                resolve(response);
+            }).catch(error => {
+                reject(error);
+            })
+        })
+    }
+
+    getBrandList = () => {
+        return new Promise((resolve, reject) => {
+            axios.get(TaskConfig.brand, {
+                headers: headerConfig(),
+            }).then(response => {
+                resolve(response);
+            }).catch(error => {
+                reject(error);
+            })
+        })
+    }
+
+    getDiscountList = () => {
+        return new Promise((resolve, reject) => {
+            axios.get(TaskConfig.sales, {
                 headers: headerConfig(),
             }).then(response => {
                 resolve(response);

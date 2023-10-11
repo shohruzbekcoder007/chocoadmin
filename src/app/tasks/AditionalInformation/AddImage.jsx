@@ -6,12 +6,13 @@ import { ImageContainer, ImageRemove, ImageWrapper } from "./styles";
 import FuseSvgIcon from "@fuse/core/FuseSvgIcon/FuseSvgIcon";
 import { v4 as uuidv4 } from 'uuid';
 
-export default memo(function AddImage({pr_id}) {
+export default memo(function AddImage({ pr_id, getImages }) {
 
     const [fileList, setFileList] = useState([])
     const [imageUrls, setImageUrls] = useState([])
 
     const handleFileUpload = (event) => {
+
         const file = event.target.files[0];
         const reader = new FileReader();
         const _id = uuidv4();
@@ -32,8 +33,11 @@ export default memo(function AddImage({pr_id}) {
                 }]
             })
         };
-
-        console.log(fileList)
+        getImages([...fileList, {
+            id: _id,
+            file: event.target.files[0],
+            pr_id: pr_id
+        }])
 
         reader.readAsDataURL(file);
     };
@@ -69,7 +73,7 @@ export default memo(function AddImage({pr_id}) {
                             <ImageWrapper key={index}>
                                 <img src={elem.file} alt="Uploaded Image" height="300" />
                                 <ImageRemove
-                                    onClick={() => {removeFile(elem.id)}}
+                                    onClick={() => { removeFile(elem.id) }}
                                 >
                                     <FuseSvgIcon className="text-48" size={24} color="error">material-twotone:close</FuseSvgIcon>
                                 </ImageRemove>

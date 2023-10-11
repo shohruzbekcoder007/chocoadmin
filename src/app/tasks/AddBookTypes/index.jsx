@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-import SelectColors from './SelectColors'
+import SelectBookType from './SelectBookType'
 import { Box } from '@mui/system'
 import { Grid, TextField, Typography } from '@mui/material'
-import AddImage from './AddImage'
+import AddImage from '../AditionalInformation/AddImage'
 
-export default function AditionalInformation({getImages}) {
+export default function AddBookTypes({getImages}) {
 
-    const [colors, setColors] = useState([])
+    const [types, setTypes] = useState([])
     const [additions, setAditions] = useState([])
     
     const setImages = (val) => {
@@ -27,11 +27,11 @@ export default function AditionalInformation({getImages}) {
 
     return (
         <div className='w-full'>
-            <SelectColors getSizes={(val) => { setColors(val); }} />
+            <SelectBookType getTypes={(val) => { setTypes(val) }} />
             {
-                colors.map((elem, index) => {
+                types.map((elem, index) => {
                     return (
-                        <ProductOneColor key={index} elem={elem} setImages={val => {setImages(val)}}/>
+                        <BookTypeOne key={index} elem={elem} setImages={val => {setImages(val)}}/>
                     )
                 })
             }
@@ -39,11 +39,9 @@ export default function AditionalInformation({getImages}) {
     )
 }
 
-
-const ProductOneColor = ({ elem, setImages }) => {
-
+export const BookTypeOne = ({ elem, setImages }) => {
     const [priceColorFile, setPriceColorFile] = useState({
-        color_id: elem.id,
+        color_id: elem.value,
         price: 0,
         files: []
     })
@@ -72,15 +70,14 @@ const ProductOneColor = ({ elem, setImages }) => {
             price: val
         })
     }
-
     return (
         <Box component="div" sx={{ p: 2, border: '1px dashed grey', mb: 1 }}>
             <Typography variant="h6" gutterBottom>
-                {elem.title} {elem.id}
+                {elem.name}
             </Typography>
             <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
                 <Grid item xs={6}>
-                    <AddImage pr_id={elem.id} getImages={val => {getFiles(val)}} key={elem.id}/>
+                    <AddImage pr_id={elem.value} getImages={val => {getFiles(val)}} key={elem.value}/>
                 </Grid>
                 <Grid item xs={6}>
                     <TextField
@@ -89,7 +86,6 @@ const ProductOneColor = ({ elem, setImages }) => {
                         id="name"
                         variant="outlined"
                         fullWidth
-                        // value={percentage}
                         type='number'
                         onChange={(event) => {getPrace(event.target.value)}}
                     />
