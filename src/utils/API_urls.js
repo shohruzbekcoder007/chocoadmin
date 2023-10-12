@@ -41,3 +41,6 @@ export const advertisement = "/advertisement/"
 
 // /sales/ 
 export const sales = "/sales/"
+
+// /author/
+export const author = "/author/"

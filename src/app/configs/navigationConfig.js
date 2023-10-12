@@ -108,6 +108,15 @@ const navigationConfig = [
     icon: 'material-twotone:production_quantity_limits',
     url: 'addproduct',
     translate: 'Add_Product',
+  },
+  {
+    id: 'muallif',
+    title: 'Muallif',
+    subtitle: 'Muallif',
+    type: 'item',
+    icon: 'feather:users',
+    url: 'muallif',
+    translate: 'Muallif',
   }
 ];
 

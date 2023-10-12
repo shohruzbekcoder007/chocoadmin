@@ -18,6 +18,7 @@ import ColorConfig from '../color/ColorConfig';
 import ProfuctImageConfig from '../profuctImage/profuctImageConfig';
 import AddProductConfig from '../addProduct/AddProductConfig';
 import SalesConfig from '../sales/salesConfig';
+import MuallifConfig from '../muallif/MuallifConfig';
 
 const routeConfigs = [
   ...dashboardsConfigs,
@@ -34,7 +35,8 @@ const routeConfigs = [
   ColorConfig,
   ProfuctImageConfig,
   AddProductConfig,
-  SalesConfig
+  SalesConfig,
+  MuallifConfig
 ];
 
 const routes = [
