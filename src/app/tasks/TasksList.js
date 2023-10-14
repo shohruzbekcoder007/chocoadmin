@@ -26,7 +26,7 @@ function createData(id, title, status, price_uzs, discount_uzs, product_type) {
 export default function TasksList() {
   const [page, setPage] = React.useState(1);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-  const [count, setCount] = React.useState(0)
+  const [count, setCount] = React.useState(1)
   const [books, setBooks] = React.useState([])
 
   const navigate = useNavigate()
@@ -45,9 +45,9 @@ export default function TasksList() {
   }
 
   React.useEffect(() => {
-    const url_query = `?page_size=${rowsPerPage}&page=${page+1}`
+    const url_query = `?page_size=${rowsPerPage}&page=${page}`
     taskService.getProducts(url_query).then(response => {
-        setPage(response.data.page-1)
+        setPage(response.data.page)
         setCount(response.data.count)
         const bookList = response.data.results.map(({id, title, status, price_uzs, discount_uzs, product_type}) => {
             return createData(id, title, status, price_uzs, discount_uzs, product_type)

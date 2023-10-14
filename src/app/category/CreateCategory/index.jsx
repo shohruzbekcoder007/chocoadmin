@@ -8,7 +8,7 @@ import DialogActions from '@mui/material/DialogActions';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import FuseSvgIcon from '@fuse/core/FuseSvgIcon/FuseSvgIcon';
-import { TextField } from '@mui/material';
+import { FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 import { MuiFileInput } from 'mui-file-input';
 import CategorySelectList from '../CategorySelectList';
 import categoryService from '../services';
@@ -22,11 +22,17 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     },
 }));
 
-export default function CreateCategory({setCreatedOption}) {
+export default function CreateCategory({ setCreatedOption }) {
+
     const [open, setOpen] = React.useState(false);
     const [title, setTitle] = React.useState('');
     const [parent, setParent] = React.useState('');
     const [file, setFile] = React.useState(null);
+    const [age, setAge] = React.useState('book');
+
+    const handleChange = (event) => {
+        setAge(event.target.value);
+    };
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -47,8 +53,9 @@ export default function CreateCategory({setCreatedOption}) {
         formData.append("icon", file);
         formData.append("title", title);
         formData.append("parent", parent);
+        formData.append("product_type", age);
         categoryService.createCategort(formData).then(response => {
-            if(response.data.id){
+            if (response.data.id) {
                 handleClose()
                 setCreatedOption({
                     alertMessage: "Categoriya created",
@@ -61,7 +68,6 @@ export default function CreateCategory({setCreatedOption}) {
                 alertMessage: "did not create Categoriy",
                 type: "error"
             })
-            console.log(error)
         })
     }
 
@@ -106,9 +112,9 @@ export default function CreateCategory({setCreatedOption}) {
                         variant="outlined"
                         fullWidth
                         value={title}
-                        onChange={(event) => {setTitle(event.target.value)}}
+                        onChange={(event) => { setTitle(event.target.value) }}
                     />
-                    <CategorySelectList getSelectedItem={(val) => {setParent(val)}}/>
+                    <CategorySelectList getSelectedItem={(val) => { setParent(val) }} />
                     <MuiFileInput
                         placeholder="Mos rasm"
                         value={file}
@@ -116,6 +122,21 @@ export default function CreateCategory({setCreatedOption}) {
                         accept="image/*"
                         fullWidth
                     />
+                    <FormControl sx={{ minWidth: "100%", mt: 2, mb: 2 }}>
+                        <InputLabel id="demo-simple-select-autowidth-label">Product Type</InputLabel>
+                        <Select
+                            labelId="demo-simple-select-autowidth-label"
+                            id="demo-simple-select-autowidth"
+                            value={age}
+                            onChange={handleChange}
+                            fullWidth
+                            label="Product Type"
+                        >
+                            <MenuItem value={"book"}>Book</MenuItem>
+                            <MenuItem value={"clothing"}>Clothing</MenuItem>
+                            <MenuItem value={'product'}>Product</MenuItem>
+                        </Select>
+                    </FormControl>
                 </DialogContent>
                 <DialogActions>
                     <Button autoFocus onClick={newCreateCategory}>

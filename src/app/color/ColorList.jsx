@@ -47,6 +47,7 @@ export default function ColorList({reRender}) {
 
 const OneColor = ({row}) => {
 
+    const [newRow, setNewRow] = React.useState(row)
     const [deleted, setDeleted] = React.useState(false)
 
     const deletedSizeHandler = (id) => {
@@ -65,29 +66,29 @@ const OneColor = ({row}) => {
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 >
                   <TableCell component="th" scope="row">
-                    {row.id}
+                    {newRow.id}
                   </TableCell>
-                  <TableCell align="right">{row.title}</TableCell>
+                  <TableCell align="right">{newRow.title}</TableCell>
                   <TableCell align="right">
                     <span
                         style={{
                             display: "inline-block",
                             width: "100px",
                             height: "10px",
-                            backgroundColor: row.name,
+                            backgroundColor: newRow.name,
                             border: "1px solid #ccc"
                         }}
                     ></span>
                   </TableCell>
                   <TableCell align="right">
-                    <UpdateColor/>
+                    <UpdateColor row={newRow} updateColorF={val => {setNewRow(val)}}/>
                   </TableCell>
                   <TableCell align="right">
                   <Button
                                 className=""
                                 variant="contained"
                                 color="error"
-                                onClick={() => { deletedSizeHandler(row.id) }}
+                                onClick={() => { deletedSizeHandler(newRow.id) }}
                                 startIcon={<FuseSvgIcon className="text-48" size={24} color="white">material-twotone:delete_outline</FuseSvgIcon>}
                             >
                                 Delete

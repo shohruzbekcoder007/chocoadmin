@@ -6,11 +6,12 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { TextField } from '@mui/material';
+import sizeService from './services/sizeService';
 
-export default function UpdateSize({id, updateBrandF}) {
+export default function UpdateSize({row, updateBrandF}) {
 
   const [open, setOpen] = React.useState(false);
-  const [title, setTitle] = React.useState('')
+  const [title, setTitle] = React.useState(row.name)
 
   const handleClickOpen = () => {
     
@@ -22,7 +23,14 @@ export default function UpdateSize({id, updateBrandF}) {
   };
 
   const changeTitleHandler = () => {
-    
+    sizeService.updateSize(row.id, {
+      name: title
+    }).then(response => {
+      updateBrandF(response.data)
+      handleClose()
+    }).catch(error => {
+      console.log(error)
+    })
   }
 
   return (
@@ -48,8 +56,8 @@ export default function UpdateSize({id, updateBrandF}) {
                 id="name"
                 variant="outlined"
                 fullWidth
-                value={'title'}
-                onChange={(event) => {console.log(event.target.value)}}
+                value={title}
+                onChange={(event) => {setTitle(event.target.value)}}
             />
           </DialogContentText>
         </DialogContent>

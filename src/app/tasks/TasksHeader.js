@@ -30,7 +30,7 @@ function TasksHeader(props) {
           to="/addproduct"
         >
           <FuseSvgIcon size={20}>heroicons-outline:plus</FuseSvgIcon>
-          <span className="mx-8">Add Task</span>
+          <span className="mx-8">Add Product</span>
         </Button>
       </div>
     </div>

@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import ReactQuill from "react-quill";
 import 'react-quill/dist/quill.snow.css';
 
-function Editor({getDescription}) {
+function Editor({getDescription, firstText}) {
+
   const modules = {
     toolbar: [
       [{ header: [1, 2, 3, 4, 5, 6, false] }],
@@ -35,15 +36,15 @@ function Editor({getDescription}) {
     "font"
   ];
 
-  const [code, setCode] = useState("");
+  const [code, setCode] = useState(firstText || "");
   const handleProcedureContentChange = (content, delta, source, editor) => {
     setCode(content);
     getDescription(content)
-    //let has_attribues = delta.ops[1].attributes || "";
-    //console.log(has_attribues);
-    //const cursorPosition = e.quill.getSelection().index;
+    // let has_attribues = delta.ops[1].attributes || "";
+    // console.log(has_attribues);
+    // const cursorPosition = e.quill.getSelection().index;
     // this.quill.insertText(cursorPosition, "★");
-    //this.quill.setSelection(cursorPosition + 1);
+    // this.quill.setSelection(cursorPosition + 1);
   };
 
   return (

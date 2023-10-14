@@ -5,6 +5,8 @@ import { motion } from 'framer-motion';
 import { Input, Paper, Typography } from '@mui/material';
 import FuseSvgIcon from '@fuse/core/FuseSvgIcon/FuseSvgIcon';
 import BookList from './BookList';
+import CreateBook from './CreateBook';
+import AlertMessage from '../category/AlertMessage';
 
 const Root = styled(FusePageSimple)(({ theme }) => ({
   '& .FusePageSimple-header': {
@@ -43,7 +45,7 @@ function Book(props) {
             </Typography>
 
             <div className="flex flex-col w-full sm:w-auto sm:flex-row space-y-16 sm:space-y-0 flex-1 items-center justify-end space-x-8">
-              <Paper
+              {/* <Paper
                 component={motion.div}
                 initial={{ y: -20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1, transition: { delay: 0.2 } }}
@@ -62,12 +64,12 @@ function Book(props) {
                   }}
                   onChange={() => { }}
                 />
-              </Paper>
+              </Paper> */}
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0, transition: { delay: 0.2 } }}
               >
-
+                <CreateBook setCreatedOption={setCreatedOption}/>
               </motion.div>
             </div>
           </div>
@@ -81,7 +83,7 @@ function Book(props) {
               animate={{ opacity: 1, transition: { delay: 0.1 } }}
               className=" h-full"
             >
-                <BookList/>
+                <BookList reRender={reRender} setCreatedOption={setCreatedOption}/>
             </motion.div>
           </div>
           {

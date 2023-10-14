@@ -36,7 +36,7 @@ function Muallif(props) {
             </Typography>
             {/* <SketchColor/> */}
             <div className="flex flex-col w-full sm:w-auto sm:flex-row space-y-16 sm:space-y-0 flex-1 items-center justify-end space-x-8">
-              <Paper
+              {/* <Paper
                 component={motion.div}
                 initial={{ y: -20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1, transition: { delay: 0.2 } }}
@@ -55,7 +55,7 @@ function Muallif(props) {
                   }}
                   onChange={() => { }}
                 />
-              </Paper>
+              </Paper> */}
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0, transition: { delay: 0.2 } }}

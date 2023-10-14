@@ -9,6 +9,7 @@ import Paper from '@mui/material/Paper';
 import { Button } from '@mui/material';
 import FuseSvgIcon from '@fuse/core/FuseSvgIcon/FuseSvgIcon';
 import sizeService from './services/sizeService'
+import UpdateSize from './UpdateSize';
 
 export default function SizesTable({reRender}) {
 
@@ -45,6 +46,8 @@ export default function SizesTable({reRender}) {
 
 const OneSize = ({row}) => {
 
+    const [newRow, setNewRow] = React.useState(row)
+
     const [deleted, setDeleted] = React.useState(false)
 
     const deletedSizeHandler = (id) => {
@@ -64,20 +67,18 @@ const OneSize = ({row}) => {
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 >
                   <TableCell component="th" scope="row">
-                    {row.id}
+                    {newRow.id}
                   </TableCell>
-                  <TableCell align="right">{row.name}</TableCell>
+                  <TableCell align="right">{newRow.name}</TableCell>
                   <TableCell align="right">
-                    <Button variant="contained" onClick={() => {}}>
-                        Edit
-                    </Button>
+                    <UpdateSize row={row} updateBrandF={(val) => {setNewRow(val)}}/>
                   </TableCell>
                   <TableCell align="right">
                   <Button
                                 className=""
                                 variant="contained"
                                 color="error"
-                                onClick={() => { deletedSizeHandler(row.id) }}
+                                onClick={() => { deletedSizeHandler(newRow.id) }}
                                 startIcon={<FuseSvgIcon className="text-48" size={24} color="white">material-twotone:delete_outline</FuseSvgIcon>}
                             >
                                 Delete

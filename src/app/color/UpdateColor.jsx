@@ -10,18 +10,14 @@ import { TextField } from '@mui/material';
 import colorService from './services/colorService'
 import SketchColor from './SketchColor';
 
-export default function UpdateColor({id, updateBrandF}) {
+export default function UpdateColor({row, updateColorF}) {
 
   const [open, setOpen] = React.useState(false);
-  const [title, setTitle] = React.useState('')
+  const [title, setTitle] = React.useState(row.title)
+  const [name, setName] = React.useState(row.name)
+
 
   const handleClickOpen = () => {
-    colorService.getOneColor(id).then(response => {
-    //   setTitle(response.data.title)
-      console.log(response.data)
-    }).catch(error => {
-      console.log(error)
-    })
     setOpen(true);
   };
 
@@ -30,15 +26,16 @@ export default function UpdateColor({id, updateBrandF}) {
   };
 
   const changeTitleHandler = () => {
-    // brandService.updateBrand(id, {
-    //   title,
-    // }).then(response => {
-    //   updateBrandF(response.data)
-    //   handleClose()
-    // }).catch(error => {
-    //   console.log(error)
-    //   handleClose()
-    // })
+    colorService.updateColor(row.id, {
+      title,
+      name,
+    }).then(response => {
+      updateColorF(response.data)
+      handleClose()
+    }).catch(error => {
+      console.log(error)
+      handleClose()
+    })
   }
 
   return (
@@ -53,7 +50,7 @@ export default function UpdateColor({id, updateBrandF}) {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          {"Brand ni o'zgartirish"}
+          {"Color ni o'zgartirish"}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
@@ -68,7 +65,7 @@ export default function UpdateColor({id, updateBrandF}) {
                 value={title}
                 onChange={(event) => {setTitle(event.target.value)}}
             />
-            <SketchColor getColor={color => {console.log(color)}} startColor="#ccc"/>
+            <SketchColor getColor={color => {setName(color)}} startColor={row.name}/>
           </DialogContentText>
         </DialogContent>
         <DialogActions>

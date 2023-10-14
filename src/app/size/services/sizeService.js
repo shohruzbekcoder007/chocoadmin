@@ -45,6 +45,18 @@ class SizeService {
             });
         })
     }
+
+    updateSize = (id, data) => {
+        return new Promise((resolve, reject) => {
+            axios.put(`${size}${id}/`, data, {
+                headers: headerConfig(),
+            }).then(response => {
+                resolve(response);
+            }).catch(error => {
+                reject(error);
+            })
+        })
+    }
 }
 
 const instance = new SizeService();

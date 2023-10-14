@@ -38,11 +38,9 @@ class BrandService {
                     headers: headerConfig(),
                 }
             ).then((response) => {
-                console.log(response)
                 resolve(response)
             })
             .catch((error) => {
-                console.log(error)
                 reject(error)
             });
         })

@@ -46,7 +46,7 @@ class ColorService {
         })
     }
 
-    getOneColor = () => {
+    getOneColor = (id) => {
         return new Promise((resolve, reject) => {
             axios.get(`${color}${id}`, {
                 headers: headerConfig(),
@@ -58,6 +58,17 @@ class ColorService {
         })
     }
 
+    updateColor = (id, data) => {
+        return new Promise((resolve, reject) => {
+            axios.put(`${color}${id}/`, data, {
+                headers: headerConfig(),
+            }).then(response => {
+                resolve(response);
+            }).catch(error => {
+                reject(error);
+            })
+        })
+    }
 }
 
 const instance = new ColorService();
