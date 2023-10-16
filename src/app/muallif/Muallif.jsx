@@ -5,6 +5,9 @@ import { Input, Paper, Typography } from '@mui/material';
 import FuseSvgIcon from '@fuse/core/FuseSvgIcon/FuseSvgIcon';
 import { motion } from 'framer-motion';
 import MuallifList from './MuallifList';
+import CreateMuallif from './CreateMuallif';
+import { useEffect, useState } from 'react';
+import AlertMessage from '../category/AlertMessage';
 
 const Root = styled(FusePageSimple)(({ theme }) => ({
   '& .FusePageSimple-header': {
@@ -20,6 +23,13 @@ const Root = styled(FusePageSimple)(({ theme }) => ({
 }));
 
 function Muallif(props) {
+
+  const [createdOption, setCreatedOption] = useState(null)
+  const [reRender, setReRender] = useState(false)
+
+  useEffect(() => {
+    setReRender(prev => !prev)
+  },[createdOption])
 
   return (
     <Root
@@ -60,13 +70,17 @@ function Muallif(props) {
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0, transition: { delay: 0.2 } }}
               >
+                <CreateMuallif setCreatedOption={setCreatedOption}/>
               </motion.div>
             </div>
           </div>
       }
       content={
         <div className="p-24 w-full">
-          <MuallifList/>
+          <MuallifList reRender={reRender} setCreatedOption={setCreatedOption}/>
+          {
+            createdOption?<AlertMessage alertMessage={createdOption.alertMessage} _openAlert={true} type={createdOption.type}/>:null
+          }
         </div>
       }
       scroll="content"
