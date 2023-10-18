@@ -7,16 +7,16 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { Button, Paper } from '@mui/material';
 import FuseSvgIcon from '@fuse/core/FuseSvgIcon/FuseSvgIcon';
-import brandService from '../services/brandService'
-import UpdateBrand from '../UpdateBrand';
+import variantService from './services/variantService'
+import { dateFormatter } from 'src/utils/dateFormatter';
+// import UpdateBrand from '../UpdateBrand';
 
-export default function BrandList({reRender}) {
+export default function VariantList({reRender}) {
 
     const [brands, setBrands] = useState([])
 
     useEffect(() => {
-        brandService.getBrands().then(response => {
-            console.log("response.data")
+        variantService.getVariants().then(response => {
             setBrands(response.data)
         }).catch(error => {
             console.log(error)
@@ -28,10 +28,15 @@ export default function BrandList({reRender}) {
             <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
                 <TableHead>
                     <TableRow>
-                        <TableCell align="left">Brand Id</TableCell>
-                        <TableCell align="center">Brand Name(uz)</TableCell>
-                        <TableCell align="center">Brand Name(ru)</TableCell>
-                        <TableCell align="center">Update</TableCell>
+                        <TableCell align="left">Id</TableCell>
+                        <TableCell align="center">Name</TableCell>
+                        <TableCell align="center">Created at</TableCell>
+                        <TableCell align="center">Updated at</TableCell>
+                        <TableCell align="center">product_type</TableCell>
+                        <TableCell align="center">duration</TableCell>
+                        <TableCell align="center">percent</TableCell>
+                        <TableCell align="center">is_integration</TableCell>
+                        {/* <TableCell align="center">Updated</TableCell> */}
                         <TableCell align="right">Delete</TableCell>
                     </TableRow>
                 </TableHead>
@@ -50,7 +55,7 @@ const DataTableItem = ({elem}) => {
     const [brand, setBrand] = useState(elem)
     const [deleted, setDeleted] = useState(false)
     const handleDeleted = (id) => {
-        brandService.deleteBrand(id).then(response => {
+        variantService.deleteVariant(id).then(response => {
             if(response.status){
                 setDeleted(prev => !prev)
             }
@@ -63,11 +68,21 @@ const DataTableItem = ({elem}) => {
         return (
             <TableRow>
                 <TableCell align="left">{brand.id}</TableCell>
-                <TableCell align="center">{brand.title_uz}</TableCell>
-                <TableCell align="center">{brand.title_ru}</TableCell>
+                <TableCell align="center">{brand.name}</TableCell>
+                <TableCell align="center">{dateFormatter(brand.created_at)}</TableCell>
+                <TableCell align="center">{dateFormatter(brand.updated_at)}</TableCell>
+                <TableCell align="center">{brand.product_type}</TableCell>
+                <TableCell align="center">{brand.duration}</TableCell>
+                <TableCell align="center">{brand.percent}</TableCell>
                 <TableCell align="center">
-                    <UpdateBrand id={brand.id} updateBrandF={setBrand}/>
+                    <div style={{display: "flex", justifyContent: "center"}}>
+                        {brand.is_integration?<FuseSvgIcon className="text-48" size={24} color="action">material-outline:credit_score</FuseSvgIcon>:""}
+                    </div>
                 </TableCell>
+                {/* <TableCell align="center">
+                    ssa
+                    <UpdateBrand id={brand.id} updateBrandF={setBrand}/>
+                </TableCell> */}
                 <TableCell align="right">
                 <Button
                             className=""

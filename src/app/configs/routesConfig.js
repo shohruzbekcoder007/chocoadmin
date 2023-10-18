@@ -19,6 +19,7 @@ import ProfuctImageConfig from '../profuctImage/profuctImageConfig';
 import AddProductConfig from '../addProduct/AddProductConfig';
 import SalesConfig from '../sales/salesConfig';
 import MuallifConfig from '../muallif/MuallifConfig';
+import VariantConfig from '../variant/VariantConfig';
 
 const routeConfigs = [
   ...dashboardsConfigs,
@@ -36,7 +37,8 @@ const routeConfigs = [
   ProfuctImageConfig,
   AddProductConfig,
   SalesConfig,
-  MuallifConfig
+  MuallifConfig,
+  VariantConfig
 ];
 
 const routes = [

@@ -31,7 +31,8 @@ export default function DataTable({ reRender }) {
                     <TableRow>
                         <TableCell align="left">Sup category</TableCell>
                         <TableCell>Category Id</TableCell>
-                        <TableCell align="center">Categoty name</TableCell>
+                        <TableCell align="center">Categoty name(uz)</TableCell>
+                        <TableCell align="center">Categoty name(ru)</TableCell>
                         <TableCell align="center">Iconc</TableCell>
                         <TableCell align="center">Edit</TableCell>
                         <TableCell align="center">Delete</TableCell>
@@ -89,7 +90,10 @@ const DataTableItem = ({ elem }) => {
                                 {elem.id}
                             </TableCell>
                             <TableCell component="th" scope="row" align="center">
-                                {elem.title}
+                                {elem.title_uz}
+                            </TableCell>
+                            <TableCell component="th" scope="row" align="center">
+                                {elem.title_ru}
                             </TableCell>
                             <TableCell component="th" scope="row" align="center">
                                 <Box
@@ -202,7 +206,10 @@ const SubCategory = ({ elem }) => {
                     {elem.id}
                 </TableCell>
                 <TableCell component="th" scope="row" align="center">
-                    {elem.title}
+                    {elem.title_uz}
+                </TableCell>
+                <TableCell component="th" scope="row" align="center">
+                    {elem.title_ru}
                 </TableCell>
                 <TableCell component="th" scope="row" align="center">
                     <Box

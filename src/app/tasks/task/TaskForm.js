@@ -6,7 +6,7 @@ import _ from '@lodash'
 import Box from '@mui/system/Box'
 import FuseSvgIcon from '@fuse/core/FuseSvgIcon'
 import IconButton from '@mui/material/IconButton'
-import { FormControlLabel, FormGroup, Paper, Switch, TextField } from '@mui/material'
+import { FormControlLabel, FormGroup, Paper, Switch, TextField, Typography } from '@mui/material'
 import MultipleSelectChip from '../MultipleSelectChip'
 import Editor from '../Editor'
 import SelectAutoWidth from '../SelectAutoWidth'
@@ -19,6 +19,7 @@ import AditionalInformation from '../AditionalInformation'
 import BrandList from '../BrandList'
 import SaleList from '../SaleList'
 import AddBookTypes from '../AddBookTypes'
+import SelectYozuv from '../SelectYozuv'
 
 function TaskForm() {
 
@@ -30,6 +31,7 @@ function TaskForm() {
   const [has_size, setHasSize] = useState(false)
   const [is_active, setIsActive] = useState(false)
   const [description, setDescription] = useState('')
+  const [descriptionRu, setDescriptionRu] = useState('')
   const [advertisement, setAdvertisement] = useState('')
   const [banner, setBanner] = useState('')
   const [percentage, setPercentage] = useState('')
@@ -38,6 +40,8 @@ function TaskForm() {
   const [brand, setBrand] = useState('')
   const [additions, setAdditions] = useState([])
   const [loading, setLoading] = useState(false)
+  const [yozuv, setYozuv] = useState("krill")
+  const [titleRu, setTitleRu] = useState('')
 
   const list_id = useMemo(() => {
     return additions.map(elem => {
@@ -50,12 +54,15 @@ function TaskForm() {
     setLoading(true)
     let jsondata = {
       product_type,
-      title,
+      title_uz: title,
+      title_ru: titleRu,
       category: [category],
       status,
+      yozuv,
       has_size,
       is_active,
-      description,
+      description_uz: description,
+      description_ru: descriptionRu,
       advertisement,
       banner,
       percentage,
@@ -108,18 +115,42 @@ function TaskForm() {
   
           <div className="w-full">
             <SelectAutoWidth getProductType={(val) => {setProduct_type(val)}}/>
-            <TextField
-              className="mt-8 mb-8"
-              required
-              label="Mahsulot nomi"
-              autoFocus
-              id="name"
-              variant="outlined"
-              fullWidth
-              value={title}
-              onChange={(event) => {setTitle(event.target.value)}}
-            />
+            <div className="grid w-full grid-cols-1 gap-y-48 sm:grid-cols-2 mt-8 mb-8">
+              <div style={{marginRight: "10px"}}>
+                <TextField
+                  className="mt-8 mb-8"
+                  required
+                  label="Mahsulot nomi(uz)"
+                  autoFocus
+                  id="name"
+                  variant="outlined"
+                  fullWidth
+                  value={title}
+                  onChange={(event) => {setTitle(event.target.value)}}
+                />
+              </div>
+              <div style={{marginLeft: "10px"}}>
+                <TextField
+                  className="mt-8 mb-8"
+                  required
+                  label="Mahsulot nomi(ru)"
+                  autoFocus
+                  id="name"
+                  variant="outlined"
+                  fullWidth
+                  value={titleRu}
+                  onChange={(event) => {setTitleRu(event.target.value)}}
+                />
+              </div>
+            </div>
+              <Typography variant="body2" gutterBottom>
+                Description uz
+              </Typography>
             <Editor getDescription={val => {setDescription(val)}}/>
+              <Typography variant="body2" gutterBottom>
+                Description ru
+              </Typography>
+            <Editor getDescription={val => {setDescriptionRu(val)}}/>
             {
               (product_type != "book")?
               <MultipleSelectChip 
@@ -133,6 +164,10 @@ function TaskForm() {
             }
             <SelectCategory categorySelectF={(val) => {console.log(val); setCategory(val)}}/>
             <SelectStatus getStatusValue={(val) => {setStatus(val)}}/>
+            {
+              (product_type == "book")?<SelectYozuv getStatusValue={(val) => {setYozuv(val)}}/>:null
+            }
+            
             <SelectAdvertisement getAdvertisementValue={(val) => {setAdvertisement(val)}}/>
             <BrandList getAdvertisementValue={(val) => {setBrand(val)}}/>
             <SelectBanner getBannerValue={val => setBanner(val)}/>

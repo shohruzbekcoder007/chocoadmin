@@ -12,10 +12,12 @@ export default function UpdateBrand({id, updateBrandF}) {
 
   const [open, setOpen] = React.useState(false);
   const [title, setTitle] = React.useState('')
+  const [titleRu, setTitleRu] = React.useState('')
 
   const handleClickOpen = () => {
     brandService.getOneBrand(id).then(response => {
-      setTitle(response.data.title)
+      setTitle(response.data.title_uz)
+      setTitleRu(response.data.title_ru)
     }).catch(error => {
       console.log(error)
     })
@@ -28,7 +30,8 @@ export default function UpdateBrand({id, updateBrandF}) {
 
   const changeTitleHandler = () => {
     brandService.updateBrand(id, {
-      title,
+      title_uz: title,
+      title_ru: titleRu
     }).then(response => {
       updateBrandF(response.data)
       handleClose()
@@ -56,13 +59,24 @@ export default function UpdateBrand({id, updateBrandF}) {
           <DialogContentText id="alert-dialog-description"sx={{p:1}}>
             <TextField
                 required
-                label="Brand name"
+                label="Brand name(uz)"
                 autoFocus
                 id="name"
                 variant="outlined"
                 fullWidth
                 value={title}
+                sx={{mb:2}}
                 onChange={(event) => {setTitle(event.target.value)}}
+            />
+            <TextField
+                required
+                label="Brand name(ru)"
+                autoFocus
+                id="name"
+                variant="outlined"
+                fullWidth
+                value={titleRu}
+                onChange={(event) => {setTitleRu(event.target.value)}}
             />
           </DialogContentText>
         </DialogContent>

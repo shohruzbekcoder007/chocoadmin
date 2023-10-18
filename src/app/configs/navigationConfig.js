@@ -117,6 +117,15 @@ const navigationConfig = [
     icon: 'feather:users',
     url: 'muallif',
     translate: 'Muallif',
+  },
+  {
+    id: 'variant',
+    title: 'Variant',
+    subtitle: 'Variant',
+    type: 'item',
+    icon: 'material-twotone:multiple_stop',
+    url: 'variant',
+    translate: 'Variant',
   }
 ];
 

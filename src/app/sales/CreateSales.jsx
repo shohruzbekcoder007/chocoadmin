@@ -41,11 +41,10 @@ export default function CreateSales() {
         onClose={handleClose}
         aria-describedby="alert-dialog-slide-description"
       >
-        <DialogTitle>{"Use Google's location service?"}</DialogTitle>
+        <DialogTitle>{"Ishlab chiqilish jarayyonida"}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-slide-description">
-            Let Google help apps determine location. This means sending anonymous
-            location data to Google, even when no apps are running.
+            Ishlab chiqilish jarayyonida
           </DialogContentText>
         </DialogContent>
         <DialogActions>

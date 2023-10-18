@@ -44,3 +44,7 @@ export const sales = "/sales/"
 
 // /author/
 export const author = "/author/"
+
+// /variant/ 
+
+export const variant = "/variant/"

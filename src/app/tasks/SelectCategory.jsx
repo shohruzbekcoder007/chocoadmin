@@ -19,7 +19,7 @@ export default function SelectCategory({categorySelectF}) {
         setChildCategoryList(childCategorySelect.map(element => {
             return {
                 value: element.id,
-                name: element.title
+                name: element.title_uz
             }
         }))
     }
@@ -35,7 +35,7 @@ export default function SelectCategory({categorySelectF}) {
             setParentCategoryList(response.data.map(element => {
                 return {
                     value: element.id,
-                    name: element.title
+                    name: element.title_uz
                 }
             }))
         }).catch(error => {

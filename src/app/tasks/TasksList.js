@@ -9,18 +9,20 @@ import TablePagination from '@mui/material/TablePagination'
 import TableRow from '@mui/material/TableRow'
 import taskService from './services/taskService'
 import { useNavigate } from 'react-router-dom'
+import FullScreenDialog from './FullScreenDialog'
 
 const columns = [
   { id: 'id', label: 'id' },
-  { id: 'title', label: 'title' },
+  { id: 'title_uz', label: 'title_uz' },
+  { id: 'title_ru', label: 'title_ru' },
   { id: 'status', label: 'status' },
   { id: 'product_type', label: 'product_type'},
   { id: 'price_uzs', label: 'price_uzs' },
   { id: 'discount_uzs', label: 'discount_uzs' },
 ];
 
-function createData(id, title, status, price_uzs, discount_uzs, product_type) {
-  return { id, title, status, price_uzs, discount_uzs, product_type };
+function createData(id, title_uz, title_ru, status, price_uzs, discount_uzs, product_type) {
+  return { id, title_uz, title_ru, status, price_uzs, discount_uzs, product_type };
 }
 
 export default function TasksList() {
@@ -28,8 +30,7 @@ export default function TasksList() {
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [count, setCount] = React.useState(1)
   const [books, setBooks] = React.useState([])
-
-  const navigate = useNavigate()
+  const [open, setOpen] = React.useState(false)
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -41,7 +42,8 @@ export default function TasksList() {
   };
 
   const oneProductClickHandler = (row) => {
-    navigate(`/tasks/new/section`, {state: {id: row.id}})
+    console.log(row)
+    setOpen(prev => !prev)
   }
 
   React.useEffect(() => {
@@ -49,8 +51,8 @@ export default function TasksList() {
     taskService.getProducts(url_query).then(response => {
         setPage(response.data.page)
         setCount(response.data.count)
-        const bookList = response.data.results.map(({id, title, status, price_uzs, discount_uzs, product_type}) => {
-            return createData(id, title, status, price_uzs, discount_uzs, product_type)
+        const bookList = response.data.results.map(({id, title_uz, title_ru, status, price_uzs, discount_uzs, product_type}) => {
+            return createData(id, title_uz, title_ru, status, price_uzs, discount_uzs, product_type)
         })
         setBooks(bookList)
     }).catch(error => {
@@ -60,6 +62,7 @@ export default function TasksList() {
 
   return (
     <Paper sx={{ width: '100%', overflow: 'hidden', m: 4 }}>
+      <FullScreenDialog editopen={open} editsetOpen={setOpen}/>
       <TableContainer sx={{ maxHeight: 560 }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
@@ -78,7 +81,7 @@ export default function TasksList() {
           <TableBody>
             {books.map((row, index) => {
                 return (
-                  <TableRow hover key={index} role="checkbox" tabIndex={-1} onClick={() => {oneProductClickHandler(row)}}>
+                  <TableRow hover key={index} role="checkbox" tabIndex={1} onClick={() => {oneProductClickHandler(row)}}>
                     {columns.map((column) => {
                       const value = row[column.id];
                       return (

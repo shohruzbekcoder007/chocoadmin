@@ -38,7 +38,7 @@ export default function CategorySelectList({ getSelectedItem }) {
             <em>{""}</em>
           </MenuItem>
           {
-            categoryList.map(elem => <MenuItem key={elem.id} value={elem.id}>{elem.title}</MenuItem>)
+            categoryList.map(elem => <MenuItem key={elem.id} value={elem.id}>{elem.title_uz}</MenuItem>)
           }
         </Select>
       </FormControl>

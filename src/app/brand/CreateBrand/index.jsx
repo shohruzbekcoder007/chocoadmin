@@ -24,9 +24,11 @@ export default function CreateBrand({setCreatedOption}) {
 
     const [open, setOpen] = React.useState(false);
     const [title, setTitle] = React.useState('');
+    const [titleRu, setTitleRu] = React.useState('');
 
     const handleClickOpen = () => {
         setTitle("")
+        setTitleRu("")
         setOpen(true);
     };
     const handleClose = () => {
@@ -35,7 +37,8 @@ export default function CreateBrand({setCreatedOption}) {
 
     const newCreateCategory = () => {
         let formData = new FormData();
-        formData.append("title", title);
+        formData.append("title_uz", title);
+        formData.append("title_ru", titleRu);
         categoryBrand.createBrand(formData).then(response => {
             if(response.data.id){
                 handleClose()
@@ -96,6 +99,17 @@ export default function CreateBrand({setCreatedOption}) {
                         fullWidth
                         value={title}
                         onChange={(event) => {setTitle(event.target.value)}}
+                    />
+                    <TextField
+                        className="mt-8 mb-16"
+                        required
+                        label="Categoriya nomi"
+                        autoFocus
+                        id="name"
+                        variant="outlined"
+                        fullWidth
+                        value={titleRu}
+                        onChange={(event) => {setTitleRu(event.target.value)}}
                     />
                 </DialogContent>
                 <DialogActions>

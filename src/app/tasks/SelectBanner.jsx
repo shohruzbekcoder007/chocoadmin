@@ -14,7 +14,7 @@ export default function SelectBanner({getBannerValue}) {
             const new_list = response.data.map(elem => {
                 return {
                     value: elem.id,
-                    name: elem.title
+                    name: elem.title_uz
                 }
             })
             setProductList(new_list);

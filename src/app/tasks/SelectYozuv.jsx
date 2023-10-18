@@ -3,9 +3,9 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import product_status from "../../dictionary/product_status"
+import product_status from "../../dictionary/yozuv"
 
-export default function SelectStatus({getStatusValue}) {
+export default function SelectYozuv({getStatusValue}) {
 
     const productList = React.useMemo(() => {
         return product_status.map(ptype => {
@@ -25,7 +25,7 @@ export default function SelectStatus({getStatusValue}) {
   };
 
   return (
-    <div className="mt-8 mb-8">
+    <div className="mt-16 mb-8">
       <FormControl sx={{width: "100%"}}>
         <InputLabel id="demo-simple-select-autowidth-label">Product type</InputLabel>
         <Select

@@ -14,6 +14,7 @@ export default function CreateMuallif({setCreatedOption}) {
   const [name, setName] = React.useState('')
 
   const handleClickOpen = () => {
+    setName('')
     setOpen(true);
   };
 
