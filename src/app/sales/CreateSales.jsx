@@ -41,7 +41,7 @@ export default function CreateSales() {
         onClose={handleClose}
         aria-describedby="alert-dialog-slide-description"
       >
-        <DialogTitle>{"Ishlab chiqilish jarayyonida"}</DialogTitle>
+        <DialogTitle>Create Banner Discount</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-slide-description">
             Ishlab chiqilish jarayyonida

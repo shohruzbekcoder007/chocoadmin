@@ -11,13 +11,15 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import CloseIcon from '@mui/icons-material/Close';
 import Slide from '@mui/material/Slide';
+import { Box } from '@mui/material';
+import TaskForm from './task/TaskForm';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function FullScreenDialog({editopen, editsetOpen}) {
-  const [open, setOpen] = React.useState(editopen);
+export default function FullScreenDialog({pr_id}) {
+  const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -25,19 +27,19 @@ export default function FullScreenDialog({editopen, editsetOpen}) {
 
   const handleClose = () => {
     setOpen(false);
-    // editsetOpen(false)
   };
 
   return (
-    <div>
-      {/* <Button variant="outlined" onClick={handleClickOpen}>
-        Open full-screen dialog
-      </Button> */}
+    <Box>
+      <Button variant="outlined" onClick={handleClickOpen}>
+        Update
+      </Button>
       <Dialog
         fullScreen
         open={open}
         onClose={handleClose}
         TransitionComponent={Transition}
+        sx={{p: 2}}
       >
         <AppBar sx={{ position: 'relative' }}>
           <Toolbar>
@@ -50,26 +52,17 @@ export default function FullScreenDialog({editopen, editsetOpen}) {
               <CloseIcon />
             </IconButton>
             <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
-              Sound
+              Update Product
             </Typography>
             <Button autoFocus color="inherit" onClick={handleClose}>
               save
             </Button>
           </Toolbar>
         </AppBar>
-        <List>
-          <ListItem button>
-            <ListItemText primary="Phone ringtone" secondary="Titania" />
-          </ListItem>
-          <Divider />
-          <ListItem button>
-            <ListItemText
-              primary="Default notification ringtone"
-              secondary="Tethys"
-            />
-          </ListItem>
-        </List>
+        <Box sx={{p: 2}}>
+          <TaskForm/>
+        </Box>
       </Dialog>
-    </div>
+    </Box>
   );
 }

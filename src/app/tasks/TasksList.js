@@ -19,10 +19,11 @@ const columns = [
   { id: 'product_type', label: 'product_type'},
   { id: 'price_uzs', label: 'price_uzs' },
   { id: 'discount_uzs', label: 'discount_uzs' },
+  { id: 'update', label: 'update' },
 ];
 
-function createData(id, title_uz, title_ru, status, price_uzs, discount_uzs, product_type) {
-  return { id, title_uz, title_ru, status, price_uzs, discount_uzs, product_type };
+function createData(id, title_uz, title_ru, status, price_uzs, discount_uzs, product_type, update) {
+  return { id, title_uz, title_ru, status, price_uzs, discount_uzs, product_type, update };
 }
 
 export default function TasksList() {
@@ -43,7 +44,7 @@ export default function TasksList() {
 
   const oneProductClickHandler = (row) => {
     console.log(row)
-    setOpen(prev => !prev)
+    setOpen(true)
   }
 
   React.useEffect(() => {
@@ -51,8 +52,8 @@ export default function TasksList() {
     taskService.getProducts(url_query).then(response => {
         setPage(response.data.page)
         setCount(response.data.count)
-        const bookList = response.data.results.map(({id, title_uz, title_ru, status, price_uzs, discount_uzs, product_type}) => {
-            return createData(id, title_uz, title_ru, status, price_uzs, discount_uzs, product_type)
+        const bookList = response.data.results.map(({id, title_uz, title_ru, status, price_uzs, discount_uzs, product_type, update}) => {
+            return createData(id, title_uz, title_ru, status, price_uzs, discount_uzs, product_type, <FullScreenDialog pr_id={id}/>)
         })
         setBooks(bookList)
     }).catch(error => {
@@ -62,7 +63,6 @@ export default function TasksList() {
 
   return (
     <Paper sx={{ width: '100%', overflow: 'hidden', m: 4 }}>
-      <FullScreenDialog editopen={open} editsetOpen={setOpen}/>
       <TableContainer sx={{ maxHeight: 560 }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
