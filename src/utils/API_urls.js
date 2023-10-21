@@ -1,7 +1,7 @@
 // export const host = "https://xusandev.pythonanywhere.com"
 // export const host = "http://husanibragimov.jprq.site"
 // export const host = "http://husanibragimov.jprq.site"
-export const host = "https://oqdev.uz"
+export const host = "https://oqdev.fibo.cloud"
 // export const host = "http://5.189.171.59:8002"
 
 
@@ -45,6 +45,6 @@ export const sales = "/sales/"
 // /author/
 export const author = "/author/"
 
-// /variant/ 
+// /variant/
 
 export const variant = "/variant/"

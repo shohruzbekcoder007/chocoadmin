@@ -9,18 +9,18 @@ import salesService from './services/salesService'
 import { Button, Paper } from '@mui/material';
 import FuseSvgIcon from '@fuse/core/FuseSvgIcon';
 import { dateFormatter } from 'src/utils/dateFormatter';
+import UpdateSales from './UpdateSales';
 
-export default function SaleList() {
+export default function SaleList({reRender}) {
 
     const [salesList, setSalesList] = useState([])
     useEffect(() => {
         salesService.getSales().then(response => {
-            console.log(response)
             setSalesList(response.data)
         }).catch(error => {
             console.log(error)
         })
-    }, [])
+    }, [reRender])
 
     return (
         <TableContainer component={Paper}>
@@ -52,15 +52,15 @@ const OneSale = ({ row }) => {
 
     const [deleted, setDeleted] = React.useState(false)
 
-    // const deletedSizeHandler = (id) => {
-    //     colorService.deleteColor(id).then(response => {
-    //         if(response.status == 204){
-    //             setDeleted(true)
-    //         }
-    //     }).catch(error => {
-    //         console.log(error)
-    //     })
-    // }
+    const deletedSizeHandler = (id) => {
+        salesService.deleteSales(id).then(response => {
+            if(response.status == 204){
+                setDeleted(true)
+            }
+        }).catch(error => {
+            console.log(error)
+        })
+    }
 
     if (!deleted) {
         return (
@@ -78,7 +78,7 @@ const OneSale = ({ row }) => {
                 </TableCell>
                 <TableCell align="right">{dateFormatter(row.deadline)}</TableCell>
                 <TableCell align="right">
-                    update
+                    <UpdateSales/>
                 </TableCell>
                 <TableCell align="right">
                     <Button

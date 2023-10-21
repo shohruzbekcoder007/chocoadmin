@@ -6,6 +6,8 @@ import FuseSvgIcon from '@fuse/core/FuseSvgIcon';
 import { motion } from 'framer-motion';
 import SaleList from './SaleList';
 import CreateSales from './CreateSales';
+import AlertMessage from '../category/AlertMessage';
+import { useEffect, useState } from 'react';
 
 const Root = styled(FusePageSimple)(({ theme }) => ({
   '& .FusePageSimple-header': {
@@ -20,7 +22,14 @@ const Root = styled(FusePageSimple)(({ theme }) => ({
   '& .FusePageSimple-sidebarContent': {},
 }));
 
-function Sales(props) {
+function Sales() {
+
+  const [createdOption, setCreatedOption] = useState(null)
+  const [reRender, setReRender] = useState(false)
+
+  useEffect(() => {
+    setReRender(prev => !prev)
+  },[createdOption])
 
   return (
     <Root
@@ -63,14 +72,17 @@ function Sales(props) {
               >
                 {/* <CreateColor setCreatedOption={setCreatedOption}/> */}
                 {/* <CreateBrand setCreatedOption={setCreatedOption}/> */}
-                <CreateSales/>
+                <CreateSales setCreatedOption={setCreatedOption}/>
               </motion.div>
             </div>
+            {
+              createdOption?<AlertMessage alertMessage={createdOption.alertMessage} _openAlert={true} type={createdOption.type}/>:null
+            }
           </div>
       }
       content={
         <div className="p-24 w-full">
-          <SaleList/>
+          <SaleList reRender={reRender}/>
         </div>
       }
       scroll="content"

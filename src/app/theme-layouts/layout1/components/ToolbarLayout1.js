@@ -78,7 +78,7 @@ function ToolbarLayout1(props) {
 
             {/* <QuickPanelToggleButton /> */}
 
-            <NotificationPanelToggleButton />
+            {/* <NotificationPanelToggleButton /> */}
 
             <UserMenu />
           </div>
