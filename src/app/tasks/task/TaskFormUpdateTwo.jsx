@@ -21,7 +21,7 @@ import SaleList from '../SaleList'
 import AddBookTypes from '../AddBookTypes'
 import SelectYozuv from '../SelectYozuv'
 
-function TaskForm() {
+function TaskFormUpdateTwo() {
 
   const [product_type, setProduct_type] = useState(null)
   const [title, setTitle] = useState("")
@@ -102,16 +102,16 @@ function TaskForm() {
   return (
     <>
       {(!loading)?
-        <Paper sx={{m: 2}}>
-        <div className="relative flex flex-col flex-auto items-center px-24 sm:px-48">
-          <div className="flex items-center justify-between border-b-1 w-full  mt-16 mb-32">
+        <>
+        <div className="relative flex flex-col flex-auto items-center px-24 pt-20 sm:px-48">
+          {/* <div className="flex items-center justify-between border-b-1 w-full  mt-16 mb-32">
             <h3>Add Product</h3>
             <div className="flex items-center">
               <IconButton className="" component={NavLinkAdapter} to="/tasks" size="large">
                 <FuseSvgIcon>heroicons-outline:x</FuseSvgIcon>
               </IconButton>
             </div>
-          </div>
+          </div> */}
   
           <div className="w-full">
             <SelectAutoWidth getProductType={(val) => {setProduct_type(val)}}/>
@@ -162,14 +162,14 @@ function TaskForm() {
               />:
               <></>
             }
-            <SelectCategory categorySelectF={(val) => {console.log(val); setCategory(val)}} product_type={product_type}/>
+            <SelectCategory categorySelectF={(val) => {console.log(val); setCategory(val)}}/>
             <SelectStatus getStatusValue={(val) => {setStatus(val)}}/>
             {
               (product_type == "book")?<SelectYozuv getStatusValue={(val) => {setYozuv(val)}}/>:null
             }
             
             <SelectAdvertisement getAdvertisementValue={(val) => {setAdvertisement(val)}}/>
-            <BrandList getAdvertisementValue={(val) => {setBrand(val)}} product_type={product_type}/>
+            <BrandList getAdvertisementValue={(val) => {setBrand(val)}}/>
             <SelectBanner getBannerValue={val => setBanner(val)}/>
             <TextField
               className="mt-8 mb-8"
@@ -223,11 +223,11 @@ function TaskForm() {
             </Button>
           </Box>
         )}
-      </Paper>:<FuseLoading/>
+      </>:<FuseLoading/>
       }
     </>
     
   );
 }
 
-export default TaskForm;
+export default TaskFormUpdateTwo;
