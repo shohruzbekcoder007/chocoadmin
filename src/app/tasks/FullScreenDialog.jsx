@@ -19,7 +19,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function FullScreenDialog({pr_id}) {
+export default function FullScreenDialog({productId}) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -61,7 +61,7 @@ export default function FullScreenDialog({pr_id}) {
           </Toolbar>
         </AppBar>
         <Box>
-          <TaskFormUpdateTwo/>
+          <TaskFormUpdateTwo productId={productId}/>
         </Box>
       </Dialog>
     </Box>

@@ -27,9 +27,9 @@ class TaskService {
         })
     }
 
-    getSizes = () => {
+    getSizes = (product_type) => {
         return new Promise((resolve, reject) => {
-            axios.get(TaskConfig.size, {
+            axios.get(`${TaskConfig.size}?product_type=${product_type}`, {
                 headers: headerConfig(),
             }).then(response => {
                 resolve(response);
@@ -121,6 +121,17 @@ class TaskService {
         })
     }
 
+    getOneProduct = (id) => {
+        return new Promise((resolve, reject) => {
+            axios.get(`${TaskConfig.product}${id}`, {
+                headers: headerConfig(),
+            }).then(response => {
+                resolve(response);
+            }).catch(error => {
+                reject(error);
+            })
+        })
+    }
 }
 
 const instance = new TaskService();

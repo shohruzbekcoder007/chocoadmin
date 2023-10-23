@@ -153,7 +153,8 @@ function TaskForm() {
             <Editor getDescription={val => {setDescriptionRu(val)}}/>
             {
               (product_type != "book")?
-              <MultipleSelectChip 
+              <MultipleSelectChip
+                product_type={product_type}
                 getSizes={(val) => {
                   setSize(val.map(elem => {
                     return elem.id

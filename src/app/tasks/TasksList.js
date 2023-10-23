@@ -43,7 +43,7 @@ export default function TasksList() {
   };
 
   const oneProductClickHandler = (row) => {
-    console.log(row)
+    // console.log(row)
     setOpen(true)
   }
 
@@ -53,7 +53,7 @@ export default function TasksList() {
         setPage(response.data.page)
         setCount(response.data.count)
         const bookList = response.data.results.map(({id, title_uz, title_ru, status, price_uzs, discount_uzs, product_type, update}) => {
-            return createData(id, title_uz, title_ru, status, price_uzs, discount_uzs, product_type, <FullScreenDialog pr_id={id}/>)
+            return createData(id, title_uz, title_ru, status, price_uzs, discount_uzs, product_type, <FullScreenDialog productId={id}/>)
         })
         setBooks(bookList)
     }).catch(error => {

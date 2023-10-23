@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactQuill from "react-quill";
 import 'react-quill/dist/quill.snow.css';
 
@@ -46,6 +46,10 @@ function Editor({getDescription, firstText}) {
     // this.quill.insertText(cursorPosition, "★");
     // this.quill.setSelection(cursorPosition + 1);
   };
+
+  useEffect(() => {
+    setCode(firstText || "")
+  }, [firstText])
 
   return (
     <div className="mt-8 mb-8">
