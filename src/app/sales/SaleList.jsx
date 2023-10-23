@@ -78,7 +78,7 @@ const OneSale = ({ row }) => {
                 </TableCell>
                 <TableCell align="right">{dateFormatter(row.deadline)}</TableCell>
                 <TableCell align="right">
-                    <UpdateSales/>
+                    <UpdateSales row={row}/>
                 </TableCell>
                 <TableCell align="right">
                     <Button

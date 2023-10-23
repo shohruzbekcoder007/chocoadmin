@@ -6,18 +6,21 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
+import { FormControlLabel, Switch, TextField } from '@mui/material';
+import { MuiFileInput } from 'mui-file-input';
+import BasicDatePicker from './BasicDatePicker';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function UpdateSales() {
+export default function UpdateSales({row}) {
     
     const [open, setOpen] = React.useState(false)
     const [value, setValue] = React.useState(null)
-    const [deadline, setDeadline] = React.useState(null)
-    const [title, setTitle] = React.useState("")
-    const [isActive, setIsActive] = React.useState(false)
+    const [deadline, setDeadline] = React.useState(row.deadline)
+    const [title, setTitle] = React.useState(row.title)
+    const [isActive, setIsActive] = React.useState(row.is_active)
   
     const handleChange = (newValue) => {
       setValue(newValue)
@@ -46,7 +49,17 @@ export default function UpdateSales() {
         <DialogTitle>{"Upadate Banner Discount"}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-slide-description">
-            Ishalab chiqish jarayyonida
+          <TextField 
+              sx={{mt: 2, mb: 1, width: "100%"}}
+              id="outlined-basic11"
+              label="Title" 
+              variant="outlined"
+              value={title}
+              onChange={event => {setTitle(event.target.value)}}
+            />
+            <MuiFileInput value={value} onChange={handleChange} sx={{width: "100%", mt: 1, mb: 1}} placeholder='file'/>
+            <BasicDatePicker setFunction={val => {setDeadline(val)}}/>
+            <FormControlLabel sx={{ mt: 1, mb: 1 }} control={<Switch onChange={event => {setIsActive(event.target.checked)}} defaultChecked={isActive}/>} label="active" />
           </DialogContentText>
         </DialogContent>
         <DialogActions>
