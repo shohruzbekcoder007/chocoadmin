@@ -126,6 +126,15 @@ const navigationConfig = [
     icon: 'material-twotone:multiple_stop',
     url: 'variant',
     translate: 'Variant',
+  },
+  {
+    id: 'oreder',
+    title: 'Oreder',
+    subtitle: 'Oreder',
+    type: 'item',
+    icon: 'material-twotone:border_color',
+    url: 'oreder',
+    translate: 'Oreder',
   }
 ];
 

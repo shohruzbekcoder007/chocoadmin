@@ -14,8 +14,17 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
+async function getFileFromUrl(url, name, defaultType = 'image/jpeg'){
+  const response = await fetch(url);
+  const data = await response.blob();
+  return new File([data], name, {
+    type: data.type || defaultType,
+  });
+}
+
+
 export default function UpdateSales({row}) {
-    
+  
     const [open, setOpen] = React.useState(false)
     const [value, setValue] = React.useState(null)
     const [deadline, setDeadline] = React.useState(row.deadline)
@@ -33,6 +42,14 @@ export default function UpdateSales({row}) {
     const handleClose = () => {
       setOpen(false);
     };
+
+    React.useEffect(() => {
+      getFileFromUrl(row.image, "oldingi file").then(response => {
+        setValue(response)
+      }).catch(error => {
+        console.log(error)
+      })
+    }, [])
 
   return (
     <div>

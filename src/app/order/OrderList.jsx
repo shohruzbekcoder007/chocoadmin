@@ -7,8 +7,8 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TablePagination from '@mui/material/TablePagination'
 import TableRow from '@mui/material/TableRow'
-import taskService from './services/taskService'
-import FullScreenDialog from './FullScreenDialog'
+// import taskService from './services/taskService'
+// import FullScreenDialog from './FullScreenDialog'
 
 const columns = [
   { id: 'id', label: 'id' },
@@ -25,7 +25,7 @@ function createData(id, title_uz, title_ru, status, price_uzs, discount_uzs, pro
   return { id, title_uz, title_ru, status, price_uzs, discount_uzs, product_type, update };
 }
 
-export default function TasksList() {
+export default function OrderList() {
   const [page, setPage] = React.useState(1);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [count, setCount] = React.useState(1)
@@ -47,17 +47,17 @@ export default function TasksList() {
   }
 
   React.useEffect(() => {
-    const url_query = `?page_size=${rowsPerPage}&page=${page}`
-    taskService.getProducts(url_query).then(response => {
-        setPage(response.data.page)
-        setCount(response.data.count)
-        const bookList = response.data.results.map(({id, title_uz, title_ru, status, price_uzs, discount_uzs, product_type, update}) => {
-            return createData(id, title_uz, title_ru, status, price_uzs, discount_uzs, product_type, <FullScreenDialog productId={id}/>)
-        })
-        setBooks(bookList)
-    }).catch(error => {
-        console.log(error)
-    })
+    // const url_query = `?page_size=${rowsPerPage}&page=${page}`
+    // taskService.getProducts(url_query).then(response => {
+    //     setPage(response.data.page)
+    //     setCount(response.data.count)
+    //     const bookList = response.data.results.map(({id, title_uz, title_ru, status, price_uzs, discount_uzs, product_type, update}) => {
+    //         return createData(id, title_uz, title_ru, status, price_uzs, discount_uzs, product_type, <FullScreenDialog productId={id}/>)
+    //     })
+    //     setBooks(bookList)
+    // }).catch(error => {
+    //     console.log(error)
+    // })
   },[rowsPerPage, page])
 
   return (
