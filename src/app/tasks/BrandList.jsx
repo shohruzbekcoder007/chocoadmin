@@ -5,24 +5,26 @@ import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
 import taskService from './services/taskService'
 
-export default function BrandList({getAdvertisementValue}) {
+export default function BrandList({getAdvertisementValue, product_type}) {
 
     const [productList, setProductList] = React.useState([])
 
     React.useEffect(() => {
-        taskService.getBrandList().then(response => {
-            const new_list = response.data.map(elem => {
-                return {
-                    value: elem.id,
-                    name: elem.title_uz
-                }
-            })
-            setProductList(new_list);
-        }).catch(error => {
-            console.log(error)
-            setProductList([])
-        })
-    }, [])
+      if(product_type != ""){
+        taskService.getBrandList(product_type || "").then(response => {
+          const new_list = response.data.map(elem => {
+              return {
+                  value: elem.id,
+                  name: elem.title_uz
+              }
+          })
+          setProductList(new_list);
+      }).catch(error => {
+          console.log(error)
+          setProductList([])
+      })
+      }
+    }, [product_type])
 
 
   const [age, setAge] = React.useState('');

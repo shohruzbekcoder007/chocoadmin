@@ -153,7 +153,8 @@ function TaskForm() {
             <Editor getDescription={val => {setDescriptionRu(val)}}/>
             {
               (product_type != "book")?
-              <MultipleSelectChip 
+              <MultipleSelectChip
+                product_type={product_type}
                 getSizes={(val) => {
                   setSize(val.map(elem => {
                     return elem.id
@@ -162,14 +163,14 @@ function TaskForm() {
               />:
               <></>
             }
-            <SelectCategory categorySelectF={(val) => {console.log(val); setCategory(val)}}/>
+            <SelectCategory categorySelectF={(val) => {console.log(val); setCategory(val)}} product_type={product_type}/>
             <SelectStatus getStatusValue={(val) => {setStatus(val)}}/>
             {
               (product_type == "book")?<SelectYozuv getStatusValue={(val) => {setYozuv(val)}}/>:null
             }
             
             <SelectAdvertisement getAdvertisementValue={(val) => {setAdvertisement(val)}}/>
-            <BrandList getAdvertisementValue={(val) => {setBrand(val)}}/>
+            <BrandList getAdvertisementValue={(val) => {setBrand(val)}} product_type={product_type}/>
             <SelectBanner getBannerValue={val => setBanner(val)}/>
             <TextField
               className="mt-8 mb-8"

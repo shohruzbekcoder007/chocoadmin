@@ -29,7 +29,7 @@ function getStyles(name, personName, theme) {
   };
 }
 
-export default function MultipleSelectChip({getSizes}) {
+export default function MultipleSelectChip({getSizes, product_type}) {
 
   const theme = useTheme()
   const [personName, setPersonName] = React.useState([])
@@ -46,12 +46,14 @@ export default function MultipleSelectChip({getSizes}) {
   }
 
   React.useEffect(() => {
-    taskService.getSizes().then(response => {
-      setAllNames(response.data)
-    }).catch(error => {
-      console.log(error)
-    })
-  }, [])
+    if(product_type){
+      taskService.getSizes(product_type).then(response => {
+        setAllNames(response.data)
+      }).catch(error => {
+        console.log(error)
+      })
+    }
+  }, [product_type])
 
   return (
       <FormControl className="mt-8 mb-8 w-full">

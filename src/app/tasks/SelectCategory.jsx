@@ -5,7 +5,7 @@ import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
 import taskService from './services/taskService'
 
-export default function SelectCategory({categorySelectF}) {
+export default function SelectCategory({categorySelectF, product_type}) {
 
     const [parentCategory, setParentCategory] = useState([])
     const [parentCategoryList, setParentCategoryList] = useState([])
@@ -30,18 +30,20 @@ export default function SelectCategory({categorySelectF}) {
     }
 
     useEffect(() => {
-        taskService.getCategory().then(response => {
-            setAllCategory(response.data)
-            setParentCategoryList(response.data.map(element => {
-                return {
-                    value: element.id,
-                    name: element.title_uz
-                }
-            }))
-        }).catch(error => {
-            console.log(error)
-        })
-    }, [])
+        if(product_type != ""){
+            taskService.getCategory(product_type || "").then(response => {
+                setAllCategory(response.data)
+                setParentCategoryList(response.data.map(element => {
+                    return {
+                        value: element.id,
+                        name: element.title_uz
+                    }
+                }))
+            }).catch(error => {
+                console.log(error)
+            })
+        }
+    }, [product_type])
 
     return (
         <>
