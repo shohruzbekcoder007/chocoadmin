@@ -236,7 +236,7 @@ function TaskFormUpdateTwo({ productId }) {
                                 disabled={false}
                                 onClick={onSubmitNew}
                             >
-                                Create
+                                Update
                             </Button>
                         </Box>
                     )}
