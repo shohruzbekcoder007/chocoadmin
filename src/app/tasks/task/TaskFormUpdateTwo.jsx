@@ -47,13 +47,18 @@ function TaskFormUpdateTwo({ productId }) {
 
     useEffect(() => {
         taskService.getOneProduct(productId).then(response => {
-            // console.log(response,"<--", "-->", response.data.description_uz)
             setTitle(response.data.title_uz)
             setTitleRu(response.data.title_ru)
-            // description_uz
             setDescription(response.data.description_uz)
             setDescriptionRu(response.data.description_ru)
             setOldProduct(response.data)
+            setProduct_type(response.data.product_type)
+            console.log(response.data)
+            setSize(response.data.size)
+            setPercentage(response.data.percentage)
+            setAvailability(response.data.availability)
+            // size
+            // setStatus()
         }).catch(error => {
             console.log(error)
         })
@@ -120,17 +125,8 @@ function TaskFormUpdateTwo({ productId }) {
             {(!loading) ?
                 <>
                     <div className="relative flex flex-col flex-auto items-center px-24 pt-20 sm:px-48">
-                        {/* <div className="flex items-center justify-between border-b-1 w-full  mt-16 mb-32">
-            <h3>Add Product</h3>
-            <div className="flex items-center">
-              <IconButton className="" component={NavLinkAdapter} to="/tasks" size="large">
-                <FuseSvgIcon>heroicons-outline:x</FuseSvgIcon>
-              </IconButton>
-            </div>
-          </div> */}
-
                         <div className="w-full">
-                            <SelectAutoWidth getProductType={(val) => { setProduct_type(val) }} />
+                            <SelectAutoWidth getProductType={(val) => { setProduct_type(val) }} defaultVal={product_type}/>
                             <div className="grid w-full grid-cols-1 gap-y-48 sm:grid-cols-2 mt-8 mb-8">
                                 <div style={{ marginRight: "10px" }}>
                                     <TextField
@@ -176,11 +172,12 @@ function TaskFormUpdateTwo({ productId }) {
                                                 return elem.id
                                             }))
                                         }}
+                                        defaultVal={size}
                                     /> :
                                     <></>
                             }
                             <SelectCategory categorySelectF={(val) => { console.log(val); setCategory(val) }} product_type={product_type} />
-                            <SelectStatus getStatusValue={(val) => { setStatus(val) }} />
+                            <SelectStatus getStatusValue={(val) => { setStatus(val) }} defaultVal={status}/>
                             {
                                 (product_type == "book") ? <SelectYozuv getStatusValue={(val) => { setYozuv(val) }} /> : null
                             }

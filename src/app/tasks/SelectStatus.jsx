@@ -5,7 +5,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import product_status from "../../dictionary/product_status"
 
-export default function SelectStatus({getStatusValue}) {
+export default function SelectStatus({getStatusValue, defaultVal}) {
 
     const productList = React.useMemo(() => {
         return product_status.map(ptype => {
@@ -17,7 +17,7 @@ export default function SelectStatus({getStatusValue}) {
     }, [])
 
 
-  const [age, setAge] = React.useState(product_status[0].value);
+  const [age, setAge] = React.useState(defaultVal || product_status[0].value);
 
   const handleChange = (event) => {
     setAge(event.target.value);
