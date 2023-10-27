@@ -7,22 +7,25 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TablePagination from '@mui/material/TablePagination'
 import TableRow from '@mui/material/TableRow'
+import orderService from './services/orderService'
+import FullScreenDialog from '../tasks/FullScreenDialog'
+import OrderUpdateStatus from './OrderUpdateStatus'
 // import taskService from './services/taskService'
 // import FullScreenDialog from './FullScreenDialog'
 
 const columns = [
   { id: 'id', label: 'id' },
-  { id: 'title_uz', label: 'title_uz' },
-  { id: 'title_ru', label: 'title_ru' },
+  { id: 'first_name', label: 'first_name' },
+  { id: 'last_name', label: 'last_name' },
+  { id: 'user_phone_number', label: 'user_phone_number' },
+  { id: 'phone_number', label: 'phone_number'},
   { id: 'status', label: 'status' },
-  { id: 'product_type', label: 'product_type'},
-  { id: 'price_uzs', label: 'price_uzs' },
-  { id: 'discount_uzs', label: 'discount_uzs' },
-  { id: 'update', label: 'update' },
+  { id: 'look', label: 'look' },
+  // { id: 'order_items', label: 'order_items' },
 ];
 
-function createData(id, title_uz, title_ru, status, price_uzs, discount_uzs, product_type, update) {
-  return { id, title_uz, title_ru, status, price_uzs, discount_uzs, product_type, update };
+function createData(id, first_name, last_name, user_phone_number, status, phone_numberm, look, order_items) {
+  return { id, first_name, last_name, user_phone_number, status, phone_numberm, look, order_items };
 }
 
 export default function OrderList() {
@@ -47,21 +50,30 @@ export default function OrderList() {
   }
 
   React.useEffect(() => {
-    // const url_query = `?page_size=${rowsPerPage}&page=${page}`
-    // taskService.getProducts(url_query).then(response => {
-    //     setPage(response.data.page)
-    //     setCount(response.data.count)
-    //     const bookList = response.data.results.map(({id, title_uz, title_ru, status, price_uzs, discount_uzs, product_type, update}) => {
-    //         return createData(id, title_uz, title_ru, status, price_uzs, discount_uzs, product_type, <FullScreenDialog productId={id}/>)
-    //     })
-    //     setBooks(bookList)
+
+    const url_query = `?page_size=${rowsPerPage}&page=${page}`
+    orderService.getOrders(url_query).then(response => {
+        setPage(response.data.page)
+        setCount(response.data.count)
+        console.log(response.data.results)
+        const bookList = response.data.results.map(({id, first_name, last_name, user_phone_number, status, phone_number, look, order_items}) => {
+            return createData(id, first_name, last_name, user_phone_number, status, phone_number, <OrderUpdateStatus orderId={id} order_items={order_items} />)
+        })
+        setBooks(bookList)
+    }).catch(error => {
+        console.log(error)
+    })
+
+    // orderService.getOrders().then(response => {
+    //   console.log(response.data.results)
     // }).catch(error => {
-    //     console.log(error)
+    //   console.log(error)
     // })
+
   },[rowsPerPage, page])
 
   return (
-    <Paper sx={{ width: '100%', overflow: 'hidden', m: 4 }}>
+    <Paper sx={{ width: '100%', overflow: 'hidden'}}>
       <TableContainer sx={{ maxHeight: 560 }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>

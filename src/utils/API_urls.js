@@ -48,3 +48,6 @@ export const author = "/author/"
 // /variant/
 
 export const variant = "/variant/"
+
+
+export const order = "/order/"
