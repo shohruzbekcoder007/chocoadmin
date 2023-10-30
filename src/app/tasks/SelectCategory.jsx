@@ -5,13 +5,15 @@ import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
 import taskService from './services/taskService'
 
-export default function SelectCategory({categorySelectF, product_type}) {
+export default function SelectCategory({categorySelectF, product_type, category}) {
 
-    const [parentCategory, setParentCategory] = useState([])
+    const [parentCategory, setParentCategory] = useState(category.parent_category)
     const [parentCategoryList, setParentCategoryList] = useState([])
-    const [childCategory, setChildCategory] = useState('')
+    const [childCategory, setChildCategory] = useState(category.children_category)
     const [childCategoryList, setChildCategoryList] = useState([])
     const [allCategory, setAllCategory] = useState([])
+    const [ctg, setCtg] = useState(category)
+    
 
     const handleChange = (event) => {
         setParentCategory(event.target.value)
@@ -43,6 +45,8 @@ export default function SelectCategory({categorySelectF, product_type}) {
                 console.log(error)
             })
         }
+        // console.log(category, category.children_category, category.parent_category)
+        console.log(category, "<<--")
     }, [product_type])
 
     return (

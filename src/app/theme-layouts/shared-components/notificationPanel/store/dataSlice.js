@@ -2,10 +2,7 @@ import { createAsyncThunk, createEntityAdapter, createSlice } from '@reduxjs/too
 import axios from 'axios';
 
 export const getNotifications = createAsyncThunk('notificationPanel/getData', async () => {
-  const response = await axios.get('/api/notifications');
-  const data = await response.data;
-
-  return data;
+  return [];
 });
 
 export const dismissAll = createAsyncThunk('notificationPanel/dismissAll', async () => {

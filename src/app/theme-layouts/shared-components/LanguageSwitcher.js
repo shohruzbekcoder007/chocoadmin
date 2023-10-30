@@ -32,11 +32,11 @@ function LanguageSwitcher(props) {
   return (
     <>
       <Button className="h-40 w-64" onClick={langMenuClick}>
-        <img
+        {/* <img
           className="mx-4 min-w-20"
           src={`assets/images/flags/${currentLanguage.flag}.svg`}
           alt={currentLanguage.title}
-        />
+        /> */}
 
         <Typography className="mx-4 font-semibold uppercase" color="text.secondary">
           {currentLanguage.id}

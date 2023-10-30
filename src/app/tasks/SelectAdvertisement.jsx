@@ -5,7 +5,7 @@ import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
 import taskService from './services/taskService'
 
-export default function SelectAdvertisement({getAdvertisementValue, defAdvertisement}) {
+export default function SelectAdvertisement({getAdvertisementValue, defVal}) {
 
     const [productList, setProductList] = React.useState([])
 
@@ -25,7 +25,7 @@ export default function SelectAdvertisement({getAdvertisementValue, defAdvertise
     }, [])
 
 
-  const [age, setAge] = React.useState(defAdvertisement || '');
+  const [age, setAge] = React.useState(defVal || '');
 
   const handleChange = (event) => {
     setAge(event.target.value)

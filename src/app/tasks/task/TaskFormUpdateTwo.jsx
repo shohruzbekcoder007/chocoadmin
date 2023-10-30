@@ -44,6 +44,7 @@ function TaskFormUpdateTwo({ productId }) {
     const [loading, setLoading] = useState(false)
     const [yozuv, setYozuv] = useState("krill")
     const [titleRu, setTitleRu] = useState('')
+    const [ctg, setCtg] = useState("")
 
     useEffect(() => {
         taskService.getOneProduct(productId).then(response => {
@@ -57,8 +58,20 @@ function TaskFormUpdateTwo({ productId }) {
             setSize(response.data.size)
             setPercentage(response.data.percentage)
             setAvailability(response.data.availability)
+            setBanner(response.data.banner)
+            setBanner_discount(response.data.banner_discount)
+            setAdvertisement(response.data.advertisement)
             // size
             // setStatus()
+            // console.log(response.data.category)
+            const parent_category = response.data.category[0].id
+            const children_category = response.data.category[0].children?.id
+            const category = {
+                parent_category: parent_category,
+                children_category: children_category
+            }
+            setCtg(category)
+            // children
         }).catch(error => {
             console.log(error)
         })
@@ -133,7 +146,7 @@ function TaskFormUpdateTwo({ productId }) {
                                         className="mt-8 mb-8"
                                         required
                                         label="Mahsulot nomi(uz)"
-                                        autoFocus
+                                        // autoFocus
                                         id="name"
                                         variant="outlined"
                                         fullWidth
@@ -146,7 +159,7 @@ function TaskFormUpdateTwo({ productId }) {
                                         className="mt-8 mb-8"
                                         required
                                         label="Mahsulot nomi(ru)"
-                                        autoFocus
+                                        // autoFocus
                                         id="name"
                                         variant="outlined"
                                         fullWidth
@@ -176,20 +189,24 @@ function TaskFormUpdateTwo({ productId }) {
                                     /> :
                                     <></>
                             }
-                            <SelectCategory categorySelectF={(val) => { console.log(val); setCategory(val) }} product_type={product_type} />
+                            <SelectCategory 
+                                categorySelectF={(val) => { setCategory(val) }} 
+                                product_type={product_type} 
+                                category={ctg}
+                            />
                             <SelectStatus getStatusValue={(val) => { setStatus(val) }} defaultVal={status}/>
                             {
                                 (product_type == "book") ? <SelectYozuv getStatusValue={(val) => { setYozuv(val) }} /> : null
                             }
 
-                            <SelectAdvertisement getAdvertisementValue={(val) => { setAdvertisement(val) }} />
+                            <SelectAdvertisement getAdvertisementValue={(val) => { setAdvertisement(val) }} defVal={advertisement}/>
                             <BrandList getAdvertisementValue={(val) => { setBrand(val) }} product_type={product_type} />
-                            <SelectBanner getBannerValue={val => setBanner(val)} />
+                            <SelectBanner getBannerValue={val => setBanner(val)} defVal={banner}/>
                             <TextField
                                 className="mt-8 mb-8"
                                 // required
                                 label="Foyiz"
-                                autoFocus
+                                // autoFocus
                                 id="name"
                                 variant="outlined"
                                 fullWidth
@@ -201,7 +218,7 @@ function TaskFormUpdateTwo({ productId }) {
                                 className="mt-8 mb-8"
                                 // required
                                 label="Availability"
-                                autoFocus
+                                // autoFocus
                                 id="name"
                                 variant="outlined"
                                 fullWidth
@@ -209,10 +226,10 @@ function TaskFormUpdateTwo({ productId }) {
                                 type='number'
                                 onChange={(event) => { setAvailability(event.target.value) }}
                             />
-                            <SaleList getAdvertisementValue={val => { setBanner_discount(val) }} />
+                            <SaleList getAdvertisementValue={val => { setBanner_discount(val) }} defSales={banner_discount}/>
                             <FormGroup>
-                                <FormControlLabel control={<Switch onChange={event => { setHasSize(event.target.checked) }} />} label="has_size" />
-                                <FormControlLabel required control={<Switch onChange={event => { setIsActive(event.target.checked) }} />} label="is_active" />
+                                <FormControlLabel control={<Switch onChange={event => { setHasSize(event.target.checked) }} checked={has_size}/>} label="has_size" />
+                                <FormControlLabel required control={<Switch onChange={event => { setIsActive(event.target.checked) }} checked={is_active}/>} label="is_active" />
                             </FormGroup>
                         </div>
 
