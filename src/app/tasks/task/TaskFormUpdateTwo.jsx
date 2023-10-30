@@ -216,10 +216,10 @@ function TaskFormUpdateTwo({ productId }) {
                             </FormGroup>
                         </div>
 
-                        <div className="flex items-center justify-between border-b-1 w-full  mt-16 mb-16">
+                        {/* <div className="flex items-center justify-between border-b-1 w-full  mt-16 mb-16">
                             <span className="mt-8 mb-8">Aditional information</span>
                         </div>
-                        {product_type != "book" ? <AditionalInformation getImages={val => { setAdditions(val) }} /> : <AddBookTypes getImages={val => { setAdditions(val) }} />}
+                        {product_type != "book" ? <AditionalInformation getImages={val => { setAdditions(val) }} /> : <AddBookTypes getImages={val => { setAdditions(val) }} />} */}
                     </div>
                     {(
                         <Box

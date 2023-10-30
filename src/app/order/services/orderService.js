@@ -15,7 +15,7 @@ class OrderService {
         })
     }
 
-    updateOrder = (data) => {
+    updateOrder = (id, data) => {
         return new Promise((resolve, reject) => {
             axios.put(`${order}${id}/`, data, {
                 headers: headerConfig(),

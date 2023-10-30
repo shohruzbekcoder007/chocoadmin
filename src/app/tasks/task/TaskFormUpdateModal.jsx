@@ -168,7 +168,7 @@ function TaskFormUpdateModal() {
               (product_type == "book")?<SelectYozuv getStatusValue={(val) => {setYozuv(val)}}/>:null
             }
             
-            <SelectAdvertisement getAdvertisementValue={(val) => {setAdvertisement(val)}}/>
+            <SelectAdvertisement getAdvertisementValue={(val) => {setAdvertisement(val)}} defAdvertisement={advertisement}/>
             <BrandList getAdvertisementValue={(val) => {setBrand(val)}}/>
             <SelectBanner getBannerValue={val => setBanner(val)}/>
             <TextField

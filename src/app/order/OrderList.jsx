@@ -10,8 +10,6 @@ import TableRow from '@mui/material/TableRow'
 import orderService from './services/orderService'
 import FullScreenDialog from '../tasks/FullScreenDialog'
 import OrderUpdateStatus from './OrderUpdateStatus'
-// import taskService from './services/taskService'
-// import FullScreenDialog from './FullScreenDialog'
 
 const columns = [
   { id: 'id', label: 'id' },
@@ -21,7 +19,6 @@ const columns = [
   { id: 'phone_number', label: 'phone_number'},
   { id: 'status', label: 'status' },
   { id: 'look', label: 'look' },
-  // { id: 'order_items', label: 'order_items' },
 ];
 
 function createData(id, first_name, last_name, user_phone_number, status, phone_numberm, look, order_items) {
@@ -34,6 +31,7 @@ export default function OrderList() {
   const [count, setCount] = React.useState(1)
   const [books, setBooks] = React.useState([])
   const [open, setOpen] = React.useState(false)
+  const [reRender, setReRender] = React.useState(false)
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -45,7 +43,6 @@ export default function OrderList() {
   };
 
   const oneProductClickHandler = (row) => {
-    // console.log(row)
     setOpen(true)
   }
 
@@ -55,9 +52,8 @@ export default function OrderList() {
     orderService.getOrders(url_query).then(response => {
         setPage(response.data.page)
         setCount(response.data.count)
-        console.log(response.data.results)
         const bookList = response.data.results.map(({id, first_name, last_name, user_phone_number, status, phone_number, look, order_items}) => {
-            return createData(id, first_name, last_name, user_phone_number, status, phone_number, <OrderUpdateStatus orderId={id} order_items={order_items} />)
+            return createData(id, first_name, last_name, user_phone_number, status, phone_number, <OrderUpdateStatus orderId={id} order_items={order_items} status={status} reRender={setReRender}/>)
         })
         setBooks(bookList)
     }).catch(error => {
@@ -70,7 +66,7 @@ export default function OrderList() {
     //   console.log(error)
     // })
 
-  },[rowsPerPage, page])
+  },[rowsPerPage, page, reRender])
 
   return (
     <Paper sx={{ width: '100%', overflow: 'hidden'}}>
