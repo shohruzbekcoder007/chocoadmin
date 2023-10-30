@@ -12,7 +12,6 @@ export default function SelectCategory({categorySelectF, product_type, category}
     const [childCategory, setChildCategory] = useState(category.children_category)
     const [childCategoryList, setChildCategoryList] = useState([])
     const [allCategory, setAllCategory] = useState([])
-    const [ctg, setCtg] = useState(category)
     
 
     const handleChange = (event) => {
