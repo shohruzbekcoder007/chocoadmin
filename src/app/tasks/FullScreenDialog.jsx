@@ -14,6 +14,7 @@ import Slide from '@mui/material/Slide';
 import { Box } from '@mui/material';
 import TaskForm from './task/TaskForm';
 import TaskFormUpdateTwo from './task/TaskFormUpdateTwo';
+import { useTranslation } from 'react-i18next';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -21,6 +22,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 export default function FullScreenDialog({productId}) {
   const [open, setOpen] = React.useState(false);
+  const { t } = useTranslation();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -33,7 +35,7 @@ export default function FullScreenDialog({productId}) {
   return (
     <Box>
       <Button variant="outlined" onClick={handleClickOpen}>
-        Update
+        {t("Update")}
       </Button>
       <Dialog
         fullScreen
@@ -53,7 +55,7 @@ export default function FullScreenDialog({productId}) {
               <CloseIcon />
             </IconButton>
             <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
-              Update Product
+              {t("Update Product")}
             </Typography>
             {/* <Button autoFocus color="inherit" onClick={handleClose}>
               save
@@ -61,7 +63,7 @@ export default function FullScreenDialog({productId}) {
           </Toolbar>
         </AppBar>
         <Box>
-          <TaskFormUpdateTwo productId={productId}/>
+          <TaskFormUpdateTwo productId={productId} setOpen={setOpen}/>
         </Box>
       </Dialog>
     </Box>

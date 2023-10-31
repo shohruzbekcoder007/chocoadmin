@@ -6,7 +6,7 @@ import _ from '@lodash'
 import Box from '@mui/system/Box'
 import FuseSvgIcon from '@fuse/core/FuseSvgIcon'
 import IconButton from '@mui/material/IconButton'
-import { FormControlLabel, FormGroup, Paper, Switch, TextField, Typography } from '@mui/material'
+import { Alert, FormControlLabel, FormGroup, Paper, Switch, TextField, Typography } from '@mui/material'
 import MultipleSelectChip from '../MultipleSelectChip'
 import Editor from '../Editor'
 import SelectAutoWidth from '../SelectAutoWidth'
@@ -20,8 +20,9 @@ import BrandList from '../BrandList'
 import SaleList from '../SaleList'
 import AddBookTypes from '../AddBookTypes'
 import SelectYozuv from '../SelectYozuv'
+import { useTranslation } from 'react-i18next'
 
-function TaskFormUpdateTwo({ productId }) {
+function TaskFormUpdateTwo({ productId, setOpen }) {
 
     const [oldProduct, setOldProduct] = useState(null)
 
@@ -45,6 +46,9 @@ function TaskFormUpdateTwo({ productId }) {
     const [yozuv, setYozuv] = useState("krill")
     const [titleRu, setTitleRu] = useState('')
     const [ctg, setCtg] = useState("")
+    const [error, setError] = useState(false)
+
+    const { t } = useTranslation();
 
     useEffect(() => {
         taskService.getOneProduct(productId).then(response => {
@@ -86,11 +90,12 @@ function TaskFormUpdateTwo({ productId }) {
 
     function onSubmitNew() {
         setLoading(true)
-        let jsondata = {
+
+        taskService.updateProduct(productId, {
             product_type,
             title_uz: title,
             title_ru: titleRu,
-            category: [category],
+            category: [(+category)],
             status,
             yozuv,
             has_size,
@@ -103,33 +108,14 @@ function TaskFormUpdateTwo({ productId }) {
             availability,
             banner_discount,
             brand
-        }
-
-        var form_data = new FormData();
-
-        for (var key in jsondata) {
-            form_data.append(key, jsondata[key]);
-        }
-
-        for (let i = 0; i < additions.length; i++) {
-            for (let j = 0; j < additions[i].files.length; j++) {
-                form_data.append(additions[i].color_id, additions[i].files[j])
-            }
-        }
-
-        for (let i = 0; i < additions.length; i++) {
-            form_data.append(`price_${additions[i].color_id}`, additions[i].price)
-        }
-
-        size.forEach((item) => form_data.append("size", (+item)))
-        list_id.forEach((item) => form_data.append("list_id", (+item)))
-
-        taskService.createProduct(form_data).then(response => {
-            console.log(response)
+        }).then(response => {
+            // console.log(response)
             setLoading(false)
+            setOpen(false)
         }).catch(error => {
             console.log(error)
             setLoading(false)
+            setError(true)
         })
     }
 
@@ -138,6 +124,7 @@ function TaskFormUpdateTwo({ productId }) {
             {(!loading) ?
                 <>
                     <div className="relative flex flex-col flex-auto items-center px-24 pt-20 sm:px-48">
+                        {error?<Alert severity="error">Xatoli yuzaga keldi!!!</Alert>:null}
                         <div className="w-full">
                             <SelectAutoWidth getProductType={(val) => { setProduct_type(val) }} defaultVal={product_type}/>
                             <div className="grid w-full grid-cols-1 gap-y-48 sm:grid-cols-2 mt-8 mb-8">
@@ -145,7 +132,7 @@ function TaskFormUpdateTwo({ productId }) {
                                     <TextField
                                         className="mt-8 mb-8"
                                         required
-                                        label="Mahsulot nomi(uz)"
+                                        label={t("Mahsulot nomi(uz)")}
                                         // autoFocus
                                         id="name"
                                         variant="outlined"
@@ -158,7 +145,7 @@ function TaskFormUpdateTwo({ productId }) {
                                     <TextField
                                         className="mt-8 mb-8"
                                         required
-                                        label="Mahsulot nomi(ru)"
+                                        label={t("Mahsulot nomi(ru)")}
                                         // autoFocus
                                         id="name"
                                         variant="outlined"
@@ -169,11 +156,11 @@ function TaskFormUpdateTwo({ productId }) {
                                 </div>
                             </div>
                             <Typography variant="body2" gutterBottom>
-                                Description uz
+                                {t("Description uz")}
                             </Typography>
                             <Editor getDescription={val => { setDescription(val) }} firstText={description} />
                             <Typography variant="body2" gutterBottom>
-                                Description ru
+                                {t("Description ru")}
                             </Typography>
                             <Editor getDescription={val => { setDescriptionRu(val) }} firstText={descriptionRu} />
                             {
@@ -205,7 +192,7 @@ function TaskFormUpdateTwo({ productId }) {
                             <TextField
                                 className="mt-8 mb-8"
                                 // required
-                                label="Foyiz"
+                                label={t("Foyiz")}
                                 // autoFocus
                                 id="name"
                                 variant="outlined"
@@ -217,7 +204,7 @@ function TaskFormUpdateTwo({ productId }) {
                             <TextField
                                 className="mt-8 mb-8"
                                 // required
-                                label="Availability"
+                                label={t("Availability")}
                                 // autoFocus
                                 id="name"
                                 variant="outlined"
@@ -228,8 +215,8 @@ function TaskFormUpdateTwo({ productId }) {
                             />
                             <SaleList getAdvertisementValue={val => { setBanner_discount(val) }} defSales={banner_discount}/>
                             <FormGroup>
-                                <FormControlLabel control={<Switch onChange={event => { setHasSize(event.target.checked) }} checked={has_size}/>} label="has_size" />
-                                <FormControlLabel required control={<Switch onChange={event => { setIsActive(event.target.checked) }} checked={is_active}/>} label="is_active" />
+                                <FormControlLabel control={<Switch onChange={event => { setHasSize(event.target.checked) }} checked={has_size}/>} label={t("has_size")} />
+                                <FormControlLabel required control={<Switch onChange={event => { setIsActive(event.target.checked) }} checked={is_active}/>} label={t("is_active")} />
                             </FormGroup>
                         </div>
 
@@ -250,7 +237,7 @@ function TaskFormUpdateTwo({ productId }) {
                                 disabled={false}
                                 onClick={onSubmitNew}
                             >
-                                Update
+                                {t("Update")}
                             </Button>
                         </Box>
                     )}

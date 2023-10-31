@@ -132,6 +132,18 @@ class TaskService {
             })
         })
     }
+
+    updateProduct = (id, data) => {
+        return new Promise((resolve, reject) => {
+            axios.patch(`${TaskConfig.product}${id}`, data, {
+                headers: headerConfig(),
+            }).then(response => {
+                resolve(response);
+            }).catch(error => {
+                reject(error);
+            })
+        })
+    }
 }
 
 const instance = new TaskService();

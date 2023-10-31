@@ -28,8 +28,8 @@ export default function SelectCategory({categorySelectF, product_type, category}
     }
 
     const handleChangeChild = (event) => {
-        setChildCategory(event.target.value)
-        categorySelectF(event.target.value)
+        setChildCategory(+event.target.value)
+        categorySelectF(+event.target.value)
     }
 
     useEffect(() => {
