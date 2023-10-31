@@ -10,10 +10,12 @@ import { Button } from '@mui/material';
 import FuseSvgIcon from '@fuse/core/FuseSvgIcon/FuseSvgIcon';
 import colorService from './services/colorService'
 import UpdateColor from './UpdateColor';
+import { useTranslation } from 'react-i18next';
 
 export default function ColorList({reRender}) {
 
     const [rows, setRows] = React.useState([])
+    const { t } = useTranslation();
 
     React.useEffect(() => {
         colorService.getColors().then(response => {
@@ -28,11 +30,11 @@ export default function ColorList({reRender}) {
       <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
         <TableHead>
           <TableRow>
-            <TableCell>ID</TableCell>
-            <TableCell align="right">Title</TableCell>
-            <TableCell align="right">Color</TableCell>
-            <TableCell align="right">Update</TableCell>
-            <TableCell align="right">Delete</TableCell>
+            <TableCell>{t("ID")}</TableCell>
+            <TableCell align="right">{t("Title")}</TableCell>
+            <TableCell align="right">{t("Color")}</TableCell>
+            <TableCell align="right">{t("Update")}</TableCell>
+            <TableCell align="right">{t("Delete")}</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -49,6 +51,7 @@ const OneColor = ({row}) => {
 
     const [newRow, setNewRow] = React.useState(row)
     const [deleted, setDeleted] = React.useState(false)
+    const { t } = useTranslation();
 
     const deletedSizeHandler = (id) => {
         colorService.deleteColor(id).then(response => {
@@ -91,7 +94,7 @@ const OneColor = ({row}) => {
                                 onClick={() => { deletedSizeHandler(newRow.id) }}
                                 startIcon={<FuseSvgIcon className="text-48" size={24} color="white">material-twotone:delete_outline</FuseSvgIcon>}
                             >
-                                Delete
+                                {t("Delete")}
                             </Button>
                   </TableCell>
                 </TableRow>

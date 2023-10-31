@@ -8,6 +8,7 @@ import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
 import Chip from '@mui/material/Chip'
 import muqova from "../../../dictionary/muqova"
+import { useTranslation } from 'react-i18next'
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -30,6 +31,8 @@ function getStyles(name, personName, theme) {
 }
 
 export default function SelectBookType({getTypes}) {
+
+  const { t } = useTranslation();
 
   const theme = useTheme()
   const [personName, setPersonName] = React.useState([])
@@ -54,14 +57,14 @@ export default function SelectBookType({getTypes}) {
 
   return (
       <FormControl className="mt-8 mb-16 w-full">
-        <InputLabel id="demo-multiple-chip-label">Book Types</InputLabel>
+        <InputLabel id="demo-multiple-chip-label">{t("Book Types")}</InputLabel>
         <Select
           labelId="demo-multiple-chip-label"
           id="demo-multiple-chip"
           multiple
           value={personName}
           onChange={handleChange}
-          input={<OutlinedInput id="select-multiple-chip" label="Book Types" />}
+          input={<OutlinedInput id="select-multiple-chip" label={t("Book Types")} />}
           renderValue={(selected) => (
             <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
               {selected.map((value, index) => {

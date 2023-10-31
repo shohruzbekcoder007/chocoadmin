@@ -9,10 +9,12 @@ import { Button, Paper } from '@mui/material';
 import FuseSvgIcon from '@fuse/core/FuseSvgIcon/FuseSvgIcon';
 import brandService from '../services/brandService'
 import UpdateBrand from '../UpdateBrand';
+import { useTranslation } from 'react-i18next';
 
 export default function BrandList({reRender}) {
 
     const [brands, setBrands] = useState([])
+    const { t } = useTranslation();
 
     useEffect(() => {
         brandService.getBrands().then(response => {
@@ -28,11 +30,11 @@ export default function BrandList({reRender}) {
             <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
                 <TableHead>
                     <TableRow>
-                        <TableCell align="left">Brand Id</TableCell>
-                        <TableCell align="center">Brand Name(uz)</TableCell>
-                        <TableCell align="center">Brand Name(ru)</TableCell>
-                        <TableCell align="center">Update</TableCell>
-                        <TableCell align="right">Delete</TableCell>
+                        <TableCell align="left">{t("Brand Id")}</TableCell>
+                        <TableCell align="center">{t("Brand Name(uz)")}</TableCell>
+                        <TableCell align="center">{t("Brand Name(ru)")}</TableCell>
+                        <TableCell align="center">{t("Update")}</TableCell>
+                        <TableCell align="right">{t("Delete")}</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -49,6 +51,7 @@ const DataTableItem = ({elem}) => {
 
     const [brand, setBrand] = useState(elem)
     const [deleted, setDeleted] = useState(false)
+    const { t } = useTranslation();
     const handleDeleted = (id) => {
         brandService.deleteBrand(id).then(response => {
             if(response.status){
@@ -76,7 +79,7 @@ const DataTableItem = ({elem}) => {
                             onClick={() => { handleDeleted(brand.id) }}
                             startIcon={<FuseSvgIcon className="text-48" size={24} color="white">material-twotone:delete_outline</FuseSvgIcon>}
                         >
-                            Delete
+                            {t("Delete")}
                         </Button>
                 </TableCell>
             </TableRow>

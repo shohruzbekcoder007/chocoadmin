@@ -11,6 +11,7 @@ import FuseSvgIcon from '@fuse/core/FuseSvgIcon/FuseSvgIcon';
 import { TextField } from '@mui/material';
 import colorService from './services/colorService'
 import SketchColor from './SketchColor';
+import { useTranslation } from 'react-i18next';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
@@ -26,6 +27,7 @@ export default function CreateColor({setCreatedOption}) {
     const [open, setOpen] = React.useState(false);
     const [title, setTitle] = React.useState('');
     const [color, setColor] = React.useState('#d0021b')
+    const { t } = useTranslation();
 
     const handleClickOpen = () => {
         setTitle("")
@@ -66,7 +68,7 @@ export default function CreateColor({setCreatedOption}) {
                 onClick={handleClickOpen}
                 startIcon={<FuseSvgIcon>heroicons-outline:plus</FuseSvgIcon>}
             >
-                Add
+                {t("Add")}
             </Button>
             <BootstrapDialog
                 onClose={handleClose}
@@ -74,7 +76,7 @@ export default function CreateColor({setCreatedOption}) {
                 open={open}
             >
                 <DialogTitle sx={{ m: 0, p: 2, minWidth: '400px' }} id="customized-dialog-title">
-                    Yangi Color yaratish
+                    {t("Yangi Color yaratish")}
                 </DialogTitle>
                 <IconButton
                     aria-label="close"
@@ -104,7 +106,7 @@ export default function CreateColor({setCreatedOption}) {
                 </DialogContent>
                 <DialogActions>
                     <Button autoFocus onClick={newCreateCategory}>
-                        Saqlash
+                        {t("Saqlash")}
                     </Button>
                 </DialogActions>
             </BootstrapDialog>

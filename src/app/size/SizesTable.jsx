@@ -10,10 +10,12 @@ import { Button } from '@mui/material';
 import FuseSvgIcon from '@fuse/core/FuseSvgIcon/FuseSvgIcon';
 import sizeService from './services/sizeService'
 import UpdateSize from './UpdateSize';
+import { useTranslation } from 'react-i18next';
 
 export default function SizesTable({reRender}) {
 
     const [rows, setRows] = React.useState([])
+    const { t } = useTranslation();
 
     React.useEffect(() => {
         sizeService.getSizes().then(response => {
@@ -28,10 +30,10 @@ export default function SizesTable({reRender}) {
       <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
         <TableHead>
           <TableRow>
-            <TableCell>ID</TableCell>
-            <TableCell align="right">Size</TableCell>
-            <TableCell align="right">Update</TableCell>
-            <TableCell align="right">Delete</TableCell>
+            <TableCell>{t("ID")}</TableCell>
+            <TableCell align="right">{t("Size")}</TableCell>
+            <TableCell align="right">{t("Update")}</TableCell>
+            <TableCell align="right">{t("Delete")}</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -49,6 +51,7 @@ const OneSize = ({row}) => {
     const [newRow, setNewRow] = React.useState(row)
 
     const [deleted, setDeleted] = React.useState(false)
+    const { t } = useTranslation();
 
     const deletedSizeHandler = (id) => {
         sizeService.deleteSize(id).then(response => {
@@ -81,7 +84,7 @@ const OneSize = ({row}) => {
                                 onClick={() => { deletedSizeHandler(newRow.id) }}
                                 startIcon={<FuseSvgIcon className="text-48" size={24} color="white">material-twotone:delete_outline</FuseSvgIcon>}
                             >
-                                Delete
+                                {t("Delete")}
                             </Button>
                   </TableCell>
                 </TableRow>

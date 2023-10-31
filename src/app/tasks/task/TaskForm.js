@@ -20,8 +20,11 @@ import BrandList from '../BrandList'
 import SaleList from '../SaleList'
 import AddBookTypes from '../AddBookTypes'
 import SelectYozuv from '../SelectYozuv'
+import { useTranslation } from 'react-i18next'
 
 function TaskForm() {
+
+  const { t } = useTranslation();
 
   const [product_type, setProduct_type] = useState(null)
   const [title, setTitle] = useState("")
@@ -105,7 +108,7 @@ function TaskForm() {
         <Paper sx={{m: 2}}>
         <div className="relative flex flex-col flex-auto items-center px-24 sm:px-48">
           <div className="flex items-center justify-between border-b-1 w-full  mt-16 mb-32">
-            <h3>Add Product</h3>
+            <h3>{t("Add Product")}</h3>
             <div className="flex items-center">
               <IconButton className="" component={NavLinkAdapter} to="/tasks" size="large">
                 <FuseSvgIcon>heroicons-outline:x</FuseSvgIcon>
@@ -120,7 +123,7 @@ function TaskForm() {
                 <TextField
                   className="mt-8 mb-8"
                   required
-                  label="Mahsulot nomi(uz)"
+                  label={t("Mahsulot nomi(uz)")}
                   autoFocus
                   id="name"
                   variant="outlined"
@@ -133,7 +136,7 @@ function TaskForm() {
                 <TextField
                   className="mt-8 mb-8"
                   required
-                  label="Mahsulot nomi(ru)"
+                  label={t("Mahsulot nomi(ru)")}
                   autoFocus
                   id="name"
                   variant="outlined"
@@ -144,11 +147,11 @@ function TaskForm() {
               </div>
             </div>
               <Typography variant="body2" gutterBottom>
-                Description uz
+                {t("Description uz")}
               </Typography>
             <Editor getDescription={val => {setDescription(val)}}/>
               <Typography variant="body2" gutterBottom>
-                Description ru
+                {t("Description ru")}
               </Typography>
             <Editor getDescription={val => {setDescriptionRu(val)}}/>
             {
@@ -175,7 +178,7 @@ function TaskForm() {
             <TextField
               className="mt-8 mb-8"
               // required
-              label="Foyiz"
+              label={t("Foyiz")}
               autoFocus
               id="name"
               variant="outlined"
@@ -187,7 +190,7 @@ function TaskForm() {
             <TextField
               className="mt-8 mb-8"
               // required
-              label="Availability"
+              label={t("Availability")}
               autoFocus
               id="name"
               variant="outlined"
@@ -198,13 +201,13 @@ function TaskForm() {
             />
             <SaleList getAdvertisementValue={val => { setBanner_discount(val) }}/>
             <FormGroup>
-              <FormControlLabel control={<Switch onChange={event => {setHasSize(event.target.checked)}}/>} label="has_size" />
-              <FormControlLabel required control={<Switch onChange={event => {setIsActive(event.target.checked)}}/>} label="is_active" />
+              <FormControlLabel control={<Switch onChange={event => {setHasSize(event.target.checked)}}/>} label={t("has_size")} />
+              <FormControlLabel required control={<Switch onChange={event => {setIsActive(event.target.checked)}}/>} label={t("is_active")} />
             </FormGroup>
           </div>
   
           <div className="flex items-center justify-between border-b-1 w-full  mt-16 mb-16">
-            <span className="mt-8 mb-8">Aditional information</span>
+            <span className="mt-8 mb-8">{t("Aditional information")}</span>
           </div>
             {product_type != "book"?<AditionalInformation getImages={val => {setAdditions(val)}}/>:<AddBookTypes getImages={val => {setAdditions(val)}}/>}
         </div>
@@ -220,7 +223,7 @@ function TaskForm() {
               disabled={false}
               onClick={onSubmitNew}
             >
-              Create
+              {t("Create")}
             </Button>
           </Box>
         )}

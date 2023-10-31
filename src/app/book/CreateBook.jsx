@@ -10,6 +10,7 @@ import { TextField } from '@mui/material';
 import Editor from '../tasks/Editor';
 import { MuiFileInput } from 'mui-file-input'
 import bookService from './services/bookService'
+import { useTranslation } from 'react-i18next';
 
 export default function CreateBook({setCreatedOption}) {
 
@@ -17,6 +18,7 @@ export default function CreateBook({setCreatedOption}) {
   const [value, setValue] = React.useState(null);
   const [title, setTitle] = React.useState('');
   const [desc, setdDesc] = React.useState('')
+  const { t } = useTranslation();
 
   const handleChange = (newValue) => {
     setValue(newValue)
@@ -58,7 +60,7 @@ export default function CreateBook({setCreatedOption}) {
         color="secondary"
         startIcon={<FuseSvgIcon>heroicons-outline:plus</FuseSvgIcon>}
         >
-        Add
+        {t("Add")}
       </Button>
       <Dialog
         open={open}
@@ -67,7 +69,7 @@ export default function CreateBook({setCreatedOption}) {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          Create Banner
+          {t("Create Banner")}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
@@ -87,9 +89,9 @@ export default function CreateBook({setCreatedOption}) {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Qaytish</Button>
+          <Button onClick={handleClose}>{t("Qaytish")}</Button>
           <Button onClick={saveBrand} autoFocus>
-            Saqlash
+            {t("Saqlash")}
           </Button>
         </DialogActions>
       </Dialog>

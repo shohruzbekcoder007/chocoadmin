@@ -11,6 +11,7 @@ import { FormControlLabel, Switch, TextField } from '@mui/material'
 import { MuiFileInput } from 'mui-file-input'
 import BasicDatePicker from './BasicDatePicker'
 import salesService from './services/salesService'
+import { useTranslation } from 'react-i18next'
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -23,6 +24,7 @@ export default function CreateSales({setCreatedOption}) {
   const [deadline, setDeadline] = React.useState(null)
   const [title, setTitle] = React.useState("")
   const [isActive, setIsActive] = React.useState(false)
+  const { t } = useTranslation();
 
   const handleChange = (newValue) => {
     setValue(newValue)
@@ -68,7 +70,7 @@ export default function CreateSales({setCreatedOption}) {
             onClick={handleClickOpen}
             startIcon={<FuseSvgIcon>heroicons-outline:plus</FuseSvgIcon>}
         >
-            Add
+            {t("Add")}
         </Button>
       <Dialog
         open={open}
@@ -77,7 +79,7 @@ export default function CreateSales({setCreatedOption}) {
         onClose={handleClose}
         aria-describedby="alert-dialog-slide-description"
       >
-        <DialogTitle>Create Banner Discount</DialogTitle>
+        <DialogTitle>{t("Create Banner Discount")}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-slide-description">
             <TextField 
@@ -94,8 +96,8 @@ export default function CreateSales({setCreatedOption}) {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Disagree</Button>
-          <Button onClick={createSalesF}>Agree</Button>
+          <Button onClick={handleClose}>{t("Disagree")}</Button>
+          <Button onClick={createSalesF}>{t("Agree")}</Button>
         </DialogActions>
       </Dialog>
     </div>

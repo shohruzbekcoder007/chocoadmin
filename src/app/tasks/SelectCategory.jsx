@@ -4,14 +4,16 @@ import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
 import taskService from './services/taskService'
+import { useTranslation } from 'react-i18next'
 
 export default function SelectCategory({categorySelectF, product_type, category}) {
 
-    const [parentCategory, setParentCategory] = useState(category.parent_category)
+    const [parentCategory, setParentCategory] = useState(category?.parent_category)
     const [parentCategoryList, setParentCategoryList] = useState([])
-    const [childCategory, setChildCategory] = useState(category.children_category)
+    const [childCategory, setChildCategory] = useState(category?.children_category)
     const [childCategoryList, setChildCategoryList] = useState([])
     const [allCategory, setAllCategory] = useState([])
+    const { t } = useTranslation();
     
 
     const handleChange = (event) => {
@@ -45,20 +47,20 @@ export default function SelectCategory({categorySelectF, product_type, category}
             })
         }
         // console.log(category, category.children_category, category.parent_category)
-        console.log(category, "<<--")
+        // console.log(category, "<<--")
     }, [product_type])
 
     return (
         <>
             <FormControl sx={{ minWidth: "100%" }} className="mt-8 mb-8">
-                <InputLabel id="demo-simple-select-autowidth-label">Parent category</InputLabel>
+                <InputLabel id="demo-simple-select-autowidth-label">{t("Parent category")}</InputLabel>
                 <Select
                     labelId="demo-simple-select-autowidth-label"
                     id="demo-simple-select-autowidth"
                     value={parentCategory}
                     onChange={handleChange}
                     fullWidth
-                    label="Parent category"
+                    label={t("Parent category")}
                 >
                     {
                         parentCategoryList.map((elem, index ) => {
@@ -74,14 +76,14 @@ export default function SelectCategory({categorySelectF, product_type, category}
                 </Select>
             </FormControl>
             <FormControl sx={{ minWidth: "100%" }} className="mt-8 mb-8">
-                <InputLabel id="demo-simple-select-autowidth-label">Child category</InputLabel>
+                <InputLabel id="demo-simple-select-autowidth-label">{t("Child category")}</InputLabel>
                 <Select
                     labelId="demo-simple-select-autowidth-label"
                     id="demo-simple-select-autowidth"
                     value={childCategory}
                     onChange={handleChangeChild}
                     fullWidth
-                    label="Child category"
+                    label={t("Child category")}
                 >
                     <MenuItem value={""}>""</MenuItem>
                     {

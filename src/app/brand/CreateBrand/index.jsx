@@ -10,6 +10,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import FuseSvgIcon from '@fuse/core/FuseSvgIcon/FuseSvgIcon';
 import { TextField } from '@mui/material';
 import categoryBrand from './../services/brandService';
+import { useTranslation } from 'react-i18next';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
@@ -25,6 +26,7 @@ export default function CreateBrand({setCreatedOption}) {
     const [open, setOpen] = React.useState(false);
     const [title, setTitle] = React.useState('');
     const [titleRu, setTitleRu] = React.useState('');
+    const { t } = useTranslation();
 
     const handleClickOpen = () => {
         setTitle("")
@@ -66,7 +68,7 @@ export default function CreateBrand({setCreatedOption}) {
                 onClick={handleClickOpen}
                 startIcon={<FuseSvgIcon>heroicons-outline:plus</FuseSvgIcon>}
             >
-                Add
+                {t("Add")}
             </Button>
             <BootstrapDialog
                 onClose={handleClose}
@@ -74,7 +76,7 @@ export default function CreateBrand({setCreatedOption}) {
                 open={open}
             >
                 <DialogTitle sx={{ m: 0, p: 2, minWidth: '400px' }} id="customized-dialog-title">
-                    Yangi Categoriya yaratish
+                    {t("Yangi Categoriya yaratish")}
                 </DialogTitle>
                 <IconButton
                     aria-label="close"
@@ -114,7 +116,7 @@ export default function CreateBrand({setCreatedOption}) {
                 </DialogContent>
                 <DialogActions>
                     <Button autoFocus onClick={newCreateCategory}>
-                        Saqlash
+                        {t("Saqlash")}
                     </Button>
                 </DialogActions>
             </BootstrapDialog>

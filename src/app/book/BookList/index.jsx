@@ -3,6 +3,7 @@ import Paper from '@mui/material/Paper'
 import bookService from '../services/bookService'
 import { Button, Divider, Stack, Typography } from '@mui/material'
 import UpdateBook from '../UpdateBook'
+import { useTranslation } from 'react-i18next'
 
 export default function BookList({reRender, setCreatedOption}) {
 
@@ -31,6 +32,7 @@ export default function BookList({reRender, setCreatedOption}) {
 const OneBanner = ({banner, setCreatedOption}) => {
 
   const [deleted, setDeleted] = React.useState(false)
+  const { t } = useTranslation();
 
   const deleteBanner = () => {
     bookService.deleteBanner(banner.id).then(response => {
@@ -71,7 +73,7 @@ const OneBanner = ({banner, setCreatedOption}) => {
               onClick={deleteBanner}
               color="error"
             >
-              Delete
+              {t("Delete")}
             </Button>
           </Stack>
         </Paper>

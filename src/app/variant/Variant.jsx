@@ -7,6 +7,7 @@ import VariantList from './VariantList';
 import { useEffect, useState } from 'react';
 import CreateVariant from './CreateVariant';
 import AlertMessage from '../category/AlertMessage';
+import { useTranslation } from 'react-i18next';
 
 const Root = styled(FusePageSimple)(({ theme }) => ({
   '& .FusePageSimple-header': {
@@ -25,6 +26,7 @@ function Variant() {
 
     const [createdOption, setCreatedOption] = useState(null)
     const [reRender, setReRender] = useState(false)
+    const { t } = useTranslation();
 
     useEffect(() => {
         setReRender(prev => !prev)
@@ -41,7 +43,7 @@ function Variant() {
               delay={300}
               className="text-24 md:text-32 font-extrabold tracking-tight"
             >
-              Variant
+              {t("Variant")}
             </Typography>
             <div className="flex flex-col w-full sm:w-auto sm:flex-row space-y-16 sm:space-y-0 flex-1 items-center justify-end space-x-8">
               <motion.div

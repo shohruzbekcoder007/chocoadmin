@@ -3,8 +3,11 @@ import { motion } from 'framer-motion';
 import Button from '@mui/material/Button';
 import NavLinkAdapter from '@fuse/core/NavLinkAdapter';
 import FuseSvgIcon from '@fuse/core/FuseSvgIcon';
+import { useTranslation } from 'react-i18next';
 
 function TasksHeader(props) {
+
+  const { t } = useTranslation();
 
   return (
     <div className="flex flex-col sm:flex-row item-center sm:items-start space-y-16 sm:space-y-0 p-24 sm:p-32 w-full border-b-1 flex items-center justify-between">
@@ -16,7 +19,7 @@ function TasksHeader(props) {
           delay={300}
           className="text-24 md:text-32 font-extrabold tracking-tight leading-none"
         >
-          Products
+          {t("Products")}
         </Typography>
       </div>
 
@@ -30,7 +33,7 @@ function TasksHeader(props) {
           to="/addproduct"
         >
           <FuseSvgIcon size={20}>heroicons-outline:plus</FuseSvgIcon>
-          <span className="mx-8">Add Product</span>
+          <span className="mx-8">{t("Add Product")}</span>
         </Button>
       </div>
     </div>

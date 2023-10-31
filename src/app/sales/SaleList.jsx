@@ -10,10 +10,13 @@ import { Button, Paper } from '@mui/material';
 import FuseSvgIcon from '@fuse/core/FuseSvgIcon';
 import { dateFormatter } from 'src/utils/dateFormatter';
 import UpdateSales from './UpdateSales';
+import { useTranslation } from 'react-i18next';
 
 export default function SaleList({reRender}) {
 
     const [salesList, setSalesList] = useState([])
+    const { t } = useTranslation();
+
     useEffect(() => {
         salesService.getSales().then(response => {
             setSalesList(response.data)
@@ -27,12 +30,12 @@ export default function SaleList({reRender}) {
             <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
                 <TableHead>
                     <TableRow>
-                        <TableCell>ID</TableCell>
-                        <TableCell align="right">Title</TableCell>
-                        <TableCell align="right">is_active</TableCell>
-                        <TableCell align="right">deadline</TableCell>
-                        <TableCell align="right">Update</TableCell>
-                        <TableCell align="right">Delete</TableCell>
+                        <TableCell>{t("ID")}</TableCell>
+                        <TableCell align="right">{t("Title")}</TableCell>
+                        <TableCell align="right">{t("is_active")}</TableCell>
+                        <TableCell align="right">{t("deadline")}</TableCell>
+                        <TableCell align="right">{t("Update")}</TableCell>
+                        <TableCell align="right">{t("Delete")}</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -51,6 +54,7 @@ export default function SaleList({reRender}) {
 const OneSale = ({ row }) => {
 
     const [deleted, setDeleted] = React.useState(false)
+    const { t } = useTranslation();
 
     const deletedSizeHandler = (id) => {
         salesService.deleteSales(id).then(response => {
@@ -88,7 +92,7 @@ const OneSale = ({ row }) => {
                         onClick={() => { deletedSizeHandler(row.id) }}
                         startIcon={<FuseSvgIcon className="text-48" size={24} color="white">material-twotone:delete_outline</FuseSvgIcon>}
                     >
-                        Delete
+                        {t("Delete")}
                     </Button>
                 </TableCell>
             </TableRow>

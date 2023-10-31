@@ -7,6 +7,7 @@ import FuseSvgIcon from '@fuse/core/FuseSvgIcon/FuseSvgIcon';
 import BookList from './BookList';
 import CreateBook from './CreateBook';
 import AlertMessage from '../category/AlertMessage';
+import { useTranslation } from 'react-i18next';
 
 const Root = styled(FusePageSimple)(({ theme }) => ({
   '& .FusePageSimple-header': {
@@ -25,6 +26,7 @@ function Book(props) {
 
     const [createdOption, setCreatedOption] = useState(null)
     const [reRender, setReRender] = useState(false)
+    const { t } = useTranslation();
   
     useEffect(() => {
       setReRender(prev => !prev)
@@ -41,7 +43,7 @@ function Book(props) {
               delay={300}
               className="text-24 md:text-32 font-extrabold tracking-tight"
             >
-              Banner
+              {t("Banner")}
             </Typography>
 
             <div className="flex flex-col w-full sm:w-auto sm:flex-row space-y-16 sm:space-y-0 flex-1 items-center justify-end space-x-8">

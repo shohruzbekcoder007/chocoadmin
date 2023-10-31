@@ -7,11 +7,13 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { TextField } from '@mui/material';
 import sizeService from './services/sizeService';
+import { useTranslation } from 'react-i18next';
 
 export default function UpdateSize({row, updateBrandF}) {
 
   const [open, setOpen] = React.useState(false);
   const [title, setTitle] = React.useState(row.name)
+  const { t } = useTranslation();
 
   const handleClickOpen = () => {
     
@@ -36,7 +38,7 @@ export default function UpdateSize({row, updateBrandF}) {
   return (
     <div>
       <Button variant="contained" onClick={handleClickOpen}>
-        Edit
+        {t("Edit")}
       </Button>
       <Dialog
         open={open}
@@ -45,7 +47,7 @@ export default function UpdateSize({row, updateBrandF}) {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          {"Brand ni o'zgartirish"}
+          {t("Brand ni o'zgartirish")}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description"sx={{p:1}}>
@@ -62,9 +64,9 @@ export default function UpdateSize({row, updateBrandF}) {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Asil holida qoldirish</Button>
+          <Button onClick={handleClose}>{t("Asil holida qoldirish")}</Button>
           <Button onClick={changeTitleHandler} autoFocus>
-            O'zgartirish
+            {t("O'zgartirish")}
           </Button>
         </DialogActions>
       </Dialog>

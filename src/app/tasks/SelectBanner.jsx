@@ -4,10 +4,12 @@ import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
 import taskService from './services/taskService'
+import { useTranslation } from 'react-i18next'
 
 export default function SelectBanner({getBannerValue, defVal}) {
 
     const [productList, setProductList] = React.useState([])
+    const { t } = useTranslation();
 
     React.useEffect(() => {
         taskService.getBannerList().then(response => {
@@ -35,14 +37,14 @@ export default function SelectBanner({getBannerValue, defVal}) {
   return (
     <div className="mt-16 mb-8">
       <FormControl sx={{width: "100%"}}>
-        <InputLabel id="demo-simple-select-autowidth-label">Banner</InputLabel>
+        <InputLabel id="demo-simple-select-autowidth-label">{t("Banner")}</InputLabel>
         <Select
           labelId="demo-simple-select-autowidth-label"
           id="demo-simple-select-autowidth"
           value={age}
           onChange={handleChange}
           fullWidth
-          label="Banner"
+          label={t("Banner")}
         >
             {
                 productList?.map((pty, index) => {

@@ -26,11 +26,13 @@ function createData(id, title_uz, title_ru, status, price_uzs, discount_uzs, pro
 }
 
 export default function TasksList() {
+
   const [page, setPage] = React.useState(1);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [count, setCount] = React.useState(1)
   const [books, setBooks] = React.useState([])
   const [open, setOpen] = React.useState(false)
+  
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);

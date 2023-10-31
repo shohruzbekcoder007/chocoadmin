@@ -9,12 +9,14 @@ import { Box, Button, Pagination, Paper } from '@mui/material';
 import muallifService from './services/muallifService'
 import FuseSvgIcon from '@fuse/core/FuseSvgIcon/FuseSvgIcon';
 import UpdateMuallif from './UpdateMuallif';
+import { useTranslation } from 'react-i18next';
 
 export default function MuallifList({ reRender, setCreatedOption }) {
 
     const [authors, setAuthors] = useState([])
     const [totalPage, setTotalPage] = useState(1)
     const [page, setPage] = useState(1)
+    const { t } = useTranslation();
 
     const handleChange = (event, value) => {
         setPage(value);
@@ -34,10 +36,10 @@ export default function MuallifList({ reRender, setCreatedOption }) {
         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
             <TableHead>
                 <TableRow>
-                    <TableCell>ID</TableCell>
-                    <TableCell align="right">Name</TableCell>
-                    <TableCell align="right">Update</TableCell>
-                    <TableCell align="right">Delete</TableCell>
+                    <TableCell>{t("ID")}</TableCell>
+                    <TableCell align="right">{t("Name")}</TableCell>
+                    <TableCell align="right">{t("Update")}</TableCell>
+                    <TableCell align="right">{t("Delete")}</TableCell>
                 </TableRow>
             </TableHead>
             <TableBody>
@@ -62,6 +64,7 @@ export default function MuallifList({ reRender, setCreatedOption }) {
 const OneAuthor = ({row_el, setCreatedOption}) => {
 
     const [row, setRow] = useState(row_el)
+    const { t } = useTranslation();
 
     const deletedSizeHandler = (id) => {
         muallifService.deleteMuallif(id).then(response => {
@@ -100,7 +103,7 @@ const OneAuthor = ({row_el, setCreatedOption}) => {
                         onClick={() => { deletedSizeHandler(row.id) }}
                         startIcon={<FuseSvgIcon className="text-48" size={24} color="white">material-twotone:delete_outline</FuseSvgIcon>}
                     >
-                        Delete
+                        {t("Delete")}
                     </Button>
                 </TableCell>
             </TableRow>

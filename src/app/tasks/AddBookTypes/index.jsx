@@ -3,6 +3,7 @@ import SelectBookType from './SelectBookType'
 import { Box } from '@mui/system'
 import { Grid, TextField, Typography } from '@mui/material'
 import AddImage from '../AditionalInformation/AddImage'
+import { useTranslation } from 'react-i18next'
 
 export default function AddBookTypes({getImages}) {
 
@@ -40,6 +41,8 @@ export default function AddBookTypes({getImages}) {
 }
 
 export const BookTypeOne = ({ elem, setImages }) => {
+
+    const { t } = useTranslation();
     const [priceColorFile, setPriceColorFile] = useState({
         color_id: elem.value,
         price: 0,
@@ -81,7 +84,7 @@ export const BookTypeOne = ({ elem, setImages }) => {
                 </Grid>
                 <Grid item xs={6}>
                     <TextField
-                        label="Narxi"
+                        label={t("Narxi")}
                         autoFocus
                         id="name"
                         variant="outlined"

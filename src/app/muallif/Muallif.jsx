@@ -26,6 +26,7 @@ function Muallif(props) {
 
   const [createdOption, setCreatedOption] = useState(null)
   const [reRender, setReRender] = useState(false)
+  const { t } = useTranslation();
 
   useEffect(() => {
     setReRender(prev => !prev)
@@ -42,7 +43,7 @@ function Muallif(props) {
               delay={300}
               className="text-24 md:text-32 font-extrabold tracking-tight"
             >
-              Muallif
+              {t("Muallif")}
             </Typography>
             {/* <SketchColor/> */}
             <div className="flex flex-col w-full sm:w-auto sm:flex-row space-y-16 sm:space-y-0 flex-1 items-center justify-end space-x-8">

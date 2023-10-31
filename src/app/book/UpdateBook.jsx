@@ -10,6 +10,7 @@ import { TextField } from '@mui/material';
 import Editor from '../tasks/Editor';
 import { MuiFileInput } from 'mui-file-input'
 import bookService from './services/bookService'
+import { useTranslation } from 'react-i18next';
 
 export default function UpdateBook({ setCreatedOption, banner }) {
 
@@ -18,6 +19,7 @@ export default function UpdateBook({ setCreatedOption, banner }) {
     const [title, setTitle] = React.useState(banner.title);
     const [desc, setdDesc] = React.useState(banner.desc);
     const [fileChange, setFileChage] = React.useState(false);
+    const { t } = useTranslation();
 
     const handleChange = (newValue) => {
         setValue(newValue)
@@ -70,7 +72,7 @@ export default function UpdateBook({ setCreatedOption, banner }) {
                 variant="outlined"
                 onClick={handleClickOpen}
             >
-                Update
+                {t("Update")}
             </Button>
             <Dialog
                 open={open}
@@ -79,7 +81,7 @@ export default function UpdateBook({ setCreatedOption, banner }) {
                 aria-describedby="alert-dialog-description"
             >
                 <DialogTitle id="alert-dialog-title">
-                    Create Banner
+                    {t("Create Banner")}
                 </DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description">
@@ -101,7 +103,7 @@ export default function UpdateBook({ setCreatedOption, banner }) {
                 <DialogActions>
                     <Button onClick={handleClose}>Qaytish</Button>
                     <Button onClick={() => {updateBrand(banner.id)}} autoFocus>
-                        Saqlash
+                        {t("Saqlash")}
                     </Button>
                 </DialogActions>
             </Dialog>

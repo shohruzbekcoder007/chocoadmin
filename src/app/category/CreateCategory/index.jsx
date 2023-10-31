@@ -12,6 +12,7 @@ import { FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/mater
 import { MuiFileInput } from 'mui-file-input';
 import CategorySelectList from '../CategorySelectList';
 import categoryService from '../services';
+import { useTranslation } from 'react-i18next';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
@@ -30,6 +31,7 @@ export default function CreateCategory({ setCreatedOption }) {
     const [parent, setParent] = React.useState('');
     const [file, setFile] = React.useState(null);
     const [age, setAge] = React.useState('book');
+    const { t } = useTranslation();
 
     const handleChange = (event) => {
         setAge(event.target.value);
@@ -82,7 +84,7 @@ export default function CreateCategory({ setCreatedOption }) {
                 onClick={handleClickOpen}
                 startIcon={<FuseSvgIcon>heroicons-outline:plus</FuseSvgIcon>}
             >
-                Add
+                {t("Add")}
             </Button>
             <BootstrapDialog
                 onClose={handleClose}

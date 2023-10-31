@@ -9,12 +9,14 @@ import { TextField } from '@mui/material';
 // import brandService from '../services/brandService'
 import colorService from './services/colorService'
 import SketchColor from './SketchColor';
+import { useTranslation } from 'react-i18next';
 
 export default function UpdateColor({row, updateColorF}) {
 
   const [open, setOpen] = React.useState(false);
   const [title, setTitle] = React.useState(row.title)
   const [name, setName] = React.useState(row.name)
+  const { t } = useTranslation();
 
 
   const handleClickOpen = () => {
@@ -41,7 +43,7 @@ export default function UpdateColor({row, updateColorF}) {
   return (
     <div>
       <Button variant="contained" onClick={handleClickOpen}>
-        Edit
+        {t("Edit")}
       </Button>
       <Dialog
         open={open}
@@ -71,7 +73,7 @@ export default function UpdateColor({row, updateColorF}) {
         <DialogActions>
           <Button onClick={handleClose}>Asil holida qoldirish</Button>
           <Button onClick={changeTitleHandler} autoFocus>
-            O'zgartirish
+            {t("O'zgartirish")}
           </Button>
         </DialogActions>
       </Dialog>

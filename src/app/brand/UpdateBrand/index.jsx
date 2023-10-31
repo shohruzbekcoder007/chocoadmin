@@ -7,12 +7,14 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { TextField } from '@mui/material';
 import brandService from '../services/brandService'
+import { useTranslation } from 'react-i18next';
 
 export default function UpdateBrand({id, updateBrandF}) {
 
   const [open, setOpen] = React.useState(false);
   const [title, setTitle] = React.useState('')
   const [titleRu, setTitleRu] = React.useState('')
+  const { t } = useTranslation();
 
   const handleClickOpen = () => {
     brandService.getOneBrand(id).then(response => {
@@ -44,7 +46,7 @@ export default function UpdateBrand({id, updateBrandF}) {
   return (
     <div>
       <Button variant="contained" onClick={handleClickOpen}>
-        Edit
+        {t("Edit")}
       </Button>
       <Dialog
         open={open}

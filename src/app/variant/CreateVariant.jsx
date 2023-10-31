@@ -13,6 +13,7 @@ import SelectAutoWidth from '../tasks/SelectAutoWidth';
 import variantService from './services/variantService';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
+import { useTranslation } from 'react-i18next';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
@@ -33,6 +34,7 @@ export default function CreateVariant({setCreatedOption}) {
     const [duration, setDuration] = React.useState(null)
     const [percent, setPercent] = React.useState(null)
     const [checked, setChecked] = React.useState(false);
+    const { t } = useTranslation();
 
   const handleChange = (event) => {
     setChecked(event.target.checked);
@@ -42,6 +44,7 @@ export default function CreateVariant({setCreatedOption}) {
         setName("")
         setOpen(true);
     };
+
     const handleClose = () => {
         setOpen(false);
     };
@@ -81,7 +84,7 @@ export default function CreateVariant({setCreatedOption}) {
                 onClick={handleClickOpen}
                 startIcon={<FuseSvgIcon>heroicons-outline:plus</FuseSvgIcon>}
             >
-                Add
+                {t("Add")}
             </Button>
             <BootstrapDialog
                 onClose={handleClose}
@@ -89,7 +92,7 @@ export default function CreateVariant({setCreatedOption}) {
                 open={open}
             >
                 <DialogTitle sx={{ m: 0, p: 2, minWidth: '400px' }} id="customized-dialog-title">
-                    Yangi Variant yaratish
+                    {t("Yangi Variant yaratish")}
                 </DialogTitle>
                 <IconButton
                     aria-label="close"
@@ -107,7 +110,7 @@ export default function CreateVariant({setCreatedOption}) {
                     <TextField
                         className="mt-8 mb-16"
                         required
-                        label="Size"
+                        label={t("Size")}
                         autoFocus
                         id="name"
                         variant="outlined"
@@ -119,7 +122,7 @@ export default function CreateVariant({setCreatedOption}) {
                     <TextField
                         className="mt-8 mb-16"
                         required
-                        label="Size"
+                        label={t("Size")}
                         autoFocus
                         id="name"
                         variant="outlined"
@@ -131,7 +134,7 @@ export default function CreateVariant({setCreatedOption}) {
                     <TextField
                         className="mt-8 mb-16"
                         required
-                        label="Size"
+                        label={t("Size")}
                         autoFocus
                         id="name"
                         variant="outlined"
@@ -155,7 +158,7 @@ export default function CreateVariant({setCreatedOption}) {
                 </DialogContent>
                 <DialogActions>
                     <Button autoFocus onClick={newCreateCategory}>
-                        Saqlash
+                        {t("Saqlash")}
                     </Button>
                 </DialogActions>
             </BootstrapDialog>

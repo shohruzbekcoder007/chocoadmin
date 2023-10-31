@@ -10,6 +10,7 @@ import TableRow from '@mui/material/TableRow'
 import orderService from './services/orderService'
 import FullScreenDialog from '../tasks/FullScreenDialog'
 import OrderUpdateStatus from './OrderUpdateStatus'
+import { useTranslation } from 'react-i18next'
 
 const columns = [
   { id: 'id', label: 'id' },
@@ -32,6 +33,7 @@ export default function OrderList() {
   const [books, setBooks] = React.useState([])
   const [open, setOpen] = React.useState(false)
   const [reRender, setReRender] = React.useState(false)
+  const { t } = useTranslation();
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -80,7 +82,7 @@ export default function OrderList() {
                   align={column.align}
                   style={{ minWidth: column.minWidth }}
                 >
-                  {column.label}
+                  {t(column.label)}
                 </TableCell>
               ))}
             </TableRow>

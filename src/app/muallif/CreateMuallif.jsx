@@ -8,10 +8,12 @@ import DialogTitle from '@mui/material/DialogTitle';
 import FuseSvgIcon from '@fuse/core/FuseSvgIcon/FuseSvgIcon';
 import { TextField } from '@mui/material';
 import muallifService from './services/muallifService'
+import { useTranslation } from 'react-i18next';
 
 export default function CreateMuallif({setCreatedOption}) {
   const [open, setOpen] = React.useState(false);
   const [name, setName] = React.useState('')
+  const { t } = useTranslation();
 
   const handleClickOpen = () => {
     setName('')
@@ -53,7 +55,7 @@ export default function CreateMuallif({setCreatedOption}) {
         onClick={handleClickOpen}
         startIcon={<FuseSvgIcon>heroicons-outline:plus</FuseSvgIcon>}
         >
-        Add
+        {t("Add")}
       </Button>
       <Dialog
         open={open}
@@ -62,7 +64,7 @@ export default function CreateMuallif({setCreatedOption}) {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          {"Muallifni yaratish"}
+          {t("Muallifni yaratish")}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
@@ -70,9 +72,9 @@ export default function CreateMuallif({setCreatedOption}) {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Qaytish</Button>
+          <Button onClick={handleClose}>{t("Qaytish")}</Button>
           <Button onClick={createAuthor} autoFocus>
-            Yaratish
+            {t("Yaratish")}
           </Button>
         </DialogActions>
       </Dialog>
