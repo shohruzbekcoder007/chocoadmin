@@ -11,6 +11,7 @@ import FuseSvgIcon from '@fuse/core/FuseSvgIcon/FuseSvgIcon';
 import { TextField } from '@mui/material';
 import categoryBrand from './../services/brandService';
 import { useTranslation } from 'react-i18next';
+import SelectAutoWidth from 'src/app/tasks/SelectAutoWidth';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
@@ -26,6 +27,7 @@ export default function CreateBrand({setCreatedOption}) {
     const [open, setOpen] = React.useState(false);
     const [title, setTitle] = React.useState('');
     const [titleRu, setTitleRu] = React.useState('');
+    const [product_type, setProduct_type] = React.useState('book')
     const { t } = useTranslation();
 
     const handleClickOpen = () => {
@@ -41,6 +43,7 @@ export default function CreateBrand({setCreatedOption}) {
         let formData = new FormData();
         formData.append("title_uz", title);
         formData.append("title_ru", titleRu);
+        formData.append('product_type', product_type)
         categoryBrand.createBrand(formData).then(response => {
             if(response.data.id){
                 handleClose()
@@ -91,6 +94,7 @@ export default function CreateBrand({setCreatedOption}) {
                     <CloseIcon />
                 </IconButton>
                 <DialogContent dividers>
+                    <SelectAutoWidth getProductType={val => {setProduct_type(val)}} defaultVal={product_type}/>
                     <TextField
                         className="mt-8 mb-16"
                         required

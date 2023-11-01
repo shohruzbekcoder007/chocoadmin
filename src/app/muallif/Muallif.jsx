@@ -8,6 +8,7 @@ import MuallifList from './MuallifList';
 import CreateMuallif from './CreateMuallif';
 import { useEffect, useState } from 'react';
 import AlertMessage from '../category/AlertMessage';
+import { useTranslation } from 'react-i18next';
 
 const Root = styled(FusePageSimple)(({ theme }) => ({
   '& .FusePageSimple-header': {

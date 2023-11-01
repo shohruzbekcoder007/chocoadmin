@@ -8,18 +8,21 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { TextField } from '@mui/material';
 import brandService from '../services/brandService'
 import { useTranslation } from 'react-i18next';
+import SelectAutoWidth from 'src/app/tasks/SelectAutoWidth';
 
 export default function UpdateBrand({id, updateBrandF}) {
 
   const [open, setOpen] = React.useState(false);
   const [title, setTitle] = React.useState('')
   const [titleRu, setTitleRu] = React.useState('')
+  const [product_type, setProduct_type] = React.useState('')
   const { t } = useTranslation();
 
   const handleClickOpen = () => {
     brandService.getOneBrand(id).then(response => {
       setTitle(response.data.title_uz)
       setTitleRu(response.data.title_ru)
+      setProduct_type(response.data.product_type)
     }).catch(error => {
       console.log(error)
     })
@@ -59,6 +62,7 @@ export default function UpdateBrand({id, updateBrandF}) {
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description"sx={{p:1}}>
+            <SelectAutoWidth getProductType={val => {setProduct_type(val)}} defaultVal={product_type}/>
             <TextField
                 required
                 label="Brand name(uz)"
