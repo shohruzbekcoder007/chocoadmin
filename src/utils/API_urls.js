@@ -1,7 +1,7 @@
 // export const host = "https://xusandev.pythonanywhere.com"
 // export const host = "http://husanibragimov.jprq.site"
-export const host = "https://azbo.uz"
-// export const host = "https://husanibragimov.jprq.app"
+// export const host = "https://azbo.uz"
+export const host = "https://husanibragimov.jprq.app"
 // export const host = "http://64.226.102.92:8001"
 
 

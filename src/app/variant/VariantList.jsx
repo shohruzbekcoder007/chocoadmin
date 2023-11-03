@@ -10,6 +10,7 @@ import FuseSvgIcon from '@fuse/core/FuseSvgIcon/FuseSvgIcon';
 import variantService from './services/variantService'
 import { dateFormatter } from 'src/utils/dateFormatter';
 import { useTranslation } from 'react-i18next';
+import UpdateBrand from '../brand/UpdateBrand';
 // import UpdateBrand from '../UpdateBrand';
 
 export default function VariantList({reRender}) {
@@ -38,7 +39,7 @@ export default function VariantList({reRender}) {
                         <TableCell align="center">{t("duration")}</TableCell>
                         <TableCell align="center">{t("percent")}</TableCell>
                         <TableCell align="center">{t("is_integration")}</TableCell>
-                        {/* <TableCell align="center">Updated</TableCell> */}
+                        <TableCell align="center">Updated</TableCell>
                         <TableCell align="right">{t("Delete")}</TableCell>
                     </TableRow>
                 </TableHead>
@@ -83,10 +84,9 @@ const DataTableItem = ({elem}) => {
                         {brand.is_integration?<FuseSvgIcon className="text-48" size={24} color="action">material-outline:credit_score</FuseSvgIcon>:""}
                     </div>
                 </TableCell>
-                {/* <TableCell align="center">
-                    ssa
+                <TableCell align="center">
                     <UpdateBrand id={brand.id} updateBrandF={setBrand}/>
-                </TableCell> */}
+                </TableCell>
                 <TableCell align="right">
                 <Button
                             className=""

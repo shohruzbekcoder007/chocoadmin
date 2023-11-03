@@ -98,8 +98,8 @@ export default function CreateBrand({setCreatedOption}) {
                     <TextField
                         className="mt-8 mb-16"
                         required
-                        label="Categoriya nomi"
-                        autoFocus
+                        label={t("Categoriya nomi")}
+                        // autoFocus
                         id="name"
                         variant="outlined"
                         fullWidth
@@ -109,8 +109,8 @@ export default function CreateBrand({setCreatedOption}) {
                     <TextField
                         className="mt-8 mb-16"
                         required
-                        label="Categoriya nomi"
-                        autoFocus
+                        label={t("Categoriya nomi")}
+                        // autoFocus
                         id="name"
                         variant="outlined"
                         fullWidth
@@ -119,7 +119,10 @@ export default function CreateBrand({setCreatedOption}) {
                     />
                 </DialogContent>
                 <DialogActions>
-                    <Button autoFocus onClick={newCreateCategory}>
+                    <Button 
+                        // autoFocus 
+                        onClick={newCreateCategory}
+                    >
                         {t("Saqlash")}
                     </Button>
                 </DialogActions>
