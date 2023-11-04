@@ -12,6 +12,7 @@ import FuseSvgIcon from '@fuse/core/FuseSvgIcon';
 import FuseLoading from '@fuse/core/FuseLoading';
 import { host } from 'src/utils/API_urls';
 import { useTranslation } from 'react-i18next';
+import UpdateCategory from '../UpdateCategory';
 
 export default function DataTable({ reRender }) {
 
@@ -55,6 +56,7 @@ const DataTableItem = ({ elem }) => {
     const { t } = useTranslation();
 
     const [subCategoryOpen, setSubCategoryOpen] = useState(false)
+    const [oneCategory, setOneCategory] = useState(elem)
     const [deleted, setdeleted] = useState(false)
 
     const handleDeleted = (id) => {
@@ -91,13 +93,13 @@ const DataTableItem = ({ elem }) => {
                                 </Box>
                             </TableCell>
                             <TableCell component="th" scope="row">
-                                {elem.id}
+                                {oneCategory.id}
                             </TableCell>
                             <TableCell component="th" scope="row" align="center">
-                                {elem.title_uz}
+                                {oneCategory.title_uz}
                             </TableCell>
                             <TableCell component="th" scope="row" align="center">
-                                {elem.title_ru}
+                                {oneCategory.title_ru}
                             </TableCell>
                             <TableCell component="th" scope="row" align="center">
                                 <Box
@@ -111,27 +113,19 @@ const DataTableItem = ({ elem }) => {
                                         }
                                     }}
                                 >
-                                    {elem.icon ? <img src={elem.icon} alt="" /> : null}
+                                    {oneCategory.icon ? <img src={elem.icon} alt="" /> : null}
                                 </Box>
 
                             </TableCell>
                             <TableCell align="center">
-                                <Button
-                                    className=""
-                                    variant="contained"
-                                // color="error"
-                                // onClick={() => { handleDeleted(elem.id) }}
-                                // startIcon={<FuseSvgIcon className="text-48" size={24} color="white">material-twotone:delete_outline</FuseSvgIcon>}
-                                >
-                                    {t("Edit")}
-                                </Button>
+                                <UpdateCategory categoryId={oneCategory.id} updatedCategory={val => {setOneCategory(val)}}/>
                             </TableCell>
                             <TableCell align="center">
                                 <Button
                                     className=""
                                     variant="contained"
                                     color="error"
-                                    onClick={() => { handleDeleted(elem.id) }}
+                                    onClick={() => { handleDeleted(oneCategory.id) }}
                                     startIcon={<FuseSvgIcon className="text-48" size={24} color="white">material-twotone:delete_outline</FuseSvgIcon>}
                                 >
                                     {t("Delete")}
@@ -176,9 +170,9 @@ const ChildCategory = ({ subCategoryId, subCategoryOpen }) => {
     else
         if (subCategoryOpen)
             if (loading)
-                return <TableCell align="center" colSpan={6}><FuseLoading /></TableCell>
+                return <TableCell align="center" colSpan={7}><FuseLoading /></TableCell>
             else
-                return <TableCell align="center" colSpan={6}>
+                return <TableCell align="center" colSpan={7}>
                     <Alert severity="warning">{t("Sup category mavjud emas")}</Alert>
                 </TableCell>;
         else
@@ -189,6 +183,7 @@ const SubCategory = ({ elem }) => {
 
     const { t } = useTranslation();
 
+    const [subCategory, setSubCategory] = useState(elem)
     const [deleted, setdeleted] = useState(false)
 
     const handleDeleted = (id) => {
@@ -211,13 +206,13 @@ const SubCategory = ({ elem }) => {
 
                 </TableCell>
                 <TableCell component="th" scope="row">
-                    {elem.id}
+                    {subCategory.id}
                 </TableCell>
                 <TableCell component="th" scope="row" align="center">
-                    {elem.title_uz}
+                    {subCategory.title_uz}
                 </TableCell>
                 <TableCell component="th" scope="row" align="center">
-                    {elem.title_ru}
+                    {subCategory.title_ru}
                 </TableCell>
                 <TableCell component="th" scope="row" align="center">
                     <Box
@@ -231,27 +226,28 @@ const SubCategory = ({ elem }) => {
                             }
                         }}
                     >
-                        {elem.icon ? <img src={`${host}${elem.icon}`} alt="" /> : null}
+                        {subCategory.icon ? <img src={subCategory.icon} alt="" /> : null}
                     </Box>
 
                 </TableCell>
                 <TableCell align="center">
-                    <Button
+                    {/* <Button
                         className=""
                         variant="contained"
                     // color="error"
-                    // onClick={() => { handleDeleted(elem.id) }}
+                    // onClick={() => { handleDeleted(subCategory.id) }}
                     // startIcon={<FuseSvgIcon className="text-48" size={24} color="white">material-twotone:delete_outline</FuseSvgIcon>}
                     >
                         {t("Edit")}
-                    </Button>
+                    </Button> */}
+                    <UpdateCategory categoryId={subCategory.id} updatedCategory={val => {setSubCategory(val)}}/>
                 </TableCell>
                 <TableCell align="center">
                     <Button
                         className=""
                         variant="contained"
                         color="error"
-                        onClick={() => { handleDeleted(elem.id) }}
+                        onClick={() => { handleDeleted(subCategory.id) }}
                         startIcon={<FuseSvgIcon className="text-48" size={24} color="white">material-twotone:delete_outline</FuseSvgIcon>}
                     >
                         {t("Delete")}

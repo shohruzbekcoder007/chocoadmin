@@ -58,7 +58,7 @@ export default function UpdateBrand({id, updateBrandF}) {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          {"Brand ni o'zgartirish"}
+          {("Brand ni o'zgartirish")}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description"sx={{p:1}}>
@@ -87,9 +87,9 @@ export default function UpdateBrand({id, updateBrandF}) {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Asil holida qoldirish</Button>
+          <Button onClick={handleClose}>{t("Asil holida qoldirish")}</Button>
           <Button onClick={changeTitleHandler} autoFocus>
-            O'zgartirish
+            {t("O'zgartirish")}
           </Button>
         </DialogActions>
       </Dialog>

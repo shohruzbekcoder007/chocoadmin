@@ -15,6 +15,18 @@ class CategoryService {
         })
     }
 
+    getCategoryOne = (id) => {
+        return new Promise((resolve, reject) => {
+            axios.get(`${categoryConfig.category}${id}`, {
+                headers: headerConfig(),
+            }).then(response => {
+                resolve(response);
+            }).catch(error => {
+                reject(error);
+            })
+        })
+    }
+
     getCategoryChildren = (id) => {
         return new Promise((resolve, reject) => {
             axios.get(`${categoryConfig.category}${id}/`, {
@@ -31,6 +43,28 @@ class CategoryService {
         return new Promise((resolve, reject) => {
             axios.post(
                 categoryConfig.category,
+                data,
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("jwt_access_token")}`,
+                        'Content-Type': 'multipart/form-data'
+                      },
+                }
+            ).then((response) => {
+                console.log(response)
+                resolve(response)
+            })
+            .catch((error) => {
+                console.log(error)
+                reject(error)
+            });
+        })  
+    }
+
+    updateCategort = (id, data) => {
+        return new Promise((resolve, reject) => {
+            axios.put(
+                `${categoryConfig.category}${id}/`,
                 data,
                 {
                     headers: {

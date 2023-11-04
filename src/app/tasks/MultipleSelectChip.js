@@ -32,7 +32,7 @@ function getStyles(name, personName, theme) {
 export default function MultipleSelectChip({getSizes, product_type, defaultVal}) {
 
   const theme = useTheme()
-  const [personName, setPersonName] = React.useState([])
+  const [personName, setPersonName] = React.useState(defaultVal)
   const [allNames, setAllNames] = React.useState([])
 
   const handleChange = (event) => {
@@ -53,8 +53,7 @@ export default function MultipleSelectChip({getSizes, product_type, defaultVal})
         console.log(error)
       })
     }
-    setPersonName(defaultVal)
-  }, [product_type, defaultVal])
+  }, [product_type])
 
   return (
       <FormControl className="mt-8 mb-8 w-full">
@@ -70,7 +69,7 @@ export default function MultipleSelectChip({getSizes, product_type, defaultVal})
             <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
               {selected.map((value) => {
                 return (
-                <Chip key={value.id} label={value.name} />
+                <Chip key={value.id} label={value.name}/>
               )})}
             </Box>
           )}

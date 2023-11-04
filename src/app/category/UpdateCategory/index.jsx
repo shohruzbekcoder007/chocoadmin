@@ -23,8 +23,9 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     },
 }));
 
-export default function CreateCategory({ setCreatedOption }) {
+export default function UpdateCategory({ setCreatedOption, categoryId, updatedCategory }) {
 
+    const [category, setCategory] = React.useState(null)
     const [open, setOpen] = React.useState(false);
     const [title, setTitle] = React.useState('');
     const [titleRu, setTitleRu] = React.useState('');
@@ -52,27 +53,48 @@ export default function CreateCategory({ setCreatedOption }) {
         setFile(newValue)
     }
 
+    React.useEffect(() => {
+        if(open){
+            // updatedCategory(categoryId)
+            categoryService.getCategoryOne(categoryId).then(response => {
+                setCategory(response.data)
+                setTitle(response.data.title_uz)
+                setTitleRu(response.data.title_ru)
+                setAge(response.data.product_type)
+            }).catch(error => {
+                console.log(error)
+            })
+
+        }
+    }, [open])
+
     const newCreateCategory = () => {
         let formData = new FormData();
-        formData.append("icon", file);
+        console.log(file)
+        if(file)
+            formData.append("icon", file);
         formData.append("title_uz", title);
         formData.append("title_ru", titleRu);
-        formData.append("parent", parent);
-        formData.append("product_type", age);
-        categoryService.createCategort(formData).then(response => {
+        if(parent)
+            formData.append("parent", parent);
+        if(age)
+            formData.append("product_type", age);
+        console.log(formData.get('icon'))
+        categoryService.updateCategort(categoryId, formData).then(response => {
             if (response.data.id) {
                 handleClose()
-                setCreatedOption({
-                    alertMessage: "Categoriya created",
-                    type: "success"
-                })
+                updatedCategory(response.data)
+                // setCreatedOption({
+                //     alertMessage: "Categoriya updated",
+                //     type: "success"
+                // })
             }
         }).catch(error => {
             handleClose()
-            setCreatedOption({
-                alertMessage: "did not create Categoriy",
-                type: "error"
-            })
+            // setCreatedOption({
+            //     alertMessage: "did not update",
+            //     type: "error"
+            // })
         })
     }
 
@@ -81,11 +103,11 @@ export default function CreateCategory({ setCreatedOption }) {
             <Button
                 className=""
                 variant="contained"
-                color="secondary"
+                // color="secondary"
                 onClick={handleClickOpen}
-                startIcon={<FuseSvgIcon>heroicons-outline:plus</FuseSvgIcon>}
+                // startIcon={<FuseSvgIcon>heroicons-outline:plus</FuseSvgIcon>}
             >
-                {t("Add")}
+                {t("Update")}
             </Button>
             <BootstrapDialog
                 onClose={handleClose}
@@ -93,7 +115,7 @@ export default function CreateCategory({ setCreatedOption }) {
                 open={open}
             >
                 <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
-                    {t("Yangi Categoriya yaratish")}
+                    {t("Categoriya ma'lumotlarini o'zgartirish")}
                 </DialogTitle>
                 <IconButton
                     aria-label="close"
@@ -130,23 +152,23 @@ export default function CreateCategory({ setCreatedOption }) {
                         value={title}
                         onChange={(event) => { setTitle(event.target.value) }}
                     />
-                    <CategorySelectList getSelectedItem={(val) => { setParent(val) }} />
+                    {/* <CategorySelectList getSelectedItem={(val) => { setParent(val) }} /> */}
                     <MuiFileInput
-                        placeholder={t("Mos rasm")}
+                        placeholder={t("Mos rasmni o'zgartirish")}
                         value={file}
                         onChange={setFileHandler}
                         accept="image/*"
                         fullWidth
                     />
                     <FormControl sx={{ minWidth: "100%", mt: 2, mb: 2 }}>
-                        <InputLabel id="demo-simple-select-autowidth-label">Product Type</InputLabel>
+                        <InputLabel id="demo-simple-select-autowidth-label">{t("Product Type")}</InputLabel>
                         <Select
                             labelId="demo-simple-select-autowidth-label"
                             id="demo-simple-select-autowidth"
                             value={age}
                             onChange={handleChange}
                             fullWidth
-                            label={t("Product Type")}
+                            label="Product Type"
                         >
                             <MenuItem value={"book"}>Book</MenuItem>
                             <MenuItem value={"clothing"}>Clothing</MenuItem>
@@ -155,8 +177,8 @@ export default function CreateCategory({ setCreatedOption }) {
                     </FormControl>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={newCreateCategory}>
-                        {t("Saqlash")}
+                    <Button autoFocus onClick={newCreateCategory}>
+                        {t("O'zgartirish")}
                     </Button>
                 </DialogActions>
             </BootstrapDialog>

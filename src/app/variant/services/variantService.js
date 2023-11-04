@@ -15,6 +15,18 @@ class SizeService {
         })
     }
 
+    getVariant = (id) => {
+        return new Promise((resolve, reject) => {
+            axios.get(`${variant}${id}`, {
+                headers: headerConfig(),
+            }).then(response => {
+                resolve(response);
+            }).catch(error => {
+                reject(error);
+            })
+        })
+    }
+
     deleteVariant = (id) => {
         return new Promise((resolve, reject) => {
             axios.delete(`${variant}${id}`,{
@@ -44,17 +56,17 @@ class SizeService {
         })
     }
 
-    // updateSize = (id, data) => {
-    //     return new Promise((resolve, reject) => {
-    //         axios.put(`${size}${id}/`, data, {
-    //             headers: headerConfig(),
-    //         }).then(response => {
-    //             resolve(response);
-    //         }).catch(error => {
-    //             reject(error);
-    //         })
-    //     })
-    // }
+    updateVariant = (id, data) => {
+        return new Promise((resolve, reject) => {
+            axios.put(`${variant}${id}/`, data, {
+                headers: headerConfig(),
+            }).then(response => {
+                resolve(response);
+            }).catch(error => {
+                reject(error);
+            })
+        })
+    }
 }
 
 const instance = new SizeService();

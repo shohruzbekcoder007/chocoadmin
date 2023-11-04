@@ -1,57 +1,86 @@
-import * as React from 'react';
 import Button from '@mui/material/Button';
-import Menu from '@mui/material/Menu';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
 import MenuItem from '@mui/material/MenuItem';
-import { useTranslation } from "react-i18next";
+import Popover from '@mui/material/Popover';
+import Typography from '@mui/material/Typography';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { changeLanguage, selectCurrentLanguage, selectLanguages } from 'app/store/i18nSlice';
 
 function LanguageSwitcher(props) {
+  const currentLanguage = useSelector(selectCurrentLanguage);
+  const languages = useSelector(selectLanguages);
+  const [menu, setMenu] = useState(null);
+  const dispatch = useDispatch();
 
-  const { t, i18n } = useTranslation();
-  const [changedLang, setChangedLang] = React.useState('uz')
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
+  const langMenuClick = (event) => {
+    setMenu(event.currentTarget);
   };
 
-  const handleClose = () => {
-    setAnchorEl(null);
+  const langMenuClose = () => {
+    setMenu(null);
   };
 
-  const changeLanguage = (_, lang) => {
+  function handleLanguageChange(lng) {
+    dispatch(changeLanguage(lng.id));
 
-    i18n.changeLanguage(lang);
-    setChangedLang(lang);
-    handleClose();
+    langMenuClose();
   }
-
-  
 
   return (
     <>
-      <Button
-        id="basic-button"
-        aria-controls={open ? 'basic-menu' : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
-        onClick={handleClick}
-      >
-        {changedLang}
+      <Button className="h-40 w-64" onClick={langMenuClick}>
+        {/* <img
+          className="mx-4 min-w-20"
+          src={`assets/images/flags/${currentLanguage.flag}.svg`}
+          alt={currentLanguage.title}
+        /> */}
+
+        <Typography className="mx-4 font-semibold uppercase" color="text.secondary">
+          {currentLanguage.id}
+        </Typography>
       </Button>
-      <Menu
-        id="basic-menu"
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        MenuListProps={{
-          'aria-labelledby': 'basic-button',
+
+      <Popover
+        open={Boolean(menu)}
+        anchorEl={menu}
+        onClose={langMenuClose}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'center',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'center',
+        }}
+        classes={{
+          paper: 'py-8',
         }}
       >
-        <MenuItem onClick={(event) => changeLanguage(event, "uz")}>uz</MenuItem>
-        <MenuItem onClick={(event) => changeLanguage(event, "ru")}>ru</MenuItem>
-        <MenuItem onClick={(event) => changeLanguage(event, "en")}>en</MenuItem>
-      </Menu>
+        {languages.map((lng) => (
+          <MenuItem key={lng.id} onClick={() => handleLanguageChange(lng)}>
+            {/* <ListItemIcon className="min-w-40">
+              <img
+                className="min-w-20"
+                src={`assets/images/flags/${lng.flag}.svg`}
+                alt={lng.title}
+              />
+            </ListItemIcon> */}
+            <ListItemText primary={lng.title} />
+          </MenuItem>
+        ))}
+
+        <MenuItem
+          component={Link}
+          to="/documentation/configuration/multi-language"
+          onClick={langMenuClose}
+          role="button"
+        >
+          {/* <ListItemText primary="Learn More" /> */}
+        </MenuItem>
+      </Popover>
     </>
   );
 }

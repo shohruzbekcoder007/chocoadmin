@@ -1,7 +1,8 @@
 import i18next from 'i18next';
-import uz from './../../locales/uz/translation.json';
-import en from './../../locales/en/translation.json';
-import ru from './../../locales/ru/translation.json';
+
+import uz from './navigation-i18n/uz';
+import en from './navigation-i18n/en';
+import ru from './navigation-i18n/ru';
 
 i18next.addResourceBundle('en', 'navigation', en);
 i18next.addResourceBundle('uz', 'navigation', uz);

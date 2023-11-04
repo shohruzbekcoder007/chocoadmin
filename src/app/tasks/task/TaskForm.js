@@ -159,10 +159,12 @@ function TaskForm() {
               <MultipleSelectChip
                 product_type={product_type}
                 getSizes={(val) => {
+                  // console.log(val)
                   setSize(val.map(elem => {
                     return elem.id
                   }))
                 }}
+                defaultVal={[]}
               />:
               <></>
             }

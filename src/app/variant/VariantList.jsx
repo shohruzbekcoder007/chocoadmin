@@ -11,6 +11,7 @@ import variantService from './services/variantService'
 import { dateFormatter } from 'src/utils/dateFormatter';
 import { useTranslation } from 'react-i18next';
 import UpdateBrand from '../brand/UpdateBrand';
+import UpdateVariant from './UpdateVariant';
 // import UpdateBrand from '../UpdateBrand';
 
 export default function VariantList({reRender}) {
@@ -85,7 +86,8 @@ const DataTableItem = ({elem}) => {
                     </div>
                 </TableCell>
                 <TableCell align="center">
-                    <UpdateBrand id={brand.id} updateBrandF={setBrand}/>
+                    {/* <UpdateBrand id={brand.id} updateBrandF={setBrand}/> */}
+                    <UpdateVariant id={brand.id} updateBrandF={setBrand}/>
                 </TableCell>
                 <TableCell align="right">
                 <Button

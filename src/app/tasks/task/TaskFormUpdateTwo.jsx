@@ -67,7 +67,7 @@ function TaskFormUpdateTwo({ productId, setOpen }) {
             setAdvertisement(response.data.advertisement)
             // size
             // setStatus()
-            // console.log(response.data.category)
+            console.log(response.data, "<- tanlanganlari")
             const parent_category = response.data.category[0].id
             const children_category = response.data.category[0].children?.id
             const category = {
@@ -172,7 +172,7 @@ function TaskFormUpdateTwo({ productId, setOpen }) {
                                                 return elem.id
                                             }))
                                         }}
-                                        defaultVal={size}
+                                        defaultVal={[]}
                                     /> :
                                     <></>
                             }

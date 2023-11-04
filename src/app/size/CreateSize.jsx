@@ -11,6 +11,7 @@ import FuseSvgIcon from '@fuse/core/FuseSvgIcon/FuseSvgIcon';
 import { TextField } from '@mui/material';
 import sizeService from './services/sizeService';
 import { useTranslation } from 'react-i18next';
+import SelectAutoWidth from '../tasks/SelectAutoWidth';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
@@ -25,6 +26,7 @@ export default function CreateSize({setCreatedOption}) {
 
     const [open, setOpen] = React.useState(false);
     const [title, setTitle] = React.useState('');
+    const [product_type, setProduct_type] = React.useState('')
     const { t } = useTranslation();
 
     const handleClickOpen = () => {
@@ -38,6 +40,7 @@ export default function CreateSize({setCreatedOption}) {
     const newCreateCategory = () => {
         let formData = new FormData();
         formData.append("name", title);
+        formData.append("product_type", title);
         sizeService.createSize(formData).then(response => {
             if(response.data.id){
                 handleClose()
@@ -88,12 +91,11 @@ export default function CreateSize({setCreatedOption}) {
                     <CloseIcon />
                 </IconButton>
                 <DialogContent dividers>
+                    <SelectAutoWidth getProductType={val => {setProduct_type(val)}} defaultVal={product_type}/>
                     <TextField
                         className="mt-8 mb-16"
                         required
-                        label="Size"
-                        autoFocus
-                        id="name"
+                        label={t("Size")}
                         variant="outlined"
                         fullWidth
                         value={title}

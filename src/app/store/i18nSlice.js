@@ -28,8 +28,8 @@ const i18nSlice = createSlice({
     language: i18n.options.lng,
     languages: [
       { id: 'en', title: 'English', flag: 'US' },
-      { id: 'tr', title: 'Turkish', flag: 'TR' },
-      { id: 'ar', title: 'Arabic', flag: 'SA' },
+      { id: 'uz', title: 'O\'zbek', flag: 'UZ' },
+      { id: 'ru', title: 'Russian', flag: 'RU' },
     ],
   },
   reducers: {

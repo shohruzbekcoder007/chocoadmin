@@ -26,22 +26,34 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 
 const label = { inputProps: { 'aria-label': 'Color switch demo' } };
 
-export default function CreateVariant({setCreatedOption}) {
+export default function UpdateVariant({id, updateBrandF}) {
 
     const [open, setOpen] = React.useState(false);
-    const [name, setName] = React.useState('');
+    const [name, setName] = React.useState('salom');
     const [product_type, set_product_type] = React.useState(null)
     const [duration, setDuration] = React.useState(null)
     const [percent, setPercent] = React.useState(null)
     const [checked, setChecked] = React.useState(false);
     const { t } = useTranslation();
 
+    React.useEffect(() => {
+        variantService.getVariant(id).then(response => {
+            console.log(response.data)
+            setName(response.data.name)
+            set_product_type(response.data.product_type)
+            setDuration(response.data.duration)
+            setPercent(response.data.percent)
+            setChecked(response.data.is_integration)
+        }).catch(error => {
+            console.log(error)
+        })
+    }, [])
+
   const handleChange = (event) => {
     setChecked(event.target.checked);
   };
 
     const handleClickOpen = () => {
-        setName("")
         setOpen(true);
     };
 
@@ -57,20 +69,21 @@ export default function CreateVariant({setCreatedOption}) {
         formData.append("percent", percent);
         formData.append("is_integration", checked);
         console.log(formData.get('product_type'))
-        variantService.createVariant(formData).then(response => {
+        variantService.updateVariant(id, formData).then(response => {
+            updateBrandF(response.data)
             if(response.data.id){
                 handleClose()
-                setCreatedOption({
-                    alertMessage: "Variant created",
-                    type: "success"
-                })
+                // setCreatedOption({
+                //     alertMessage: "Variant created",
+                //     type: "success"
+                // })
             }
         }).catch(error => {
             handleClose()
-            setCreatedOption({
-                alertMessage: "did not create Variant",
-                type: "error"
-            })
+            // setCreatedOption({
+            //     alertMessage: "did not create Variant",
+            //     type: "error"
+            // })
             console.log(error)
         })
     }
@@ -80,11 +93,11 @@ export default function CreateVariant({setCreatedOption}) {
             <Button
                 className=""
                 variant="contained"
-                color="secondary"
+                // color="secondary"
                 onClick={handleClickOpen}
-                startIcon={<FuseSvgIcon>heroicons-outline:plus</FuseSvgIcon>}
+                // startIcon={<FuseSvgIcon>heroicons-outline:plus</FuseSvgIcon>}
             >
-                {t("Add")}
+                {t("Update")}
             </Button>
             <BootstrapDialog
                 onClose={handleClose}
@@ -118,7 +131,7 @@ export default function CreateVariant({setCreatedOption}) {
                         value={name}
                         onChange={(event) => {setName(event.target.value)}}
                     />
-                    <SelectAutoWidth getProductType={val => set_product_type(val)}/>
+                    <SelectAutoWidth getProductType={val => set_product_type(val)} defaultVal={product_type}/>
                     <TextField
                         className="mt-8 mb-16"
                         required

@@ -8,11 +8,13 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { TextField } from '@mui/material';
 import sizeService from './services/sizeService';
 import { useTranslation } from 'react-i18next';
+import SelectAutoWidth from '../tasks/SelectAutoWidth';
 
 export default function UpdateSize({row, updateBrandF}) {
 
   const [open, setOpen] = React.useState(false);
   const [title, setTitle] = React.useState(row.name)
+  const [product_type, setProduct_type] = React.useState(row.product_type)
   const { t } = useTranslation();
 
   const handleClickOpen = () => {
@@ -26,7 +28,8 @@ export default function UpdateSize({row, updateBrandF}) {
 
   const changeTitleHandler = () => {
     sizeService.updateSize(row.id, {
-      name: title
+      name: title,
+      fproduct_type: product_type
     }).then(response => {
       updateBrandF(response.data)
       handleClose()
@@ -51,6 +54,7 @@ export default function UpdateSize({row, updateBrandF}) {
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description"sx={{p:1}}>
+            <SelectAutoWidth getProductType={val => {setProduct_type(val)}} defaultVal={row.product_type}/>
             <TextField
                 required
                 label="Brand name"
@@ -59,6 +63,7 @@ export default function UpdateSize({row, updateBrandF}) {
                 variant="outlined"
                 fullWidth
                 value={title}
+                sx={{mt: 3}}
                 onChange={(event) => {setTitle(event.target.value)}}
             />
           </DialogContentText>
