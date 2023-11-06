@@ -40,7 +40,7 @@ export default function CreateSize({setCreatedOption}) {
     const newCreateCategory = () => {
         let formData = new FormData();
         formData.append("name", title);
-        formData.append("product_type", title);
+        formData.append("product_type", product_type);
         sizeService.createSize(formData).then(response => {
             if(response.data.id){
                 handleClose()

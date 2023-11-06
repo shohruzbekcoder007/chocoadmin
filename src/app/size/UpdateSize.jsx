@@ -29,7 +29,7 @@ export default function UpdateSize({row, updateBrandF}) {
   const changeTitleHandler = () => {
     sizeService.updateSize(row.id, {
       name: title,
-      fproduct_type: product_type
+      product_type: product_type
     }).then(response => {
       updateBrandF(response.data)
       handleClose()
@@ -37,6 +37,18 @@ export default function UpdateSize({row, updateBrandF}) {
       console.log(error)
     })
   }
+
+  React.useEffect(() => {
+    if(open){
+      sizeService.getOneSize(row.id).then(response => {
+        console.log(response.data)
+        setTitle(response.data.name)
+        setProduct_type(response.data.product_type)
+      }).catch(error => {
+        console.log(error)
+      })
+    }
+  }, [open])
 
   return (
     <div>
@@ -54,7 +66,7 @@ export default function UpdateSize({row, updateBrandF}) {
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description"sx={{p:1}}>
-            <SelectAutoWidth getProductType={val => {setProduct_type(val)}} defaultVal={row.product_type}/>
+            <SelectAutoWidth getProductType={val => {setProduct_type(val)}} defaultVal={product_type}/>
             <TextField
                 required
                 label="Brand name"

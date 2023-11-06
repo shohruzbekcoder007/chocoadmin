@@ -48,7 +48,19 @@ class SizeService {
 
     updateSize = (id, data) => {
         return new Promise((resolve, reject) => {
-            axios.put(`${size}${id}/`, data, {
+            axios.patch(`${size}${id}/`, data, {
+                headers: headerConfig(),
+            }).then(response => {
+                resolve(response);
+            }).catch(error => {
+                reject(error);
+            })
+        })
+    }
+
+    getOneSize = (id) => {
+        return new Promise((resolve, reject) => {
+            axios.get(`${size}${id}/`, {
                 headers: headerConfig(),
             }).then(response => {
                 resolve(response);

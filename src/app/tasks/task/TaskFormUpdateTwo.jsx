@@ -65,9 +65,10 @@ function TaskFormUpdateTwo({ productId, setOpen }) {
             setBanner(response.data.banner)
             setBanner_discount(response.data.banner_discount)
             setAdvertisement(response.data.advertisement)
+            setBrand(response.data.brand)
             // size
             // setStatus()
-            console.log(response.data, "<- tanlanganlari")
+            console.log(response.data, "-> " , response.data.brand,"<- tanlanganlari")
             const parent_category = response.data.category[0].id
             const children_category = response.data.category[0].children?.id
             const category = {
@@ -187,7 +188,7 @@ function TaskFormUpdateTwo({ productId, setOpen }) {
                             }
 
                             <SelectAdvertisement getAdvertisementValue={(val) => { setAdvertisement(val) }} defVal={advertisement}/>
-                            <BrandList getAdvertisementValue={(val) => { setBrand(val) }} product_type={product_type} />
+                            <BrandList getAdvertisementValue={(val) => { setBrand(val) }} product_type={product_type} defVal={brand} />
                             <SelectBanner getBannerValue={val => setBanner(val)} defVal={banner}/>
                             <TextField
                                 className="mt-8 mb-8"

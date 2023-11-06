@@ -93,7 +93,7 @@ export default function CreateCategory({ setCreatedOption }) {
                 open={open}
             >
                 <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
-                    {t("Yangi Categoriya yaratish")}
+                    {t("Create a new Category")}
                 </DialogTitle>
                 <IconButton
                     aria-label="close"
@@ -111,7 +111,7 @@ export default function CreateCategory({ setCreatedOption }) {
                     <TextField
                         className="mt-8 mb-16"
                         required
-                        label={t("Categoriya name(uz)")}
+                        label={t("Category name(uz)")}
                         // autoFocus
                         id="name"
                         variant="outlined"

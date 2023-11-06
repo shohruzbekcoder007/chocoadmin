@@ -9,6 +9,7 @@ import { useTranslation } from 'react-i18next'
 export default function BrandList({getAdvertisementValue, product_type, defVal}) {
 
     const [productList, setProductList] = React.useState([])
+    const [age, setAge] = React.useState(defVal);
     const { t } = useTranslation();
 
     React.useEffect(() => {
@@ -21,6 +22,7 @@ export default function BrandList({getAdvertisementValue, product_type, defVal})
               }
           })
           setProductList(new_list);
+          setAge(defVal)
       }).catch(error => {
           console.log(error)
           setProductList([])
@@ -29,7 +31,7 @@ export default function BrandList({getAdvertisementValue, product_type, defVal})
     }, [product_type])
 
 
-  const [age, setAge] = React.useState(defVal || '');
+  
 
   const handleChange = (event) => {
     setAge(event.target.value)
