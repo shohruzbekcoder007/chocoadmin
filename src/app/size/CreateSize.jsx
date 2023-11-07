@@ -76,7 +76,7 @@ export default function CreateSize({setCreatedOption}) {
                 open={open}
             >
                 <DialogTitle sx={{ m: 0, p: 2, minWidth: '400px' }} id="customized-dialog-title">
-                    {t("Yangi Size yaratish")}
+                    {t("Size")}
                 </DialogTitle>
                 <IconButton
                     aria-label="close"
@@ -95,7 +95,7 @@ export default function CreateSize({setCreatedOption}) {
                     <TextField
                         className="mt-8 mb-16"
                         required
-                        label={t("Size")}
+                        label={t("Name")}
                         variant="outlined"
                         fullWidth
                         value={title}

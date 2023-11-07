@@ -1,6 +1,18 @@
 const locale = {
   Category: 'Category',
-  EXAMPLE: 'Example'
+  Create_category_and_update: "Create and update category",
+  Brand: 'Brand',
+  Brand_create_and_update: 'Brand create and update',
+  Size: "Size",
+  Color: "Color",
+  Banner: "Banner",
+  Prodacts: "Prodacts",
+  all_products: "all products",
+  Sales: "sales",
+  Add_Product: "Add Product",
+  Muallif: "Muallif",
+  Variant: "Variant",
+  Oreder: "Order"
 };
 
 export default locale;

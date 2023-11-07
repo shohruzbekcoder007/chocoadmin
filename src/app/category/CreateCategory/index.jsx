@@ -122,7 +122,7 @@ export default function CreateCategory({ setCreatedOption }) {
                     <TextField
                         className="mt-8 mb-16"
                         required
-                        label={t("Categoriya name(ru)")}
+                        label={t("Category name(ru)")}
                         // autoFocus
                         id="nameru"
                         variant="outlined"
@@ -139,14 +139,14 @@ export default function CreateCategory({ setCreatedOption }) {
                         fullWidth
                     />
                     <FormControl sx={{ minWidth: "100%", mt: 2, mb: 2 }}>
-                        <InputLabel id="demo-simple-select-autowidth-label">Product Type</InputLabel>
+                        <InputLabel id="demo-simple-select-autowidth-label">{t("Product type")}</InputLabel>
                         <Select
                             labelId="demo-simple-select-autowidth-label"
                             id="demo-simple-select-autowidth"
                             value={age}
                             onChange={handleChange}
                             fullWidth
-                            label={t("Product Type")}
+                            label={t("Product type")}
                         >
                             <MenuItem value={"book"}>Book</MenuItem>
                             <MenuItem value={"clothing"}>Clothing</MenuItem>

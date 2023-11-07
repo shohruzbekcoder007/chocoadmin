@@ -58,7 +58,7 @@ export default function UpdateBrand({id, updateBrandF}) {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          {("Brand ni o'zgartirish")}
+          {t("Brand")}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description"sx={{p:1}}>

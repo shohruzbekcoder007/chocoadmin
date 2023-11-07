@@ -52,14 +52,14 @@ export default function UpdateColor({row, updateColorF}) {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          {"Color ni o'zgartirish"}
+          {t("Color")}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
             <TextField
                 required
                 className="mt-8 mb-16"
-                label="Brand name"
+                label={t("Color name")}
                 autoFocus
                 id="name"
                 variant="outlined"
@@ -71,9 +71,9 @@ export default function UpdateColor({row, updateColorF}) {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Asil holida qoldirish</Button>
+          <Button onClick={handleClose}>{t("Leave it as is")}</Button>
           <Button onClick={changeTitleHandler} autoFocus>
-            {t("O'zgartirish")}
+            {t("Update")}
           </Button>
         </DialogActions>
       </Dialog>

@@ -12,7 +12,7 @@ const navigationConfig = [
   {
     id: "category",
     title: "Category",
-    subtitle: "Create category and update",
+    // subtitle: "Create category and update",
     type: 'item',
     icon: 'heroicons-outline:briefcase',
     translate: 'Category',
@@ -22,7 +22,7 @@ const navigationConfig = [
   {
     id: "brand",
     title: "Brand",
-    subtitle: "Brand create and update",
+    // subtitle: "Brand create and update",
     type: 'item',
     icon: 'material-twotone:branding_watermark',
     translate: 'Brand',
@@ -68,7 +68,7 @@ const navigationConfig = [
   {
     id: 'tasks',
     title: 'Prodacts',
-    subtitle: 'all products',
+    // subtitle: 'all products',
     type: 'item',
     icon: 'heroicons-outline:check-circle',
     url: 'tasks',
@@ -77,7 +77,7 @@ const navigationConfig = [
   {
     id: 'tasks',
     title: 'Prodacts',
-    subtitle: 'all products',
+    // subtitle: 'all products',
     type: 'item',
     icon: 'heroicons-outline:check-circle',
     url: 'tasks',
@@ -95,7 +95,7 @@ const navigationConfig = [
   {
     id: 'sales',
     title: 'Sales',
-    subtitle: 'sales',
+    // subtitle: 'sales',
     type: 'item',
     icon: 'heroicons-outline:currency-bangladeshi',
     url: 'sales',
@@ -104,7 +104,7 @@ const navigationConfig = [
   {
     id: 'addproduct',
     title: 'Add Product',
-    subtitle: 'Add Product',
+    // subtitle: 'Add Product',
     type: 'item',
     icon: 'material-twotone:production_quantity_limits',
     url: 'addproduct',
@@ -113,7 +113,7 @@ const navigationConfig = [
   {
     id: 'muallif',
     title: 'Muallif',
-    subtitle: 'Muallif',
+    // subtitle: 'Muallif',
     type: 'item',
     icon: 'feather:users',
     url: 'muallif',
@@ -122,7 +122,7 @@ const navigationConfig = [
   {
     id: 'variant',
     title: 'Variant',
-    subtitle: 'Variant',
+    // subtitle: 'Variant',
     type: 'item',
     icon: 'material-twotone:multiple_stop',
     url: 'variant',
@@ -131,7 +131,7 @@ const navigationConfig = [
   {
     id: 'oreder',
     title: 'Oreder',
-    subtitle: 'Oreder',
+    // subtitle: 'Oreder',
     type: 'item',
     icon: 'material-twotone:border_color',
     url: 'oreder',

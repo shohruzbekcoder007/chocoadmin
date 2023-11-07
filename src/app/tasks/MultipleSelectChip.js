@@ -8,6 +8,7 @@ import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
 import Chip from '@mui/material/Chip'
 import taskService from './services/taskService'
+import { useTranslation } from 'react-i18next'
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -34,6 +35,9 @@ export default function MultipleSelectChip({getSizes, product_type, defaultVal})
   const theme = useTheme()
   const [personName, setPersonName] = React.useState(defaultVal)
   const [allNames, setAllNames] = React.useState([])
+  const { t } = useTranslation();
+
+  console.log(defaultVal.join(','), defaultVal)
 
   const handleChange = (event) => {
     const {
@@ -57,7 +61,7 @@ export default function MultipleSelectChip({getSizes, product_type, defaultVal})
 
   return (
       <FormControl className="mt-8 mb-8 w-full">
-        <InputLabel id="demo-multiple-chip-label">Size</InputLabel>
+        <InputLabel id="demo-multiple-chip-label">{t("Size")}</InputLabel>
         <Select
           labelId="demo-multiple-chip-label"
           id="demo-multiple-chip"

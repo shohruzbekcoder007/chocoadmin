@@ -79,7 +79,7 @@ export default function CreateBrand({setCreatedOption}) {
                 open={open}
             >
                 <DialogTitle sx={{ m: 0, p: 2, minWidth: '400px' }} id="customized-dialog-title">
-                    {t("Yangi Categoriya yaratish")}
+                    {t("Brand")}
                 </DialogTitle>
                 <IconButton
                     aria-label="close"
@@ -98,7 +98,7 @@ export default function CreateBrand({setCreatedOption}) {
                     <TextField
                         className="mt-8 mb-16"
                         required
-                        label={t("Categoriya nomi")}
+                        label={t("Category name(uz)")}
                         // autoFocus
                         id="name"
                         variant="outlined"
@@ -109,7 +109,7 @@ export default function CreateBrand({setCreatedOption}) {
                     <TextField
                         className="mt-8 mb-16"
                         required
-                        label={t("Categoriya nomi")}
+                        label={t("Category name(ru)")}
                         // autoFocus
                         id="name"
                         variant="outlined"
@@ -123,7 +123,7 @@ export default function CreateBrand({setCreatedOption}) {
                         // autoFocus 
                         onClick={newCreateCategory}
                     >
-                        {t("Saqlash")}
+                        {t("Save")}
                     </Button>
                 </DialogActions>
             </BootstrapDialog>

@@ -76,7 +76,7 @@ export default function CreateColor({setCreatedOption}) {
                 open={open}
             >
                 <DialogTitle sx={{ m: 0, p: 2, minWidth: '400px' }} id="customized-dialog-title">
-                    {t("Yangi Color yaratish")}
+                    {t("Color")}
                 </DialogTitle>
                 <IconButton
                     aria-label="close"
@@ -94,7 +94,7 @@ export default function CreateColor({setCreatedOption}) {
                     <TextField
                         className="mt-8 mb-16"
                         required
-                        label="Color nomi"
+                        label={t("Color name")}
                         autoFocus
                         id="name"
                         variant="outlined"
@@ -106,7 +106,7 @@ export default function CreateColor({setCreatedOption}) {
                 </DialogContent>
                 <DialogActions>
                     <Button autoFocus onClick={newCreateCategory}>
-                        {t("Saqlash")}
+                        {t("Save")}
                     </Button>
                 </DialogActions>
             </BootstrapDialog>

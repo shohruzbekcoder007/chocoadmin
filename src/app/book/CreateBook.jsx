@@ -69,14 +69,14 @@ export default function CreateBook({setCreatedOption}) {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          {t("Create Banner")}
+          {t("Create a banner")}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
             <TextField
                 className="mt-8 mb-16"
                 required
-                label="Title"
+                label={t("Title")}
                 autoFocus
                 id="name"
                 variant="outlined"
@@ -89,9 +89,9 @@ export default function CreateBook({setCreatedOption}) {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>{t("Qaytish")}</Button>
+          {/* <Button onClick={handleClose}>{t("Asil holida qoldirish")}</Button> */}
           <Button onClick={saveBrand} autoFocus>
-            {t("Saqlash")}
+            {t("Save")}
           </Button>
         </DialogActions>
       </Dialog>

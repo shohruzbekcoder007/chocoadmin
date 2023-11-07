@@ -173,7 +173,7 @@ function TaskFormUpdateTwo({ productId, setOpen }) {
                                                 return elem.id
                                             }))
                                         }}
-                                        defaultVal={[]}
+                                        defaultVal={size}
                                     /> :
                                     <></>
                             }

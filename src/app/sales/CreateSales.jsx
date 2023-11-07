@@ -85,19 +85,19 @@ export default function CreateSales({setCreatedOption}) {
             <TextField 
               sx={{mt: 2, mb: 1, width: "100%"}}
               id="outlined-basic11"
-              label="Title" 
+              label={t("Title")} 
               variant="outlined"
               value={title}
               onChange={event => {setTitle(event.target.value)}}
             />
             <MuiFileInput value={value} onChange={handleChange} sx={{width: "100%", mt: 1, mb: 1}} placeholder='file'/>
             <BasicDatePicker setFunction={val => {setDeadline(val)}}/>
-            <FormControlLabel sx={{ mt: 1, mb: 1 }} control={<Switch onChange={event => {setIsActive(event.target.checked)}}/>} label="active" />
+            <FormControlLabel sx={{ mt: 1, mb: 1 }} control={<Switch onChange={event => {setIsActive(event.target.checked)}}/>} label={t("active")} />
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>{t("Disagree")}</Button>
-          <Button onClick={createSalesF}>{t("Agree")}</Button>
+          <Button onClick={createSalesF}>{t("I agree")}</Button>
         </DialogActions>
       </Dialog>
     </div>

@@ -115,7 +115,7 @@ export default function UpdateCategory({ setCreatedOption, categoryId, updatedCa
                 open={open}
             >
                 <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
-                    {t("Categoriya ma'lumotlarini o'zgartirish")}
+                    {t("Change category information")}
                 </DialogTitle>
                 <IconButton
                     aria-label="close"
@@ -133,7 +133,7 @@ export default function UpdateCategory({ setCreatedOption, categoryId, updatedCa
                     <TextField
                         className="mt-8 mb-16"
                         required
-                        label={t("Categoriya name(uz)")}
+                        label={t("Category name(uz)")}
                         // autoFocus
                         id="name"
                         variant="outlined"
@@ -144,7 +144,7 @@ export default function UpdateCategory({ setCreatedOption, categoryId, updatedCa
                     <TextField
                         className="mt-8 mb-16"
                         required
-                        label={t("Categoriya name(ru)")}
+                        label={t("Category name(ru)")}
                         // autoFocus
                         id="nameru"
                         variant="outlined"
@@ -168,7 +168,7 @@ export default function UpdateCategory({ setCreatedOption, categoryId, updatedCa
                             value={age}
                             onChange={handleChange}
                             fullWidth
-                            label="Product Type"
+                            label={t("Product Type")}
                         >
                             <MenuItem value={"book"}>Book</MenuItem>
                             <MenuItem value={"clothing"}>Clothing</MenuItem>
