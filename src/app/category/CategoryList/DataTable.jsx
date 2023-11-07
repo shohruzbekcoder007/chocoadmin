@@ -226,7 +226,7 @@ const SubCategory = ({ elem }) => {
                             }
                         }}
                     >
-                        {subCategory.icon ? <img src={subCategory.icon} alt="" /> : null}
+                        {subCategory.icon ? <img src={`${host}${subCategory.icon}`} alt="" /> : null}
                     </Box>
 
                 </TableCell>
