@@ -130,27 +130,28 @@ export default function UpdateCategory({ setCreatedOption, categoryId, updatedCa
                     <CloseIcon />
                 </IconButton>
                 <DialogContent dividers>
+                    
                     <TextField
                         className="mt-8 mb-16"
                         required
                         label={t("Category name(uz)")}
-                        // autoFocus
-                        id="name"
-                        variant="outlined"
-                        fullWidth
-                        value={titleRu}
-                        onChange={(event) => { setTitleRu(event.target.value) }}
-                    />
-                    <TextField
-                        className="mt-8 mb-16"
-                        required
-                        label={t("Category name(ru)")}
                         // autoFocus
                         id="nameru"
                         variant="outlined"
                         fullWidth
                         value={title}
                         onChange={(event) => { setTitle(event.target.value) }}
+                    />
+                    <TextField
+                        className="mt-8 mb-16"
+                        required
+                        label={t("Category name(ru)")}
+                        // autoFocus
+                        id="name"
+                        variant="outlined"
+                        fullWidth
+                        value={titleRu}
+                        onChange={(event) => { setTitleRu(event.target.value) }}
                     />
                     {/* <CategorySelectList getSelectedItem={(val) => { setParent(val) }} /> */}
                     <MuiFileInput

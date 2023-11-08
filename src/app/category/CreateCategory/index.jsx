@@ -113,22 +113,22 @@ export default function CreateCategory({ setCreatedOption }) {
                         required
                         label={t("Category name(uz)")}
                         // autoFocus
-                        id="name"
+                        id="nameru"
                         variant="outlined"
                         fullWidth
-                        value={titleRu}
-                        onChange={(event) => { setTitleRu(event.target.value) }}
+                        value={title}
+                        onChange={(event) => { setTitle(event.target.value) }}
                     />
                     <TextField
                         className="mt-8 mb-16"
                         required
                         label={t("Category name(ru)")}
                         // autoFocus
-                        id="nameru"
+                        id="name"
                         variant="outlined"
                         fullWidth
-                        value={title}
-                        onChange={(event) => { setTitle(event.target.value) }}
+                        value={titleRu}
+                        onChange={(event) => { setTitleRu(event.target.value) }}
                     />
                     <CategorySelectList getSelectedItem={(val) => { setParent(val) }} />
                     <MuiFileInput

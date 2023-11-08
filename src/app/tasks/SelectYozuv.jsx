@@ -29,14 +29,14 @@ export default function SelectYozuv({getStatusValue}) {
   return (
     <div className="mt-16 mb-8">
       <FormControl sx={{width: "100%"}}>
-        <InputLabel id="demo-simple-select-autowidth-label">{t("Product type")}</InputLabel>
+        <InputLabel id="demo-simple-select-autowidth-label">{t("Book type")}</InputLabel>
         <Select
           labelId="demo-simple-select-autowidth-label"
           id="demo-simple-select-autowidth"
           value={age}
           onChange={handleChange}
           fullWidth
-          label={t("Product type")}
+          label={t("Book type")}
         >
             {
                 productList.map((pty, index) => {

@@ -9,20 +9,24 @@ import TablePagination from '@mui/material/TablePagination'
 import TableRow from '@mui/material/TableRow'
 import taskService from './services/taskService'
 import FullScreenDialog from './FullScreenDialog'
+import FuseSvgIcon from '@fuse/core/FuseSvgIcon'
+import { Button } from '@mui/material'
+import { useTranslation } from 'react-i18next'
 
 const columns = [
   { id: 'id', label: 'id' },
   { id: 'title_uz', label: 'title_uz' },
   { id: 'title_ru', label: 'title_ru' },
   { id: 'status', label: 'status' },
-  { id: 'product_type', label: 'product_type'},
+  { id: 'product_type', label: 'product_type' },
   { id: 'price_uzs', label: 'price_uzs' },
   { id: 'discount_uzs', label: 'discount_uzs' },
   { id: 'update', label: 'update' },
+  { id: 'deleteF', label: 'deleteF' },
 ];
 
-function createData(id, title_uz, title_ru, status, price_uzs, discount_uzs, product_type, update) {
-  return { id, title_uz, title_ru, status, price_uzs, discount_uzs, product_type, update };
+function createData(id, title_uz, title_ru, status, price_uzs, discount_uzs, product_type, update, deleteF) {
+  return { id, title_uz, title_ru, status, price_uzs, discount_uzs, product_type, update, deleteF };
 }
 
 export default function TasksList() {
@@ -32,7 +36,33 @@ export default function TasksList() {
   const [count, setCount] = React.useState(1)
   const [books, setBooks] = React.useState([])
   const [open, setOpen] = React.useState(false)
-  
+  const [deleted, setDeleted] = React.useState(false)
+  const { t } = useTranslation();
+
+  React.useEffect(() => {
+    const url_query = `?page_size=${rowsPerPage}&page=${page}`
+    taskService.getProducts(url_query).then(response => {
+      setPage(response.data.page)
+      setCount(response.data.count)
+      const bookList = response.data.results.map(({ id, title_uz, title_ru, status, price_uzs, discount_uzs, product_type, update, deleteF }) => {
+        return createData(id, title_uz, title_ru, status, price_uzs, discount_uzs, product_type,
+          <FullScreenDialog productId={id} />,
+          <Button
+            className=""
+            variant="contained"
+            color="error"
+            onClick={() => { deletedProductHandler(id) }}
+            startIcon={<FuseSvgIcon className="text-48" size={24} color="white">material-twotone:delete_outline</FuseSvgIcon>}
+          >
+            {t("Delete")}
+          </Button>)
+      })
+      setBooks(bookList)
+    }).catch(error => {
+      console.log(error)
+    })
+  }, [rowsPerPage, page, deleted])
+
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -48,24 +78,20 @@ export default function TasksList() {
     setOpen(true)
   }
 
-  React.useEffect(() => {
-    const url_query = `?page_size=${rowsPerPage}&page=${page}`
-    taskService.getProducts(url_query).then(response => {
-        setPage(response.data.page)
-        setCount(response.data.count)
-        const bookList = response.data.results.map(({id, title_uz, title_ru, status, price_uzs, discount_uzs, product_type, update}) => {
-            return createData(id, title_uz, title_ru, status, price_uzs, discount_uzs, product_type, <FullScreenDialog productId={id} />)
-        })
-        setBooks(bookList)
+  const deletedProductHandler = (id) => {
+    // console.log(id)
+    taskService.deleteProduct(id).then(response => {
+      // console.log(response)
+      setDeleted(!deleted)
     }).catch(error => {
-        console.log(error)
+      console.log(error)
     })
-  },[rowsPerPage, page])
+  }
 
   return (
-    <Paper sx={{ width: '100%', overflow: 'hidden', m: 4 }}>
+    <Paper sx={{ width: '100%', overflow: 'hidden', m: 2 }}>
       <TableContainer sx={{ maxHeight: 560 }}>
-        <Table stickyHeader aria-label="sticky table">
+        <Table stickyHeader aria-label="sticky table" size="small">
           <TableHead>
             <TableRow>
               {columns.map((column) => (
@@ -81,21 +107,21 @@ export default function TasksList() {
           </TableHead>
           <TableBody>
             {books.map((row, index) => {
-                return (
-                  <TableRow hover key={index} role="checkbox" tabIndex={1} onClick={() => {oneProductClickHandler(row)}}>
-                    {columns.map((column) => {
-                      const value = row[column.id];
-                      return (
-                        <TableCell key={column.id} align={column.align}>
-                          {column.format && typeof value === 'number'
-                            ? column.format(value)
-                            : value}
-                        </TableCell>
-                      );
-                    })}
-                  </TableRow>
-                );
-              })}
+              return (
+                <TableRow hover key={index} role="checkbox" tabIndex={1} onClick={() => { oneProductClickHandler(row) }}>
+                  {columns.map((column) => {
+                    const value = row[column.id];
+                    return (
+                      <TableCell key={column.id} align={column.align}>
+                        {column.format && typeof value === 'number'
+                          ? column.format(value)
+                          : value}
+                      </TableCell>
+                    );
+                  })}
+                </TableRow>
+              );
+            })}
           </TableBody>
         </Table>
       </TableContainer>

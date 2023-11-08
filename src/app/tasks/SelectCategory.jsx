@@ -52,47 +52,43 @@ export default function SelectCategory({categorySelectF, product_type, category}
 
     return (
         <>
-            <FormControl sx={{ minWidth: "100%" }} className="mt-8 mb-8">
-                <InputLabel id="demo-simple-select-autowidth-label">{t("Parent category")}</InputLabel>
-                <Select
-                    labelId="demo-simple-select-autowidth-label"
-                    id="demo-simple-select-autowidth"
-                    value={parentCategory}
-                    onChange={handleChange}
-                    fullWidth
-                    label={t("Parent category")}
-                >
-                    {
-                        parentCategoryList.map((elem, index ) => {
-                            return <MenuItem key={index} value={elem.value}>{elem.name}</MenuItem>
-                        })
-                    }
-                    {/* <MenuItem value="">
-                        <em>None</em>
-                        </MenuItem>
-                        <MenuItem value={10}>Twenty</MenuItem>
-                        <MenuItem value={21}>Twenty one</MenuItem>
-                        <MenuItem value={22}>Twenty one and a half</MenuItem> */}
-                </Select>
-            </FormControl>
-            <FormControl sx={{ minWidth: "100%" }} className="mt-8 mb-8">
-                <InputLabel id="demo-simple-select-autowidth-label">{t("Child category")}</InputLabel>
-                <Select
-                    labelId="demo-simple-select-autowidth-label"
-                    id="demo-simple-select-autowidth"
-                    value={childCategory}
-                    onChange={handleChangeChild}
-                    fullWidth
-                    label={t("Child category")}
-                >
-                    <MenuItem value={""}>""</MenuItem>
-                    {
-                        childCategoryList.map((elem, index) => {
-                            return <MenuItem key={index} value={elem.value}>{elem.name}</MenuItem>
-                        })
-                    }
-                </Select>
-            </FormControl>
+            <div className="grid w-full grid-cols-1 gap-y-48 sm:grid-cols-2 mt-8 mb-8">
+                <FormControl sx={{ marginRight: "10px" }} className="mt-8 mb-8">
+                    <InputLabel id="demo-simple-select-autowidth-label">{t("Parent category")}</InputLabel>
+                    <Select
+                        labelId="demo-simple-select-autowidth-label"
+                        id="demo-simple-select-autowidth"
+                        value={parentCategory}
+                        onChange={handleChange}
+                        fullWidth
+                        label={t("Parent category")}
+                    >
+                        {
+                            parentCategoryList.map((elem, index ) => {
+                                return <MenuItem key={index} value={elem.value}>{elem.name}</MenuItem>
+                            })
+                        }
+                    </Select>
+                </FormControl>
+                <FormControl sx={{ marginLeft: "10px" }} className="mt-8 mb-8">
+                    <InputLabel id="demo-simple-select-autowidth-label">{t("Child category")}</InputLabel>
+                    <Select
+                        labelId="demo-simple-select-autowidth-label"
+                        id="demo-simple-select-autowidth"
+                        value={childCategory}
+                        onChange={handleChangeChild}
+                        fullWidth
+                        label={t("Child category")}
+                    >
+                        <MenuItem value={""}>""</MenuItem>
+                        {
+                            childCategoryList.map((elem, index) => {
+                                return <MenuItem key={index} value={elem.value}>{elem.name}</MenuItem>
+                            })
+                        }
+                    </Select>
+                </FormControl>
+            </div>
         </>
     )
 }

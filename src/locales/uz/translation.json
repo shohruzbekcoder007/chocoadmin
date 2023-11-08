@@ -47,8 +47,8 @@
     "Child category": "Bolalar kategoriyasi",
     "Advertisement": "Reklama",
     "Percent": "Foyiz",
-    "Availability": "Mavjudligi",
-    "Sales list": "Sotish ro'yxati",
+    "Availability": "Ombordagi maxsulotlar soni",
+    "Sales list": "Banner discount",
     "has_size": "hajmi_bor",
     "Aditional information": "Qo'shimcha ma'lumotlar",
     "Book Types": "Kitob turlari",
@@ -139,5 +139,6 @@
     "last_name": "familya",
     "look": "ko'rish",
     "View order": "Buyurtmani ko'rish",
-    "Total": "Jami"
+    "Total": "Jami",
+    "Book type": "Yozuv turi"
 }

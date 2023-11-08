@@ -133,7 +133,7 @@ function TaskFormUpdateTwo({ productId, setOpen }) {
                                     <TextField
                                         className="mt-8 mb-8"
                                         required
-                                        label={t("Mahsulot nomi(uz)")}
+                                        label={t("Product name(uz)")}
                                         // autoFocus
                                         id="name"
                                         variant="outlined"
@@ -146,7 +146,7 @@ function TaskFormUpdateTwo({ productId, setOpen }) {
                                     <TextField
                                         className="mt-8 mb-8"
                                         required
-                                        label={t("Mahsulot nomi(ru)")}
+                                        label={t("Product name(ru)")}
                                         // autoFocus
                                         id="name"
                                         variant="outlined"

@@ -10,7 +10,7 @@ function TasksHeader(props) {
   const { t } = useTranslation();
 
   return (
-    <div className="flex flex-col sm:flex-row item-center sm:items-start space-y-16 sm:space-y-0 p-24 sm:p-32 w-full border-b-1 flex items-center justify-between">
+    <div className="flex flex-col sm:flex-row item-center sm:items-start space-y-16 sm:space-y-0 p-20 sm:p-20 w-full border-b-1 flex items-center justify-between">
       <div className="flex flex-col sm:flex-row items-center sm:space-x-12">
         <Typography
           component={motion.span}
