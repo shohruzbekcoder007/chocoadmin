@@ -8,7 +8,7 @@ const locale = {
   Banner: "Banner",
   Prodacts: "Mahsulotlar",
   all_products: "barcha maxsulotlar",
-  Sales: "Sotish",
+  Sales: "Chegirma",
   Add_Product: "Maxsulot qo'shish",
   Muallif: "Muallif",
   Variant: "Variant",
