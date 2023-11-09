@@ -29,6 +29,16 @@ const navigationConfig = [
     url: 'brand',
     auth: "admin"
   },
+  {
+    id: "advertisement",
+    title: "Advertisement",
+    // subtitle: "Brand create and update",
+    type: 'item',
+    icon: 'heroicons-outline:badge-check',
+    translate: 'Advertisement',
+    url: 'advertisement',
+    auth: "admin"
+  },
   // {
   //   id: 'example-component',
   //   title: 'Example',

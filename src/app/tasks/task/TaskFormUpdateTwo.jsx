@@ -21,6 +21,7 @@ import SaleList from '../SaleList'
 import AddBookTypes from '../AddBookTypes'
 import SelectYozuv from '../SelectYozuv'
 import { useTranslation } from 'react-i18next'
+import SelectAutoWidthBook from '../SelectAutoWidthBook'
 
 function TaskFormUpdateTwo({ productId, setOpen }) {
 
@@ -47,6 +48,7 @@ function TaskFormUpdateTwo({ productId, setOpen }) {
     const [titleRu, setTitleRu] = useState('')
     const [ctg, setCtg] = useState("")
     const [error, setError] = useState(false)
+    const [author, setAuthor] = useState('')
 
     const { t } = useTranslation();
 
@@ -58,7 +60,6 @@ function TaskFormUpdateTwo({ productId, setOpen }) {
             setDescriptionRu(response.data.description_ru)
             setOldProduct(response.data)
             setProduct_type(response.data.product_type)
-            console.log(response.data)
             setSize(response.data.size)
             setPercentage(response.data.percentage)
             setAvailability(response.data.availability)
@@ -66,9 +67,9 @@ function TaskFormUpdateTwo({ productId, setOpen }) {
             setBanner_discount(response.data.banner_discount)
             setAdvertisement(response.data.advertisement)
             setBrand(response.data.brand)
+            setAuthor(response.data.author)
             // size
             // setStatus()
-            console.log(response.data, "-> " , response.data.brand,"<- tanlanganlari")
             const parent_category = response.data.category[0].id
             const children_category = response.data.category[0].children?.id
             const category = {
@@ -76,6 +77,7 @@ function TaskFormUpdateTwo({ productId, setOpen }) {
                 children_category: children_category
             }
             setCtg(category)
+            console.log(category)
             // children
         }).catch(error => {
             console.log(error)
@@ -108,7 +110,8 @@ function TaskFormUpdateTwo({ productId, setOpen }) {
             percentage,
             availability,
             banner_discount,
-            brand
+            brand,
+            author
         }).then(response => {
             // console.log(response)
             setLoading(false)
@@ -128,6 +131,7 @@ function TaskFormUpdateTwo({ productId, setOpen }) {
                         {error?<Alert severity="error">Xatoli yuzaga keldi!!!</Alert>:null}
                         <div className="w-full">
                             <SelectAutoWidth getProductType={(val) => { setProduct_type(val) }} defaultVal={product_type}/>
+                            {(product_type == "book") ?<SelectAutoWidthBook getProductType={(val) => { setAuthor(val) }} defVal={author}/>:<></>}
                             <div className="grid w-full grid-cols-1 gap-y-48 sm:grid-cols-2 mt-8 mb-8">
                                 <div style={{ marginRight: "10px" }}>
                                     <TextField

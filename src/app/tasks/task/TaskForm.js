@@ -21,6 +21,7 @@ import SaleList from '../SaleList'
 import AddBookTypes from '../AddBookTypes'
 import SelectYozuv from '../SelectYozuv'
 import { useTranslation } from 'react-i18next'
+import SelectAutoWidthBook from '../SelectAutoWidthBook'
 
 function TaskForm() {
 
@@ -45,6 +46,7 @@ function TaskForm() {
   const [loading, setLoading] = useState(false)
   const [yozuv, setYozuv] = useState("krill")
   const [titleRu, setTitleRu] = useState('')
+  const [author, setAuthor] = useState('')
 
   const list_id = useMemo(() => {
     return additions.map(elem => {
@@ -71,7 +73,8 @@ function TaskForm() {
       percentage,
       availability,
       banner_discount,
-      brand
+      brand,
+      author
     }
 
     var form_data = new FormData();
@@ -118,6 +121,7 @@ function TaskForm() {
 
             <div className="w-full">
               <SelectAutoWidth getProductType={(val) => { setProduct_type(val) }} />
+              {(product_type == "book") ?<SelectAutoWidthBook getProductType={(val) => { setAuthor(val) }} />:<></>}
               <div className="grid w-full grid-cols-1 gap-y-48 sm:grid-cols-2 mt-8 mb-8">
                 <div style={{ marginRight: "10px" }}>
                   <TextField

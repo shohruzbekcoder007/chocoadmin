@@ -21,6 +21,7 @@ import SalesConfig from '../sales/salesConfig';
 import MuallifConfig from '../muallif/MuallifConfig';
 import VariantConfig from '../variant/VariantConfig';
 import OrederConfig from '../order/OrderConfig';
+import AdvertisementConfig from '../advertisement/AdvertisementConfig';
 
 const routeConfigs = [
   ...dashboardsConfigs,
@@ -40,7 +41,8 @@ const routeConfigs = [
   SalesConfig,
   MuallifConfig,
   VariantConfig,
-  OrederConfig
+  OrederConfig,
+  AdvertisementConfig
 ];
 
 const routes = [

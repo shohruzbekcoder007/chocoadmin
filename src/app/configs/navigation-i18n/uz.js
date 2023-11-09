@@ -12,7 +12,8 @@ const locale = {
   Add_Product: "Maxsulot qo'shish",
   Muallif: "Muallif",
   Variant: "Variant",
-  Oreder: "Buyurtma"
+  Oreder: "Buyurtma",
+  Advertisement: "Reklama"
 };
 
 export default locale;

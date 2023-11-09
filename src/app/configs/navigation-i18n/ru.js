@@ -12,7 +12,8 @@ const locale = {
   Add_Product: "Добавить продукт",
   Muallif: "Автор",
   Variant: "Вариант",
-  Oreder: "Заказ"
+  Oreder: "Заказ",
+  Advertisement: "Реклама"
 };
 
 export default locale;

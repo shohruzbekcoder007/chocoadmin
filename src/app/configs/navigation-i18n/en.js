@@ -12,7 +12,8 @@ const locale = {
   Add_Product: "Add Product",
   Muallif: "Muallif",
   Variant: "Variant",
-  Oreder: "Order"
+  Oreder: "Order",
+  Advertisement: "Advertisement"
 };
 
 export default locale;

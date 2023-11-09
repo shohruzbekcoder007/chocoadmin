@@ -46,7 +46,7 @@ export default function SelectCategory({categorySelectF, product_type, category}
                 console.log(error)
             })
         }
-        // console.log(category, category.children_category, category.parent_category)
+        console.log(category, category.children_category, category.parent_category)
         // console.log(category, "<<--")
     }, [product_type])
 

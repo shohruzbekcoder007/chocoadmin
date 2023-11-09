@@ -158,6 +158,20 @@ class TaskService {
             });
         })
     }
+
+    // author
+
+    getAuthors = () => {
+        return new Promise((resolve, reject) => {
+            axios.get(`${TaskConfig.author}?page_size=1000`, {
+                headers: headerConfig(),
+            }).then(response => {
+                resolve(response);
+            }).catch(error => {
+                reject(error);
+            })
+        })
+    }
 }
 
 const instance = new TaskService();
