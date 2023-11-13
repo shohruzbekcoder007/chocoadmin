@@ -8,7 +8,7 @@ const locale = {
   Banner: "Banner",
   Prodacts: "Prodacts",
   all_products: "all products",
-  Sales: "sales",
+  Sales: "Sales",
   Add_Product: "Add Product",
   Muallif: "Muallif",
   Variant: "Variant",

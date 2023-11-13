@@ -9,6 +9,7 @@ import Slide from '@mui/material/Slide';
 import { FormControlLabel, Switch, TextField } from '@mui/material';
 import { MuiFileInput } from 'mui-file-input';
 import BasicDatePicker from './BasicDatePicker';
+import { useTranslation } from 'react-i18next';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -30,6 +31,7 @@ export default function UpdateSales({row}) {
     const [deadline, setDeadline] = React.useState(row.deadline)
     const [title, setTitle] = React.useState(row.title)
     const [isActive, setIsActive] = React.useState(row.is_active)
+    const { t } = useTranslation();
   
     const handleChange = (newValue) => {
       setValue(newValue)
@@ -54,7 +56,7 @@ export default function UpdateSales({row}) {
   return (
     <div>
       <Button variant="contained" onClick={handleClickOpen}>
-        Edit
+        {t("Edit")}
       </Button>
       <Dialog
         open={open}
@@ -63,7 +65,7 @@ export default function UpdateSales({row}) {
         onClose={handleClose}
         aria-describedby="alert-dialog-slide-description"
       >
-        <DialogTitle>{"Upadate Banner Discount"}</DialogTitle>
+        <DialogTitle>{t("Upadate Banner Discount")}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-slide-description">
           <TextField 
@@ -80,8 +82,8 @@ export default function UpdateSales({row}) {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Disagree</Button>
-          <Button onClick={handleClose}>Agree</Button>
+          <Button onClick={handleClose}>{t("Canceled")}</Button>
+          <Button onClick={handleClose}>{t("Save")}</Button>
         </DialogActions>
       </Dialog>
     </div>

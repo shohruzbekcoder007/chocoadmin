@@ -1,3 +1,4 @@
+import { authRoles } from "../auth";
 import Color from "./Color";
 
 const ColorConfig = {
@@ -6,6 +7,7 @@ const ColorConfig = {
       config: {},
     },
   },
+  auth: authRoles.admin,
   routes: [
     {
       path: 'color',

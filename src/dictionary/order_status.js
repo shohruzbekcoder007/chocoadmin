@@ -1,20 +1,20 @@
 export default [
     {
         value: "New",
-        uz: "New",
-        ru: "New",
+        uz: "Yangi",
+        ru: "Новый",
         en: "New"
     },
     {
         value: "Completed",
-        uz: "Completed",
-        ru: "Completed",
+        uz: "Bajarildi",
+        ru: "Завершенный",
         en: "Completed"
     },
     {
         value: "Canceled",
-        uz: "Canceled",
-        ru: "Canceled",
+        uz: "Bekor qilingan",
+        ru: "Отменено",
         en: "Canceled"
     }
 ]

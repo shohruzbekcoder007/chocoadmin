@@ -17,7 +17,7 @@ const navigationConfig = [
     icon: 'heroicons-outline:briefcase',
     translate: 'Category',
     url: 'category',
-    auth: "admin"
+    auth: "staff"
   },
   {
     id: "brand",
@@ -32,7 +32,6 @@ const navigationConfig = [
   {
     id: "advertisement",
     title: "Advertisement",
-    // subtitle: "Brand create and update",
     type: 'item',
     icon: 'heroicons-outline:badge-check',
     translate: 'Advertisement',
@@ -83,6 +82,7 @@ const navigationConfig = [
     icon: 'heroicons-outline:check-circle',
     url: 'tasks',
     translate: 'Prodacts',
+    auth: "admin"
   },
   {
     id: 'tasks',
@@ -92,6 +92,7 @@ const navigationConfig = [
     icon: 'heroicons-outline:check-circle',
     url: 'tasks',
     translate: 'Prodacts',
+    auth: "admin"
   },
   // {
   //   id: 'product-image',
@@ -110,6 +111,7 @@ const navigationConfig = [
     icon: 'heroicons-outline:currency-bangladeshi',
     url: 'sales',
     translate: 'Sales',
+    auth: "staff"
   },
   {
     id: 'addproduct',
@@ -119,6 +121,7 @@ const navigationConfig = [
     icon: 'material-twotone:production_quantity_limits',
     url: 'addproduct',
     translate: 'Add_Product',
+    auth: "admin"
   },
   {
     id: 'muallif',
@@ -128,6 +131,7 @@ const navigationConfig = [
     icon: 'feather:users',
     url: 'muallif',
     translate: 'Muallif',
+    auth: "admin"
   },
   {
     id: 'variant',
@@ -137,6 +141,7 @@ const navigationConfig = [
     icon: 'material-twotone:multiple_stop',
     url: 'variant',
     translate: 'Variant',
+    auth: "admin"
   },
   {
     id: 'oreder',
@@ -146,6 +151,7 @@ const navigationConfig = [
     icon: 'material-twotone:border_color',
     url: 'oreder',
     translate: 'Oreder',
+    auth: "staff"
   }
 ];
 

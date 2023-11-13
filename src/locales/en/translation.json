@@ -140,5 +140,8 @@
     "look": "look",
     "View order": "View order",
     "Total": "Total",
-    "Book type": "Book type"
+    "Book type": "Book type",
+    "New": "New",
+    "Completed": "Completed",
+    "Canceled": "Canceled"
 }

@@ -1,3 +1,4 @@
+import { authRoles } from "../auth";
 import Size from "./Size";
 
 const SizeConfig = {
@@ -6,6 +7,7 @@ const SizeConfig = {
       config: {},
     },
   },
+  auth: authRoles.admin,
   routes: [
     {
       path: 'size',

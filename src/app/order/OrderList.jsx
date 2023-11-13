@@ -62,12 +62,6 @@ export default function OrderList() {
         console.log(error)
     })
 
-    // orderService.getOrders().then(response => {
-    //   console.log(response.data.results)
-    // }).catch(error => {
-    //   console.log(error)
-    // })
-
   },[rowsPerPage, page, reRender])
 
   return (
@@ -96,8 +90,8 @@ export default function OrderList() {
                       return (
                         <TableCell key={column.id} align={column.align}>
                           {column.format && typeof value === 'number'
-                            ? column.format(value)
-                            : value}
+                            ? column.format(t(value))
+                            : (value)}
                         </TableCell>
                       );
                     })}

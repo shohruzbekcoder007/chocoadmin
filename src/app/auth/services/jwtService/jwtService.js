@@ -46,11 +46,11 @@ class JwtService extends FuseUtils.EventEmitter {
             axios.get(jwtServiceConfig.getUser, {
               headers: headerConfig(),
           }).then(response => {
-            console.log(response)
+            console.log(response.data.role)
               let admin_user = {
                 uuid: response.data.id,
                 from: "custom-db",
-                role: "admin",
+                role: response.data.role,
                 data: {
                   displayName: "Admin",
                   photoURL: "assets/images/avatars/brian-hughes.jpg",
@@ -86,7 +86,7 @@ class JwtService extends FuseUtils.EventEmitter {
         let admin_user = {
           uuid: response.data.id,
           from: "custom-db",
-          role: "admin",
+          role: response.data.role,
           data: {
             displayName: "Admin",
             photoURL: "assets/images/avatars/brian-hughes.jpg",

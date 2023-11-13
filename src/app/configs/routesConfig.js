@@ -6,7 +6,7 @@ import SignInConfig from '../main/sign-in/SignInConfig';
 import SignUpConfig from '../main/sign-up/SignUpConfig';
 import SignOutConfig from '../main/sign-out/SignOutConfig';
 import Error404Page from '../main/404/Error404Page';
-import ExampleConfig from '../main/example/ExampleConfig';
+// import ExampleConfig from '../main/example/ExampleConfig';
 import dashboardsConfigs from '../main/dashboards/dashboardsConfigs';
 import invoicePagesConfig from '../invoice/invoicePagesConfig';
 import CategoryConfig from '../category/CategoryConfig';
@@ -22,11 +22,26 @@ import MuallifConfig from '../muallif/MuallifConfig';
 import VariantConfig from '../variant/VariantConfig';
 import OrederConfig from '../order/OrderConfig';
 import AdvertisementConfig from '../advertisement/AdvertisementConfig';
+// import authRoleExamplesConfigs from '../main/auth/authRoleExamplesConfigs';
+
+const ExampleConfig = {
+  settings: {
+      layout: {},
+  },
+  routes: [
+      {
+          path: '/',
+          element: <p>salom</p>,
+      }
+  ]
+}
 
 const routeConfigs = [
-  ...dashboardsConfigs,
+  // ...dashboardsConfigs,
+  // ...authRoleExamplesConfigs,
+  // ExampleConfig,
+  // invoicePagesConfig,
   ExampleConfig,
-  invoicePagesConfig,
   CategoryConfig,
   BrandConfig,
   BookConfig,
@@ -49,8 +64,8 @@ const routes = [
   ...FuseUtils.generateRoutesFromConfigs(routeConfigs, settingsConfig.defaultAuth),
   {
     path: '/',
-    element: <Navigate to="category" />,
-    auth: settingsConfig.defaultAuth,
+    element: <p>salom</p>,
+    // auth: settingsConfig.defaultAuth,
   },
   {
     path: '/category',

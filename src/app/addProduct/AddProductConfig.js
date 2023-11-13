@@ -1,3 +1,4 @@
+import { authRoles } from '../auth';
 import TaskForm from '../tasks/task/TaskForm';
 
 const AddProductConfig = {
@@ -6,6 +7,7 @@ const AddProductConfig = {
       config: {},
     },
   },
+  auth: authRoles.admin,
   routes: [
     {
       path: 'addproduct',

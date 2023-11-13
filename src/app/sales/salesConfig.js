@@ -1,3 +1,4 @@
+import { authRoles } from "../auth";
 import Sales from "./Sales";
 
 const SalesConfig = {
@@ -6,6 +7,7 @@ const SalesConfig = {
       config: {},
     },
   },
+  auth: authRoles.staff,
   routes: [
     {
       path: 'sales',

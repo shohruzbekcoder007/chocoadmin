@@ -140,5 +140,8 @@
     "look": "смотреть",
     "View order": "Посмотреть заказ",
     "Total": "Общий",
-    "Book type": "Book type"
+    "Book type": "Book type",
+    "New": "Новый",
+    "Completed": "Завершенный",
+    "Canceled": "Отменено"
 }

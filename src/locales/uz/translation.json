@@ -140,5 +140,8 @@
     "look": "ko'rish",
     "View order": "Buyurtmani ko'rish",
     "Total": "Jami",
-    "Book type": "Yozuv turi"
+    "Book type": "Yozuv turi",
+    "New": "Yangi",
+    "Completed": "Bajarildi",
+    "Canceled": "Bekor qilingan"
 }

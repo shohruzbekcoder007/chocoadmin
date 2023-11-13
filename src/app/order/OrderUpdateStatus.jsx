@@ -15,10 +15,12 @@ import Paper from '@mui/material/Paper';
 import { Stack } from '@mui/material';
 import SelectStatusOrder from './SelectStatusOrder';
 import orderService from './services/orderService'
+import { useTranslation } from 'react-i18next';
 
 export default function OrderUpdateStatus({ orderId, order_items, status, reRender }) {
     const [open, setOpen] = React.useState(false);
     const [newStatus, setNewStatus] = React.useState(status)
+    const { t } = useTranslation();
 
     const updateStatus = () => {
         orderService.updateOrder(orderId, {status: newStatus}).then(response => {
@@ -49,7 +51,7 @@ export default function OrderUpdateStatus({ orderId, order_items, status, reRend
     return (
         <div>
             <Button variant="outlined" onClick={handleClickOpen}>
-                Buyurtmani ko'rish
+            {t("View order")}
             </Button>
             <Dialog
                 open={open}
@@ -65,11 +67,11 @@ export default function OrderUpdateStatus({ orderId, order_items, status, reRend
                         <Table sx={{ minWidth: "100%" }} aria-label="simple table">
                             <TableHead sx={{ borderBottom: "2px solid #000" }}>
                                 <TableRow>
-                                    <TableCell>Maxsulot nomi</TableCell>
-                                    <TableCell align="right">Variant name</TableCell>
-                                    <TableCell align="right">Miqdori</TableCell>
-                                    <TableCell align="right">Narxi</TableCell>
-                                    <TableCell align="right">Jami narxi</TableCell>
+                                    <TableCell>{t("Product name(uz)")}</TableCell>
+                                    <TableCell align="right">{t("Variant name")}</TableCell>
+                                    <TableCell align="right">{t("Amount")}</TableCell>
+                                    <TableCell align="right">{t("Narxi")}</TableCell>
+                                    <TableCell align="right">{t("Total")}</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
@@ -94,7 +96,7 @@ export default function OrderUpdateStatus({ orderId, order_items, status, reRend
                             alignItems="flex-end"
                             spacing={{ xs: 1, sm: 2, md: 4, mt: 2, mb: 2 }}
                         >
-                            <p>Jami: {sum} so'm</p>
+                            <p>{t("Total")}: {sum} so'm</p>
                         </Stack>
                         <Stack
                             direction="row"
@@ -107,9 +109,9 @@ export default function OrderUpdateStatus({ orderId, order_items, status, reRend
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose}>Qaytish</Button>
+                    <Button onClick={handleClose}>{t("Qaytish")}</Button>
                     <Button onClick={updateStatus} autoFocus>
-                        O'zgartirishlarni saqlash
+                        {t("Save changes")}
                     </Button>
                 </DialogActions>
             </Dialog>

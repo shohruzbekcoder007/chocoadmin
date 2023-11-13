@@ -1,3 +1,4 @@
+import { authRoles } from "../auth";
 import Variant from "./Variant";
 
 const VariantConfig = {
@@ -6,6 +7,7 @@ const VariantConfig = {
       config: {},
     },
   },
+  auth: authRoles.admin,
   routes: [
     {
       path: 'variant',

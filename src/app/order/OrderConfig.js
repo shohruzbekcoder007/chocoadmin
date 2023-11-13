@@ -1,3 +1,4 @@
+import { authRoles } from "../auth";
 import Oreder from "./Oreder";
 
 const OrederConfig = {
@@ -6,6 +7,7 @@ const OrederConfig = {
       config: {},
     },
   },
+  auth: authRoles.staff,
   routes: [
     {
       path: 'oreder',

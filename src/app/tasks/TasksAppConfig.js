@@ -1,6 +1,7 @@
 import { lazy } from 'react';
 import TaskForm from './task/TaskForm';
 import TaskFormUpdate from './task/TaskFormUpdate';
+import { authRoles } from '../auth';
 
 const TasksApp = lazy(() => import('./TasksApp'));
 
@@ -10,6 +11,7 @@ const TasksAppConfig = {
       config: {},
     },
   },
+  auth: authRoles.admin,
   routes: [
     {
       path: 'tasks',
