@@ -22,16 +22,45 @@ import MuallifConfig from '../muallif/MuallifConfig';
 import VariantConfig from '../variant/VariantConfig';
 import OrederConfig from '../order/OrderConfig';
 import AdvertisementConfig from '../advertisement/AdvertisementConfig';
+import { authRoles } from '../auth';
+import MainPageAllUsers from '../MainPageAllUsers';
 // import authRoleExamplesConfigs from '../main/auth/authRoleExamplesConfigs';
 
-const ExampleConfig = {
+const ExampleConfigA = {
   settings: {
       layout: {},
   },
+  auth: authRoles.admin,
   routes: [
       {
           path: '/',
-          element: <p>salom</p>,
+          element: <MainPageAllUsers/>,
+      }
+  ]
+}
+
+const ExampleConfigU = {
+  settings: {
+      layout: {},
+  },
+  auth: authRoles.user,
+  routes: [
+      {
+          path: '/',
+          element: <MainPageAllUsers/>,
+      }
+  ]
+}
+
+const ExampleConfigS = {
+  settings: {
+      layout: {},
+  },
+  auth: authRoles.staff,
+  routes: [
+      {
+          path: '/',
+          element: <MainPageAllUsers/>,
       }
   ]
 }
@@ -41,7 +70,9 @@ const routeConfigs = [
   // ...authRoleExamplesConfigs,
   // ExampleConfig,
   // invoicePagesConfig,
-  ExampleConfig,
+  ExampleConfigA,
+  ExampleConfigU,
+  ExampleConfigS,
   CategoryConfig,
   BrandConfig,
   BookConfig,
@@ -64,7 +95,7 @@ const routes = [
   ...FuseUtils.generateRoutesFromConfigs(routeConfigs, settingsConfig.defaultAuth),
   {
     path: '/',
-    element: <p>salom</p>,
+    element: <MainPageAllUsers/>,
     // auth: settingsConfig.defaultAuth,
   },
   {
