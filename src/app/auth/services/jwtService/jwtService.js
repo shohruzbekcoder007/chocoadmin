@@ -48,7 +48,7 @@ class JwtService extends FuseUtils.EventEmitter {
           }).then(response => {
             console.log(response.data.role)
               let admin_user = {
-                uuid: response.data.id,
+                uuid: response?.data?.id,
                 from: "custom-db",
                 role: response.data.role,
                 data: {
@@ -84,7 +84,7 @@ class JwtService extends FuseUtils.EventEmitter {
         headers: headerConfig(),
     }).then(response => {
         let admin_user = {
-          uuid: response.data.id,
+          uuid: response?.data?.id,
           from: "custom-db",
           role: response.data.role,
           data: {

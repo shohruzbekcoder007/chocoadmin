@@ -26,6 +26,19 @@ import { authRoles } from '../auth';
 import MainPageAllUsers from '../MainPageAllUsers';
 // import authRoleExamplesConfigs from '../main/auth/authRoleExamplesConfigs';
 
+const ExampleConfig = {
+  settings: {
+      layout: {},
+  },
+  auth: authRoles.onlyGuest,
+  routes: [
+      {
+          path: '/',
+          element: <MainPageAllUsers/>,
+      }
+  ]
+}
+
 const ExampleConfigA = {
   settings: {
       layout: {},
@@ -70,8 +83,9 @@ const routeConfigs = [
   // ...authRoleExamplesConfigs,
   // ExampleConfig,
   // invoicePagesConfig,
-  ExampleConfigA,
+  ExampleConfig,
   ExampleConfigU,
+  ExampleConfigA,
   ExampleConfigS,
   CategoryConfig,
   BrandConfig,
