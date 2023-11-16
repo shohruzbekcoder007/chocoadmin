@@ -7,7 +7,7 @@ const CategoryConfig = {
     settings: {
         layout: {},
     },
-    auth: authRoles.staff,
+    auth: "staff",
     routes: [
         {
             path: 'category',

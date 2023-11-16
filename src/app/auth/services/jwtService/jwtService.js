@@ -1,6 +1,7 @@
 import FuseUtils from '@fuse/utils/FuseUtils';
 import axios, { headerConfig } from '../../../../utils/baseUrl';
 import jwtServiceConfig from './jwtServiceConfig';
+import authRoles from '../../authRoles';
 
 class JwtService extends FuseUtils.EventEmitter {
 
@@ -50,7 +51,7 @@ class JwtService extends FuseUtils.EventEmitter {
               let admin_user = {
                 uuid: response?.data?.id,
                 from: "custom-db",
-                role: response.data.role,
+                role: getRole(response.data.role),
                 data: {
                   displayName: "Admin",
                   photoURL: "assets/images/avatars/brian-hughes.jpg",
@@ -86,7 +87,7 @@ class JwtService extends FuseUtils.EventEmitter {
         let admin_user = {
           uuid: response?.data?.id,
           from: "custom-db",
-          role: response.data.role,
+          role: getRole(response.data.role),
           data: {
             displayName: "Admin",
             photoURL: "assets/images/avatars/brian-hughes.jpg",
@@ -153,3 +154,17 @@ class JwtService extends FuseUtils.EventEmitter {
 const instance = new JwtService();
 
 export default instance;
+
+
+
+const getRole = (role) => {
+  if(role == "admin"){
+    return authRoles.admin
+  }
+  if(role == "staff"){
+    return authRoles.staff
+  }
+  if(role == "content_maker"){
+    return authRoles.user
+  }
+}

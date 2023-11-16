@@ -8,7 +8,18 @@ i18next.addResourceBundle('en', 'navigation', en);
 i18next.addResourceBundle('uz', 'navigation', uz);
 i18next.addResourceBundle('ru', 'navigation', ru);
 
+// brand, author, sale, banner, category, product, size
+
 const navigationConfig = [
+  // {
+  //   id: "a",
+  //   title: "a",
+  //   // subtitle: "Create category and update",
+  //   type: 'item',
+  //   icon: 'heroicons-outline:briefcase',
+  //   translate: 'a',
+  //   url: 'a'
+  // },
   {
     id: "category",
     title: "Category",
@@ -27,7 +38,7 @@ const navigationConfig = [
     icon: 'material-twotone:branding_watermark',
     translate: 'Brand',
     url: 'brand',
-    auth: "admin"
+    auth: "staff"
   },
   {
     id: "advertisement",
@@ -72,7 +83,7 @@ const navigationConfig = [
     type: 'item',
     icon: 'feather:clipboard',
     url: 'book',
-    auth: "admin"
+    auth: "staff"
   },
   {
     id: 'tasks',
@@ -82,7 +93,7 @@ const navigationConfig = [
     icon: 'heroicons-outline:check-circle',
     url: 'tasks',
     translate: 'Prodacts',
-    auth: "admin"
+    auth: "staff"
   },
   {
     id: 'tasks',
@@ -92,7 +103,7 @@ const navigationConfig = [
     icon: 'heroicons-outline:check-circle',
     url: 'tasks',
     translate: 'Prodacts',
-    auth: "admin"
+    auth: "staff"
   },
   // {
   //   id: 'product-image',
@@ -121,7 +132,7 @@ const navigationConfig = [
     icon: 'material-twotone:production_quantity_limits',
     url: 'addproduct',
     translate: 'Add_Product',
-    auth: "admin"
+    auth: "staff"
   },
   {
     id: 'muallif',
@@ -131,7 +142,7 @@ const navigationConfig = [
     icon: 'feather:users',
     url: 'muallif',
     translate: 'Muallif',
-    auth: "admin"
+    auth: "staff"
   },
   {
     id: 'variant',
@@ -151,7 +162,7 @@ const navigationConfig = [
     icon: 'material-twotone:border_color',
     url: 'oreder',
     translate: 'Oreder',
-    auth: "staff"
+    auth: "user"
   }
 ];
 

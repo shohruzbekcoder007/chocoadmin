@@ -5,6 +5,7 @@ import FuseSplashScreen from '@fuse/core/FuseSplashScreen';
 import { showMessage } from 'app/store/fuse/messageSlice';
 import { logoutUser, setUser } from 'app/store/userSlice';
 import jwtService from './services/jwtService';
+import history from '@history';
 
 const AuthContext = React.createContext();
 
@@ -29,6 +30,9 @@ function AuthProvider({ children }) {
 
     jwtService.on('onLogin', (user) => {
       success(user, 'Signed in');
+      history.push({
+        pathname: '/',
+      });
     });
 
     jwtService.on('onLogout', () => {

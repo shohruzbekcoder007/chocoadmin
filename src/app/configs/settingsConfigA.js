@@ -2,7 +2,7 @@ import themesConfig from 'app/configs/themesConfig';
 import i18n from '../../i18n';
 import { authRoles } from '../auth';
 
-const settingsConfig = {
+const settingsConfigA = {
   layout: {
     style: 'layout1',
     config: {},
@@ -15,8 +15,8 @@ const settingsConfig = {
     toolbar: themesConfig.default,
     footer: themesConfig.defaultDark,
   },
-  defaultAuth: authRoles.admin,
+  defaultAuth: authRoles.staff,
   loginRedirectUrl: '/',
 };
 
-export default settingsConfig;
+export default settingsConfigA;

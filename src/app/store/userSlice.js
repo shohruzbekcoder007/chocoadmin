@@ -57,7 +57,7 @@ export const logoutUser = () => async (dispatch, getState) => {
   }
 
   history.push({
-    pathname: '/',
+    pathname: '/sign-in',
   });
 
   dispatch(setInitialSettings());

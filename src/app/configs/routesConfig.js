@@ -24,70 +24,21 @@ import OrederConfig from '../order/OrderConfig';
 import AdvertisementConfig from '../advertisement/AdvertisementConfig';
 import { authRoles } from '../auth';
 import MainPageAllUsers from '../MainPageAllUsers';
-// import authRoleExamplesConfigs from '../main/auth/authRoleExamplesConfigs';
+import settingsConfigA from './settingsConfigA';
 
-const ExampleConfig = {
+const ConfigS = {
   settings: {
       layout: {},
   },
-  auth: authRoles.onlyGuest,
   routes: [
       {
-          path: '/',
-          element: <MainPageAllUsers/>,
-      }
-  ]
-}
-
-const ExampleConfigA = {
-  settings: {
-      layout: {},
-  },
-  auth: authRoles.admin,
-  routes: [
-      {
-          path: '/',
-          element: <MainPageAllUsers/>,
-      }
-  ]
-}
-
-const ExampleConfigU = {
-  settings: {
-      layout: {},
-  },
-  auth: authRoles.user,
-  routes: [
-      {
-          path: '/',
-          element: <MainPageAllUsers/>,
-      }
-  ]
-}
-
-const ExampleConfigS = {
-  settings: {
-      layout: {},
-  },
-  auth: authRoles.staff,
-  routes: [
-      {
-          path: '/',
+          path: 'a',
           element: <MainPageAllUsers/>,
       }
   ]
 }
 
 const routeConfigs = [
-  // ...dashboardsConfigs,
-  // ...authRoleExamplesConfigs,
-  // ExampleConfig,
-  // invoicePagesConfig,
-  ExampleConfig,
-  ExampleConfigU,
-  ExampleConfigA,
-  ExampleConfigS,
-  CategoryConfig,
   BrandConfig,
   BookConfig,
   SignOutConfig, 
@@ -98,24 +49,23 @@ const routeConfigs = [
   ColorConfig,
   ProfuctImageConfig,
   AddProductConfig,
-  SalesConfig,
   MuallifConfig,
   VariantConfig,
-  OrederConfig,
   AdvertisementConfig
 ];
 
+const routeConfigs1 = [
+  CategoryConfig,
+  SalesConfig,
+  OrederConfig
+]
+
 const routes = [
   ...FuseUtils.generateRoutesFromConfigs(routeConfigs, settingsConfig.defaultAuth),
+  ...FuseUtils.generateRoutesFromConfigs(routeConfigs1, settingsConfigA.defaultAuth),
   {
     path: '/',
-    element: <MainPageAllUsers/>,
-    // auth: settingsConfig.defaultAuth,
-  },
-  {
-    path: '/category',
-    element: <Navigate to="/category" />,
-    auth: settingsConfig.defaultAuth,
+    element: <MainPageAllUsers />,
   },
   {
     path: 'loading',
