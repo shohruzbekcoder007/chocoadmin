@@ -29,7 +29,7 @@ function createData(id, title_uz, title_ru, status, price_uzs, discount_uzs, pro
   return { id, title_uz, title_ru, status, price_uzs, discount_uzs, product_type, update, deleteF };
 }
 
-export default function TasksList() {
+export default function TasksList({searchText}) {
 
   const [page, setPage] = React.useState(1);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -40,7 +40,7 @@ export default function TasksList() {
   const { t } = useTranslation();
 
   React.useEffect(() => {
-    const url_query = `?page_size=${rowsPerPage}&page=${page}`
+    const url_query = `?page_size=${rowsPerPage}&page=${page}${searchText}`
     taskService.getProducts(url_query).then(response => {
       setPage(response.data.page)
       setCount(response.data.count)
@@ -61,7 +61,7 @@ export default function TasksList() {
     }).catch(error => {
       console.log(error)
     })
-  }, [rowsPerPage, page, deleted])
+  }, [rowsPerPage, page, deleted, searchText])
 
 
   const handleChangePage = (event, newPage) => {

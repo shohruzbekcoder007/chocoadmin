@@ -14,10 +14,10 @@ export default function SelectBanner({getBannerValue, defVal}) {
     React.useEffect(() => {
         taskService.getBannerList().then(response => {
             const new_list = response.data.map(elem => {
-                return {
-                    value: elem.id,
-                    name: elem.title_uz
-                }
+              return {
+                value: elem.id,
+                name: elem.title_uz
+              }
             })
             setProductList(new_list);
         }).catch(error => {
@@ -47,9 +47,9 @@ export default function SelectBanner({getBannerValue, defVal}) {
           label={t("Banner")}
         >
             {
-                productList?.map((pty, index) => {
-                    return <MenuItem key={index} value={pty.value}>{pty.name}</MenuItem>
-                })
+              productList?.map((pty, index) => {
+                return <MenuItem key={index} value={pty.value}>{pty.name}</MenuItem>
+              })
             }
         </Select>
       </FormControl>

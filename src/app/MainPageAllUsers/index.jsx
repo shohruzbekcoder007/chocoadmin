@@ -2,8 +2,12 @@ import React from 'react'
 import { Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 export default function MainPageAllUsers() {
+
+  const { t } = useTranslation();
+
   return (
     <Box
           className="relative overflow-hidden flex shrink-0 items-center justify-center px-16 py-32 md:p-64"
@@ -15,7 +19,7 @@ export default function MainPageAllUsers() {
           <div className="flex flex-col items-center justify-center  mx-auto w-full">
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: 0 } }}>
               <Typography color="inherit" className="text-18 font-semibold">
-                FUSE ACADEMY
+                Azbo shop
               </Typography>
             </motion.div>
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: 0 } }}>
@@ -23,7 +27,7 @@ export default function MainPageAllUsers() {
                 color="inherit"
                 className="text-center text-32 sm:text-48 font-extrabold tracking-tight mt-4"
               >
-                What do you want to learn today?
+                {t("For employees of Azbo online store")}
               </Typography>
             </motion.div>
             <motion.div
@@ -34,8 +38,19 @@ export default function MainPageAllUsers() {
                 color="inherit"
                 className="text-16 sm:text-20 mt-16 sm:mt-24 opacity-75 tracking-tight max-w-md text-center"
               >
-                Our courses will step you through the process of a building small applications, or
-                adding new features to existing applications.
+                {t("Your job is the face of Azbo shopping")}
+              </Typography>
+              <Typography
+                color="inherit"
+                className="text-16 sm:text-20 mt-16 sm:mt-24 opacity-75 tracking-tight max-w-md text-center"
+              >
+                {t("Please be careful")}
+              </Typography>
+              <Typography
+                color="inherit"
+                className="text-16 sm:text-20 mt-16 sm:mt-24 opacity-75 tracking-tight max-w-md text-center"
+              >
+                {t("Feel part of our team")}
               </Typography>
             </motion.div>
           </div>

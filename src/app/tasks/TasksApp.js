@@ -14,10 +14,12 @@ const Root = styled(FusePageSimple)(({ theme }) => ({
 }));
 
 function TasksApp(props) {
+
   const pageLayout = useRef(null);
   const routeParams = useParams();
   const [rightSidebarOpen, setRightSidebarOpen] = useState(false);
   const isMobile = useThemeMediaQuery((theme) => theme.breakpoints.down('lg'));
+  const [searchText, setSearchText] = useState('')
 
 
   useEffect(() => {
@@ -26,8 +28,8 @@ function TasksApp(props) {
 
   return (
     <Root
-      header={<TasksHeader pageLayout={pageLayout} />}
-      content={<TasksList />}
+      header={<TasksHeader pageLayout={pageLayout} setSearchText={setSearchText}/>}
+      content={<TasksList searchText={searchText}/>}
       ref={pageLayout}
       rightSidebarContent={<TasksSidebarContent />}
       rightSidebarOpen={rightSidebarOpen}

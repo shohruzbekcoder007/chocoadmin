@@ -7,7 +7,7 @@ const MuallifConfig = {
     settings: {
         layout: {},
     },
-    auth: authRoles.admin,
+    auth: authRoles.staff,
     routes: [
         {
             path: 'muallif',

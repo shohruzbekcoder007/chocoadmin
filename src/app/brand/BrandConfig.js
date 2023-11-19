@@ -7,7 +7,7 @@ const BrandConfig = {
     settings: {
         layout: {},
     },
-    auth: authRoles.admin,
+    auth: authRoles.staff,
     routes: [
         {
             path: 'brand',
