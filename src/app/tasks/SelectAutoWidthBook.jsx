@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next'
 
 export default function SelectAutoWidthBook({getProductType, defVal}) {
 
-    console.log(defVal, "<-mona")
+    // console.log(defVal, "<-mona")
 
     const [productList, setProductList] = React.useState([])
     const { t } = useTranslation();

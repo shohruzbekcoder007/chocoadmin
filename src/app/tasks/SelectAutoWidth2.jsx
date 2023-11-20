@@ -20,12 +20,12 @@ export default function SelectAutoWidth({getProductType, defaultVal}) {
     }, [])
 
     React.useEffect(() => {
-      getProductType(defaultVal || product_type[0].value)
-      setAge(defaultVal || product_type[0].value)
+      getProductType(defaultVal || null)
+      setAge(defaultVal || null)
     }, [defaultVal])
 
 
-  const [age, setAge] = React.useState(defaultVal || product_type[0].value);
+  const [age, setAge] = React.useState(defaultVal || null);
 
   const handleChange = (event) => {
     setAge(event.target.value);
@@ -44,7 +44,7 @@ export default function SelectAutoWidth({getProductType, defaultVal}) {
           fullWidth
           label={t("Product type")}
         >
-          {/* <MenuItem value={null}>{`""`}</MenuItem> */}
+          <MenuItem value={null}>{`""`}</MenuItem>
             {
                 productList.map((pty, index) => {
                     return <MenuItem key={index} value={pty.value}>{pty.name}</MenuItem>

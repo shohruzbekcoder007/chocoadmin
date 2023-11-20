@@ -6,7 +6,7 @@ import _ from '@lodash'
 import Box from '@mui/system/Box'
 import FuseSvgIcon from '@fuse/core/FuseSvgIcon'
 import IconButton from '@mui/material/IconButton'
-import { FormControlLabel, FormGroup, Paper, Switch, TextField, Typography } from '@mui/material'
+import { CircularProgress, FormControlLabel, FormGroup, Paper, Switch, TextField, Typography } from '@mui/material'
 import MultipleSelectChip from '../MultipleSelectChip'
 import Editor from '../Editor'
 import SelectAutoWidth from '../SelectAutoWidth'
@@ -22,10 +22,14 @@ import AddBookTypes from '../AddBookTypes'
 import SelectYozuv from '../SelectYozuv'
 import { useTranslation } from 'react-i18next'
 import SelectAutoWidthBook from '../SelectAutoWidthBook'
+import AlertMessage from 'src/app/category/AlertMessage'
+
+const loadingStyle = {position: "fixed", width: "100%", height: "100vh", zIndex: 100, display: "flex", alignItems: "center", justifyContent: "center", left: 0, top: 0, backgroundColor: "#080a0c94"}
 
 function TaskForm() {
 
   const { t } = useTranslation();
+  const [createdOption, setCreatedOption] = useState(null)
 
   const [product_type, setProduct_type] = useState(null)
   const [title, setTitle] = useState("")
@@ -96,18 +100,40 @@ function TaskForm() {
     size.forEach((item) => form_data.append("size", (+item)))
     list_id.forEach((item) => form_data.append("list_id", (+item)))
 
+    setCreatedOption(null)
+
     taskService.createProduct(form_data).then(response => {
-      console.log(response)
+      // console.log(response)
+      setCreatedOption(_ => {
+        return {
+          alertMessage: "Product created",
+          type: "success"
+      }
+      })
       setLoading(false)
     }).catch(error => {
-      console.log(error)
+      // console.log(error.response.data)
+      let message = ``;
+      Object.keys(error.response.data).map(key => {
+        // console.log(error.response.data[key].join(','))
+        // console.log(key)
+        message = message + ` ${error.response.data[key].join(',')} `
+      })
+      setCreatedOption(_ => {
+        return {
+            alertMessage: message,
+            type: "error"
+        }
+      })
       setLoading(false)
     })
   }
 
   return (
     <>
-      {(!loading) ?
+      {
+        createdOption?<AlertMessage alertMessage={createdOption.alertMessage} _openAlert={true} type={createdOption.type}/>:null
+      }
         <Paper sx={{ m: 2 }}>
           <div className="relative flex flex-col flex-auto items-center px-24 sm:px-48">
             <div className="flex items-center justify-between border-b-1 w-full  mt-16 mb-32">
@@ -231,6 +257,7 @@ function TaskForm() {
             </div>
             {product_type != "book" ? <AditionalInformation getImages={val => { setAdditions(val) }} /> : <AddBookTypes getImages={val => { setAdditions(val) }} />}
           </div>
+          
           {(
             <Box
               className="flex items-center mt-40 py-14 pr-16 pl-4 sm:pr-48 sm:pl-36 border-t"
@@ -247,10 +274,14 @@ function TaskForm() {
               </Button>
             </Box>
           )}
-        </Paper> : <FuseLoading />
+        </Paper>
+      {
+        loading?
+          <Box sx={loadingStyle}>
+            <FuseLoading/>
+          </Box>:<></>
       }
     </>
-
   );
 }
 

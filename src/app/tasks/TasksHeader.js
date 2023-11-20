@@ -4,8 +4,9 @@ import Button from '@mui/material/Button';
 import NavLinkAdapter from '@fuse/core/NavLinkAdapter';
 import FuseSvgIcon from '@fuse/core/FuseSvgIcon';
 import { useTranslation } from 'react-i18next';
+import SearchProduct from './SearchProduct';
 
-function TasksHeader(props) {
+function TasksHeader({setSearchText}) {
 
   const { t } = useTranslation();
 
@@ -24,6 +25,7 @@ function TasksHeader(props) {
       </div>
 
       <div className="flex items-center -mx-8">
+        <SearchProduct setSearchText={setSearchText}/>
         <Button
           className="mx-8 whitespace-nowrap"
           variant="contained"
