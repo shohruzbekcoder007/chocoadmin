@@ -11,7 +11,7 @@ const TasksAppConfig = {
       config: {},
     },
   },
-  auth: authRoles.admin,
+  auth: authRoles.staff,
   routes: [
     {
       path: 'tasks',

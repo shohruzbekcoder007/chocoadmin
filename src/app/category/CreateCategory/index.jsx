@@ -54,7 +54,8 @@ export default function CreateCategory({ setCreatedOption }) {
 
     const newCreateCategory = () => {
         let formData = new FormData();
-        formData.append("icon", file);
+        if(file)
+            formData.append("icon", file);
         formData.append("title_uz", title);
         formData.append("title_ru", titleRu);
         formData.append("parent", parent);

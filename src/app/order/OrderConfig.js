@@ -7,7 +7,7 @@ const OrederConfig = {
       config: {},
     },
   },
-  auth: authRoles.staff,
+  auth: authRoles.user,
   routes: [
     {
       path: 'oreder',
