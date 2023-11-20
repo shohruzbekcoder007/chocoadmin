@@ -3,6 +3,7 @@ import { Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 
 export default function MainPageAllUsers() {
 

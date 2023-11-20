@@ -9,6 +9,7 @@ import {
   setSessionRedirectUrl,
   resetSessionRedirectUrl,
 } from '@fuse/core/FuseAuthorization/sessionRedirectUrl';
+import { authRoles } from 'src/app/auth';
 
 class FuseAuthorization extends Component {
   constructor(props, context) {
@@ -77,6 +78,9 @@ class FuseAuthorization extends Component {
 
       resetSessionRedirectUrl();
     }
+    // if(!(userRole == authRoles.admin || userRole == authRoles.staff || userRole == authRoles.user)){
+    //   setTimeout(() => history.push('/sign-in'), 0);
+    // }
   }
 
   render() {

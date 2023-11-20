@@ -14,6 +14,8 @@ import FuseAuthorization from '@fuse/core/FuseAuthorization';
 import settingsConfig from 'app/configs/settingsConfig';
 import withAppProviders from './withAppProviders';
 import { AuthProvider } from './auth/AuthContext';
+import { useEffect } from 'react';
+import history from '@history';
 
 // import axios from 'axios';
 /**
@@ -40,6 +42,14 @@ function App() {
   const user = useSelector(selectUser);
   const langDirection = useSelector(selectCurrentLanguageDirection);
   const mainTheme = useSelector(selectMainTheme);
+
+  console.log(user.uuid, "<---")
+
+  useEffect(() => {
+    if(!user.uuid){
+      setTimeout(() => history.push('/sign-in'), 0);
+    }
+  }, [user])
 
   return (
     <CacheProvider value={createCache(emotionCacheOptions[langDirection])}>

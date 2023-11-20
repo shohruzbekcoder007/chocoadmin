@@ -26,18 +26,6 @@ import { authRoles } from '../auth';
 import MainPageAllUsers from '../MainPageAllUsers';
 import settingsConfigA from './settingsConfigA';
 
-const ConfigS = {
-  settings: {
-      layout: {},
-  },
-  routes: [
-      {
-          path: 'a',
-          element: <MainPageAllUsers/>,
-      }
-  ]
-}
-
 const routeConfigs = [
   BrandConfig,
   BookConfig,

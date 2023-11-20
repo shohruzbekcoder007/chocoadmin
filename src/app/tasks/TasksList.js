@@ -12,6 +12,7 @@ import FullScreenDialog from './FullScreenDialog'
 import FuseSvgIcon from '@fuse/core/FuseSvgIcon'
 import { Button } from '@mui/material'
 import { useTranslation } from 'react-i18next'
+import PriceUpdate from './PriceUpdate'
 
 const columns = [
   { id: 'id', label: 'id' },
@@ -30,7 +31,7 @@ function createData(id, title_uz, title_ru, status, price_uzs, discount_uzs, pro
   return { id, title_uz, title_ru, status, price_uzs, discount_uzs, product_type, update, deleteF, update_price };
 }
 
-export default function TasksList({searchText}) {
+export default function TasksList({ searchText }) {
 
   const [page, setPage] = React.useState(1);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -57,8 +58,9 @@ export default function TasksList({searchText}) {
           >
             {t("Delete")}
           </Button>,
-          <p>{t("Price")}</p>
-          )
+          // <p>{t("Price")}</p>
+          <PriceUpdate/>
+        )
       })
       setBooks(bookList)
     }).catch(error => {
