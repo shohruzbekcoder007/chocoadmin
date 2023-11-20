@@ -46,7 +46,7 @@ function TaskFormUpdateTwo({ productId, setOpen }) {
     const [loading, setLoading] = useState(false)
     const [yozuv, setYozuv] = useState("krill")
     const [titleRu, setTitleRu] = useState('')
-    const [ctg, setCtg] = useState("")
+    const [ctg, setCtg] = useState({})
     const [error, setError] = useState(false)
     const [author, setAuthor] = useState('')
 
@@ -70,8 +70,9 @@ function TaskFormUpdateTwo({ productId, setOpen }) {
             setAuthor(response.data.author)
             // size
             // setStatus()
-            const parent_category = response.data.category[0].id
-            const children_category = response.data.category[0].children?.id
+            console.log(response.data.category)
+            const parent_category = response.data.category[0]?.parent
+            const children_category = response.data.category[0]?.id
             const category = {
                 parent_category: parent_category,
                 children_category: children_category
@@ -185,6 +186,8 @@ function TaskFormUpdateTwo({ productId, setOpen }) {
                                 categorySelectF={(val) => { setCategory(val) }} 
                                 product_type={product_type} 
                                 category={ctg}
+                                pct={ctg.parent_category}
+                                chct={ctg.children_category}
                             />
                             <SelectStatus getStatusValue={(val) => { setStatus(val) }} defaultVal={status}/>
                             {
