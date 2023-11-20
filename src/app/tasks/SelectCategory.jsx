@@ -6,11 +6,11 @@ import Select from '@mui/material/Select'
 import taskService from './services/taskService'
 import { useTranslation } from 'react-i18next'
 
-export default function SelectCategory({categorySelectF, product_type, category, pct, chct}) {
+export default function SelectCategory({categorySelectF, product_type, pct, chct}) {
 
-    const [parentCategory, setParentCategory] = useState("")
+    const [parentCategory, setParentCategory] = useState(null)
     const [parentCategoryList, setParentCategoryList] = useState([])
-    const [childCategory, setChildCategory] = useState("")
+    const [childCategory, setChildCategory] = useState(null)
     const [childCategoryList, setChildCategoryList] = useState([])
     const [allCategory, setAllCategory] = useState([])
     const { t } = useTranslation();
@@ -33,9 +33,6 @@ export default function SelectCategory({categorySelectF, product_type, category,
     }
 
     useEffect(() => {
-        // console.log(category, "<<--")
-        
-        // setParentCategory(55)
         if(product_type != ""){
             taskService.getCategory(product_type || "").then(response => {
                 setAllCategory(response.data)
@@ -45,24 +42,28 @@ export default function SelectCategory({categorySelectF, product_type, category,
                         name: element.title_uz
                     }
                 }))
-                // setParentCategory(category?.parentCategory)
-                // setChildCategory(category?.childCategory)
             }).catch(error => {
                 console.log(error)
             })
         }
-        // console.log(category, category?.children_category, category?.parent_category)
-        // console.log(category, "<<--")
     }, [product_type])
 
     useEffect(() => {
         if(chct)
-            setParentCategory(chct)
+            setChildCategory(chct)
     }, [chct])
 
     useEffect(() => {
-        if(pct)
-            setChildCategory(pct)
+        if(pct){
+            setParentCategory(pct)
+            const childCategorySelect = allCategory.find(element => element.id == pct).children || []
+            setChildCategoryList(childCategorySelect.map(element => {
+                return {
+                    value: element.id,
+                    name: element.title_uz
+                }
+            }))
+        }
     }, [pct])
 
     return (
@@ -70,7 +71,6 @@ export default function SelectCategory({categorySelectF, product_type, category,
             <div className="grid w-full grid-cols-1 gap-y-48 sm:grid-cols-2 mt-8 mb-8">
                 <FormControl sx={{ marginRight: "10px" }} className="mt-8 mb-8">
                     <InputLabel id="demo-simple-select-autowidth-label">{t("Parent category")}</InputLabel>
-                    {console.log(parentCategory)}
                     <Select
                         labelId="demo-simple-select-autowidth-label"
                         id="demo-simple-select-autowidth"
@@ -88,7 +88,6 @@ export default function SelectCategory({categorySelectF, product_type, category,
                 </FormControl>
                 <FormControl sx={{ marginLeft: "10px" }} className="mt-8 mb-8">
                     <InputLabel id="demo-simple-select-autowidth-label">{t("Child category")}</InputLabel>
-                    {console.log(childCategory)}
                     <Select
                         labelId="demo-simple-select-autowidth-label"
                         id="demo-simple-select-autowidth"

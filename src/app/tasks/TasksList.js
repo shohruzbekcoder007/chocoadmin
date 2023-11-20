@@ -21,12 +21,13 @@ const columns = [
   { id: 'product_type', label: 'product_type' },
   { id: 'price_uzs', label: 'price_uzs' },
   { id: 'discount_uzs', label: 'discount_uzs' },
+  { id: 'update_price', label: 'update_price' },
   { id: 'update', label: 'update' },
   { id: 'deleteF', label: 'deleteF' },
 ];
 
-function createData(id, title_uz, title_ru, status, price_uzs, discount_uzs, product_type, update, deleteF) {
-  return { id, title_uz, title_ru, status, price_uzs, discount_uzs, product_type, update, deleteF };
+function createData(id, title_uz, title_ru, status, price_uzs, discount_uzs, product_type, update, deleteF, update_price) {
+  return { id, title_uz, title_ru, status, price_uzs, discount_uzs, product_type, update, deleteF, update_price };
 }
 
 export default function TasksList({searchText}) {
@@ -44,7 +45,7 @@ export default function TasksList({searchText}) {
     taskService.getProducts(url_query).then(response => {
       setPage(response.data.page)
       setCount(response.data.count)
-      const bookList = response.data.results.map(({ id, title_uz, title_ru, status, price_uzs, discount_uzs, product_type, update, deleteF }) => {
+      const bookList = response.data.results.map(({ id, title_uz, title_ru, status, price_uzs, discount_uzs, product_type, update, deleteF, update_price }) => {
         return createData(id, title_uz, title_ru, status, price_uzs, discount_uzs, product_type,
           <FullScreenDialog productId={id} />,
           <Button
@@ -55,7 +56,9 @@ export default function TasksList({searchText}) {
             startIcon={<FuseSvgIcon className="text-48" size={24} color="white">material-twotone:delete_outline</FuseSvgIcon>}
           >
             {t("Delete")}
-          </Button>)
+          </Button>,
+          <p>{t("Price")}</p>
+          )
       })
       setBooks(bookList)
     }).catch(error => {
@@ -74,14 +77,11 @@ export default function TasksList({searchText}) {
   };
 
   const oneProductClickHandler = (row) => {
-    // console.log(row)
     setOpen(true)
   }
 
   const deletedProductHandler = (id) => {
-    // console.log(id)
     taskService.deleteProduct(id).then(response => {
-      // console.log(response)
       setDeleted(!deleted)
     }).catch(error => {
       console.log(error)
