@@ -172,6 +172,18 @@ class TaskService {
             })
         })
     }
+
+    getProductImages = (id) => {
+        return new Promise((resolve, reject) => {
+            axios.get(`${TaskConfig.product}${id}/images/`, {
+                headers: headerConfig(),
+            }).then(response => {
+                resolve(response);
+            }).catch(error => {
+                reject(error);
+            })
+        })
+    }
 }
 
 const instance = new TaskService();

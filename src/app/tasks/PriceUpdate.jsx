@@ -5,10 +5,14 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import taskService from './services/taskService'
+import { Typography } from '@mui/material';
 
-export default function PriceUpdate() {
+export default function PriceUpdate({productId}) {
   const [open, setOpen] = React.useState(false);
   const [scroll, setScroll] = React.useState('paper');
+  const [product_type, setProduct_type] = React.useState(null)
+  const [prices, setPrices] = React.useState([])
 
   const handleClickOpen = (scrollType) => () => {
     setOpen(true);
@@ -26,6 +30,12 @@ export default function PriceUpdate() {
       if (descriptionElement !== null) {
         descriptionElement.focus();
       }
+      taskService.getProductImages(productId).then(response => {
+        setProduct_type(response.data.product_type)
+        setPrices(response.data.all_images)
+      }).catch(error => {
+        console.log(error)
+      })
     }
   }, [open]);
 
@@ -42,9 +52,12 @@ export default function PriceUpdate() {
       >
         <DialogTitle id="scroll-dialog-title">Narxlarni o'zgartirish</DialogTitle>
         <DialogContent dividers={scroll === 'paper'}>
+          {
+
+          }
           <DialogContentText
             id="scroll-dialog-description"
-            ref={descriptionElementRef}
+            ref={descriptionElementRef} 
             tabIndex={-1}
           >
             {[...new Array(50)]
