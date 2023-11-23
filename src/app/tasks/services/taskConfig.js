@@ -10,7 +10,8 @@ const TaskConfig = {
     color: color,
     brand: brand,
     sales: sales,
-    author: author
+    author: author,
+    image_price: image_price
 };
 
 export default TaskConfig;

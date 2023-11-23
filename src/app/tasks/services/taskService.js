@@ -207,6 +207,25 @@ class TaskService {
         })
     }
 
+    updateProductPrice = (id, data) => {
+        return new Promise((resolve, reject) => {
+            axios.put(
+                `${TaskConfig.product}${id}${TaskConfig.image_price}`,
+                data,
+                {
+                    headers: headerConfig(),
+                }
+            ).then((response) => {
+                console.log(response)
+                resolve(response)
+            })
+            .catch((error) => {
+                console.log(error)
+                reject(error)
+            });
+        })
+    }
+
     // author
 
     getAuthors = () => {

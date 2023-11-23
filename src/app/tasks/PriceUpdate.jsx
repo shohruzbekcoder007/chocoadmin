@@ -6,12 +6,16 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import taskService from './services/taskService'
-import { Box, Grid, Stack, TextField, Typography } from '@mui/material';
+import { Box, Grid, IconButton, InputAdornment, InputLabel, OutlinedInput, Stack, TextField, Typography } from '@mui/material';
 import { ImageContainer, ImageRemove, ImageWrapper } from './AditionalInformation/styles';
 import FuseSvgIcon from '@fuse/core/FuseSvgIcon/FuseSvgIcon';
 import { host } from 'src/utils/API_urls';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
+// import SaveIcon from '@material-ui/icons/Save';
+import SaveIcon from '@mui/icons-material/Save';
+import EditIcon from '@mui/icons-material/Edit';
 
-export default function PriceUpdate({productId, name}) {
+export default function PriceUpdate({ productId, name }) {
 
   const [open, setOpen] = React.useState(false);
   const [scroll, setScroll] = React.useState('paper');
@@ -59,7 +63,7 @@ export default function PriceUpdate({productId, name}) {
       >
         <DialogTitle id="scroll-dialog-title">
           {/* Narxlarni o'zgartirish */}
-          {name.title_uz} <br/>
+          {name.title_uz} <br />
           {name.title_ru}
         </DialogTitle>
         <DialogContent dividers={scroll === 'paper'}>
@@ -73,7 +77,7 @@ export default function PriceUpdate({productId, name}) {
           >
             {
               prImages.map((elem, index) => {
-                return <OnePriceImage key={index} imgpr={elem} productId={productId} product_type={product_type}/>
+                return <OnePriceImage key={index} imgpr={elem} productId={productId} product_type={product_type} />
               })
             }
           </DialogContentText>
@@ -88,11 +92,19 @@ export default function PriceUpdate({productId, name}) {
 }
 
 
-const OnePriceImage = ({imgpr, productId, product_type}) => {
+const OnePriceImage = ({ imgpr, productId, product_type }) => {
 
   console.log(imgpr)
   const [imageList, setImageList] = React.useState(imgpr?.images || [])
+  const [priceOld, setPriceOld] = React.useState(imgpr?.price || 0)
   const [price, setPrice] = React.useState(imgpr?.price || 0)
+  const [showPassword, setShowPassword] = React.useState(false);
+
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
 
   const handleFileUpload = (event) => {
     const file = event.target.files[0];
@@ -101,15 +113,17 @@ const OnePriceImage = ({imgpr, productId, product_type}) => {
     form_data.append('price', price)
     form_data.append('product', productId)
     form_data.append('image', file)
-    if(product_type == "book"){
+
+    if (product_type == "book") {
       form_data.append('wrapper', imgpr.wrapper)
-    }else{
+    } else {
       form_data.append('color', imgpr.color_id)
     }
+
     taskService.createProductImage(form_data).then(response => {
       console.log(response)
       setImageList(prev => {
-        return [...prev, {id: response.data.id, image: response.data.image}]
+        return [...prev, { id: response.data.id, image: response.data.image }]
       })
     }).catch(error => {
       console.log(error)
@@ -119,7 +133,7 @@ const OnePriceImage = ({imgpr, productId, product_type}) => {
   const removeFile = (id) => {
     console.log(id)
     taskService.removeImage(id).then(response => {
-      if(response.status == 204){
+      if (response.status == 204) {
         setImageList(prev => {
           return prev.filter((img) => img.id != id);
         })
@@ -131,56 +145,87 @@ const OnePriceImage = ({imgpr, productId, product_type}) => {
 
   return (
     <Box component="div" sx={{ p: 2, border: '1px dashed grey', mb: 1 }}>
-            <Typography variant="h6" gutterBottom>
-                {imgpr.wrapper}
-            </Typography>
-            <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-                <Grid item xs={12} sx={{mb: 2}}>
-                <Stack direction="row" alignItems="center" spacing={2} useFlexGap flexWrap="wrap">
-                  <ImageWrapper>
-                        <ImageContainer>
-                            <label htmlFor={`upload-image-${productId}`}>
-                                <Button variant="contained" component="span">
-                                    Upload
-                                </Button>
-                                <input
-                                    id={`upload-image-${productId}`}
-                                    hidden
-                                    accept="image/*"
-                                    type="file"
-                                    onChange={handleFileUpload}
-                                />
-                            </label>
-                        </ImageContainer>
-                    </ImageWrapper>
-                    {
-                      imageList.map((elem, index) => {
-                        return (
-                          <ImageWrapper key={index}>
-                            {/* host + "/media/" +  */}
-                            <img src={host + elem.image} alt="Uploaded Image" height="300" />
-                            <ImageRemove
-                                onClick={() => { removeFile(elem.id) }}
-                            >
-                                <FuseSvgIcon className="text-48" size={24} color="error">material-twotone:close</FuseSvgIcon>
-                            </ImageRemove>
-                          </ImageWrapper>
-                        )
-                      })
-                    }
-                  </Stack>
-                </Grid>
-                <Grid item xs={12}>
-                    <TextField
-                        label={"Narxi"}
-                        id="name"
-                        variant="outlined"
-                        fullWidth
-                        type='number'
-                        onChange={(event) => {console.log(event.target.value)}}
-                    />
-                </Grid>
-            </Grid>
-        </Box>
+      <Typography variant="h6" gutterBottom>
+        {imgpr.wrapper}
+      </Typography>
+      <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+        <Grid item xs={12} sx={{ mb: 2 }}>
+          <Stack direction="row" alignItems="center" spacing={2} useFlexGap flexWrap="wrap">
+            <ImageWrapper>
+              <ImageContainer>
+                <label htmlFor={`upload-image-${productId}`}>
+                  <Button variant="contained" component="span">
+                    Upload
+                  </Button>
+                  <input
+                    id={`upload-image-${productId}`}
+                    hidden
+                    accept="image/*"
+                    type="file"
+                    onChange={handleFileUpload}
+                  />
+                </label>
+              </ImageContainer>
+            </ImageWrapper>
+            {
+              imageList.map((elem, index) => {
+                return (
+                  <ImageWrapper key={index}>
+                    {/* host + "/media/" +  */}
+                    <img src={elem.image} alt="Uploaded Image" height="300" />
+                    <ImageRemove
+                      onClick={() => { removeFile(elem.id) }}
+                    >
+                      <FuseSvgIcon className="text-48" size={24} color="error">material-twotone:close</FuseSvgIcon>
+                    </ImageRemove>
+                  </ImageWrapper>
+                )
+              })
+            }
+          </Stack>
+        </Grid>
+        <Grid item xs={12}>
+          {/* <TextField
+            label={"Narxi"}
+            id="name"
+            variant="outlined"
+            fullWidth
+            type='number'
+            onChange={(event) => { console.log(event.target.value) }}
+          /> */}
+          <InputLabel htmlFor="outlined-adornment-password">Narxi</InputLabel>
+          <OutlinedInput
+            id="outlined-adornment-password"
+            disabled={showPassword ? true : false}
+            type="number"
+            // label="Narxi"
+            value={price}
+            onChange={(event) => {setPrice(event.target.value)}}
+            fullWidth
+            endAdornment={
+              <InputAdornment position="end">
+                <>
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                  edge="end"
+                >
+                  {product_type=="book" ? <span style={{paddingRight: "8px"}}>So'm</span> : <Visibility />}
+                </IconButton>
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                  edge="end"
+                >
+                  {showPassword ? <EditIcon /> : <SaveIcon />}
+                </IconButton></>
+              </InputAdornment>
+            }
+          />
+        </Grid>
+      </Grid>
+    </Box>
   )
 }
