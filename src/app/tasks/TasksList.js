@@ -59,7 +59,7 @@ export default function TasksList({ searchText }) {
             {t("Delete")}
           </Button>,
           // <p>{t("Price")}</p>
-          <PriceUpdate productId={id}/>
+          <PriceUpdate productId={id} name={{title_uz, title_ru}}/>
         )
       })
       setBooks(bookList)

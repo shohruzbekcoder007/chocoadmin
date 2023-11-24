@@ -53,3 +53,6 @@ export const variant = "/variant/"
 
 export const order = "/order/"
 
+
+export const image_price = "/image_price/"
+ 

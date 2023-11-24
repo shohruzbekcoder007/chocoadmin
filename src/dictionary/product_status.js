@@ -12,10 +12,10 @@ export default [
         en: "HOT"
     },
     {
-        value: "BEST",
-        uz: "BEST",
-        ru: "BEST",
-        en: "BEST"
+        value: "BEST SELL",
+        uz: "BEST SELL",
+        ru: "BEST SELL",
+        en: "BEST SELL"
     },
     {
         value: "SELL",

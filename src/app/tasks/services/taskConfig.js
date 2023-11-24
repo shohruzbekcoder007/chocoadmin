@@ -1,4 +1,4 @@
-import { advertisement, author, banner, brand, category, color, product, product_image, sales, size } from "src/utils/API_urls";
+import { advertisement, author, banner, brand, category, color, image_price, product, product_image, sales, size } from "src/utils/API_urls";
 
 const TaskConfig = {
     product: product,
@@ -10,7 +10,8 @@ const TaskConfig = {
     color: color,
     brand: brand,
     sales: sales,
-    author: author
+    author: author,
+    image_price: image_price
 };
 
 export default TaskConfig;

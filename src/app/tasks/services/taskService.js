@@ -159,6 +159,73 @@ class TaskService {
         })
     }
 
+    getProductImages = (id) => {
+        return new Promise((resolve, reject) => {
+            axios.get(`${TaskConfig.product}${id}/images/`, {
+                headers: headerConfig(),
+            }).then(response => {
+                resolve(response);
+            }).catch(error => {
+                reject(error);
+            })
+        })
+    }
+
+    createProductImage = (data) => {
+        return new Promise((resolve, reject) => {
+            axios.post(
+                TaskConfig.product_image,
+                data,
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("jwt_access_token")}`,
+                        "Content-Type": "multipart/form-data"
+                      },
+                }
+            ).then((response) => {
+                console.log(response)
+                resolve(response)
+            })
+            .catch((error) => {
+                console.log(error)
+                reject(error)
+            });
+        })
+    }
+
+    removeImage = (id) => {
+        return new Promise((resolve, reject) => {
+            axios.delete(`${TaskConfig.product_image}${id}/`, {
+                headers: headerConfig(),
+            })
+            .then(response => {
+                resolve(response);
+            })
+            .catch(error => {
+                reject(error);
+            });
+        })
+    }
+
+    updateProductPrice = (id, data) => {
+        return new Promise((resolve, reject) => {
+            axios.put(
+                `${TaskConfig.product}${id}${TaskConfig.image_price}`,
+                data,
+                {
+                    headers: headerConfig(),
+                }
+            ).then((response) => {
+                console.log(response)
+                resolve(response)
+            })
+            .catch((error) => {
+                console.log(error)
+                reject(error)
+            });
+        })
+    }
+
     // author
 
     getAuthors = () => {
