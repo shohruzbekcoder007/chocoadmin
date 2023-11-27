@@ -78,6 +78,14 @@ function TaskFormUpdateTwo({ productId, setOpen }) {
                 children_category: children_category
             }
             setCtg(category)
+            if(category.children_category){
+                setCategory(category.children_category)
+            }else{
+                if(category.parent_category){
+                    setCategory(category.parent_category)
+                }
+            }
+            console.log(category.parent_category, category.children_category)
             console.log(category)
             // children
         }).catch(error => {
@@ -99,7 +107,7 @@ function TaskFormUpdateTwo({ productId, setOpen }) {
             product_type,
             title_uz: title,
             title_ru: titleRu,
-            category: [(+category)],
+            category: [category],
             status,
             yozuv,
             has_size,
@@ -186,8 +194,8 @@ function TaskFormUpdateTwo({ productId, setOpen }) {
                                 categorySelectF={(val) => { setCategory(val) }} 
                                 product_type={product_type} 
                                 category={ctg}
-                                pct={ctg.parent_category}
-                                chct={ctg.children_category}
+                                pct={ctg?.parent_category}
+                                chct={ctg?.children_category}
                             />
                             <SelectStatus getStatusValue={(val) => { setStatus(val) }} defaultVal={status}/>
                             {

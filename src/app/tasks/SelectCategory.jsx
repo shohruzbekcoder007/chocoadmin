@@ -18,7 +18,7 @@ export default function SelectCategory({categorySelectF, product_type, pct, chct
 
     const handleChange = (event) => {
         setParentCategory(event.target.value)
-        const childCategorySelect = allCategory.find(element => element.id == event.target.value).children || []
+        const childCategorySelect = allCategory.find(element => element.id == event.target.value)?.children || []
         setChildCategoryList(childCategorySelect.map(element => {
             return {
                 value: element.id,
@@ -56,7 +56,7 @@ export default function SelectCategory({categorySelectF, product_type, pct, chct
     useEffect(() => {
         if(pct){
             setParentCategory(pct)
-            const childCategorySelect = allCategory.find(element => element.id == pct).children || []
+            const childCategorySelect = allCategory.find(element => element.id == pct)?.children || []
             setChildCategoryList(childCategorySelect.map(element => {
                 return {
                     value: element.id,
