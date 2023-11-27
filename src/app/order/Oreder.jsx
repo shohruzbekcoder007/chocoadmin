@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { Typography } from '@mui/material';
 import { motion } from 'framer-motion';
 import SearchOrderModal from './SearchOrderModal';
+import { useState } from 'react';
 
 const Root = styled(FusePageSimple)(({ theme }) => ({
   '& .FusePageSimple-header': {
@@ -23,6 +24,7 @@ const Root = styled(FusePageSimple)(({ theme }) => ({
 function Oreder(props) {
 
   const { t } = useTranslation();
+  const [searchText, setSearchText] = useState('')
 
   return (
     <Root
@@ -43,7 +45,7 @@ function Oreder(props) {
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0, transition: { delay: 0.2 } }}
               >
-                <SearchOrderModal/>
+                <SearchOrderModal setSearchText={(val) => {setSearchText(val)}}/>
                 {/* <CreateSize setCreatedOption={setCreatedOption}/> */}
                 {/* <CreateBrand setCreatedOption={setCreatedOption}/> */}
               </motion.div>
@@ -52,7 +54,7 @@ function Oreder(props) {
       }
       content={
         <div className="p-24 w-full">
-          <OrderList/>
+          <OrderList searchText={searchText}/>
         </div>
       }
       scroll="content"

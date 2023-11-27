@@ -26,7 +26,7 @@ function createData(id, first_name, last_name, user_phone_number, status, phone_
   return { id, first_name, last_name, user_phone_number, status, phone_numberm, look, order_items };
 }
 
-export default function OrderList() {
+export default function OrderList({searchText}) {
   const [page, setPage] = React.useState(1);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [count, setCount] = React.useState(1)
@@ -50,7 +50,7 @@ export default function OrderList() {
 
   React.useEffect(() => {
 
-    const url_query = `?page_size=${rowsPerPage}&page=${page}`
+    const url_query = `?page_size=${rowsPerPage}&page=${page}&${searchText}`
     orderService.getOrders(url_query).then(response => {
         setPage(response.data.page)
         setCount(response.data.count)
@@ -63,6 +63,21 @@ export default function OrderList() {
     })
 
   },[rowsPerPage, page, reRender])
+
+  React.useEffect(() => {
+    setPage(1)
+    const url_query = `?page_size=${rowsPerPage}&page=${page}&${searchText}`
+    orderService.getOrders(url_query).then(response => {
+        setPage(response.data.page)
+        setCount(response.data.count)
+        const bookList = response.data.results.map(({id, first_name, last_name, user_phone_number, status, phone_number, look, order_items}) => {
+            return createData(id, first_name, last_name, user_phone_number, status, phone_number, <OrderUpdateStatus orderId={id} order_items={order_items} status={status} reRender={setReRender}/>)
+        })
+        setBooks(bookList)
+    }).catch(error => {
+        console.log(error)
+    })
+  }, [searchText])
 
   return (
     <Paper sx={{ width: '100%', overflow: 'hidden'}}>

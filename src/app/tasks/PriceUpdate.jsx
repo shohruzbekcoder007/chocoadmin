@@ -18,10 +18,11 @@ import { useTranslation } from 'react-i18next';
 
 export default function PriceUpdate({ productId, name }) {
 
-  const [open, setOpen] = React.useState(false);
-  const [scroll, setScroll] = React.useState('paper');
+  const [open, setOpen] = React.useState(false)
+  const [scroll, setScroll] = React.useState('paper')
   const [product_type, setProductType] = React.useState(null)
   const [prImages, setPrImages] = React.useState([])
+  const [reRender, setReRender] = React.useState(false)
   const { t } = useTranslation();
 
   const handleClickOpen = (scrollType) => () => {
@@ -34,6 +35,17 @@ export default function PriceUpdate({ productId, name }) {
   };
 
   const descriptionElementRef = React.useRef(null);
+
+  const getProductImagesApi = () => {
+    taskService.getProductImages(productId).then(response => {
+      console.log(response.data, response.data.product_type, response.data.all_images)
+      setProductType(response.data.product_type)
+      setPrImages(response.data.all_images)
+    }).catch(error => {
+      console.log(error)
+    })
+  }
+
   React.useEffect(() => {
     if (open) {
       const { current: descriptionElement } = descriptionElementRef;
@@ -41,21 +53,14 @@ export default function PriceUpdate({ productId, name }) {
         descriptionElement.focus();
       }
 
-      taskService.getProductImages(productId).then(response => {
-        console.log(response.data, response.data.product_type, response.data.all_images)
-        setProductType(response.data.product_type)
-        setPrImages(response.data.all_images)
-      }).catch(error => {
-        console.log(error)
-      })
+      getProductImagesApi()
 
     }
-  }, [open]);
+  }, [open, reRender]);
 
   return (
     <React.Fragment>
-      <Button variant="outlined" onClick={handleClickOpen('paper')}>Price</Button>
-      {/* <Button onClick={handleClickOpen('body')}>scroll=body</Button> */}
+      <Button variant="outlined" onClick={handleClickOpen('paper')}>{t("Price")}</Button>
       <Dialog
         open={open}
         onClose={handleClose}
@@ -69,12 +74,6 @@ export default function PriceUpdate({ productId, name }) {
           {name.title_ru}
         </DialogTitle>
         <DialogContent dividers={scroll === 'paper'}>
-          {
-
-          }
-          {
-
-          }
           <DialogContentText
             id="scroll-dialog-description"
             ref={descriptionElementRef} 
@@ -82,7 +81,7 @@ export default function PriceUpdate({ productId, name }) {
           >
             {
               prImages.map((elem, index) => {
-                return <OnePriceImage key={index} imgpr={elem} productId={productId} product_type={product_type} />
+                return <OnePriceImage key={index} imgpr={elem} productId={productId} product_type={product_type} setReRender={setReRender}/>
               })
             }
           </DialogContentText>
@@ -97,9 +96,8 @@ export default function PriceUpdate({ productId, name }) {
 }
 
 
-const OnePriceImage = ({ imgpr, productId, product_type }) => {
+const OnePriceImage = ({ imgpr, productId, product_type, setReRender }) => {
 
-  console.log(imgpr)
   const [imageList, setImageList] = React.useState(imgpr?.images || [])
   const [priceOld, setPriceOld] = React.useState(imgpr?.price || 0)
   const [price, setPrice] = React.useState(imgpr?.price || 0)
@@ -116,18 +114,19 @@ const OnePriceImage = ({ imgpr, productId, product_type }) => {
     if (product_type == "book") {
       reqBody = {
         wrapper: imgpr.wrapper,
-        price: 460
+        price: price
       }
     } else {
       reqBody = {
         color: imgpr.color_id,
-        price: 460
+        price: price
       }
     }
     
     taskService.updateProductPrice(productId, reqBody).then(response => {
       if(response.status == 200){
         handleClickShowPassword()
+        setReRender(prev => !prev)
       }
     }).catch(error => {
       console.log(error)
@@ -186,7 +185,7 @@ const OnePriceImage = ({ imgpr, productId, product_type }) => {
               <ImageContainer>
                 <label htmlFor={`upload-image-${productId}`}>
                   <Button variant="contained" component="span">
-                    Upload
+                    {t("Upload")}
                   </Button>
                   <input
                     id={`upload-image-${productId}`}
@@ -227,7 +226,7 @@ const OnePriceImage = ({ imgpr, productId, product_type }) => {
             fullWidth
             endAdornment={
               <InputAdornment position="end">
-                
+                <span style={{display: "inline-block", paddingRight: "10px"}}>{product_type == "product"?`$`:`so'm`}</span>
                 {!showPassword ? 
                 <IconButton
                   aria-label="toggle password visibility"
